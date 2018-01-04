@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.elevator.dao.elevatorInfo.ElevatorInfoMapper">
+
+	<select id="getElevatorList" resultType="ElevatorInfo">
+		SELECT * FROM elevatorinfo where  buildingId=#{buildingId} 
+	</select>
+
+	<!-- <select id="queryList" resultType="cn.elevator.entity.UserEntity">
+		select * from user 
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from user 
+	</select>
+	 
+	<insert id="save" parameterType="cn.elevator.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into user
+		(
+			`role`, 
+			`companyId`, 
+			`deleted`, 
+			`name`, 
+			`tel`, 
+			`yhname`, 
+			`wenXin`, 
+			`password`, 
+			`buildingId`, 
+			`guarantor`, 
+			`creater`, 
+			`createDate`, 
+			`updater`, 
+			`updatDate`
+		)
+		values
+		(
+			#{role}, 
+			#{companyid}, 
+			#{deleted}, 
+			#{name}, 
+			#{tel}, 
+			#{yhname}, 
+			#{wenxin}, 
+			#{password}, 
+			#{buildingid}, 
+			#{guarantor}, 
+			#{creater}, 
+			#{createdate}, 
+			#{updater}, 
+			#{updatdate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="cn.elevator.entity.UserEntity">
+		update user 
+		<set>
+			<if test="role != null">`role` = #{role}, </if>
+			<if test="companyid != null">`companyId` = #{companyid}, </if>
+			<if test="deleted != null">`deleted` = #{deleted}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="tel != null">`tel` = #{tel}, </if>
+			<if test="yhname != null">`yhname` = #{yhname}, </if>
+			<if test="wenxin != null">`wenXin` = #{wenxin}, </if>
+			<if test="password != null">`password` = #{password}, </if>
+			<if test="buildingid != null">`buildingId` = #{buildingid}, </if>
+			<if test="guarantor != null">`guarantor` = #{guarantor}, </if>
+			<if test="creater != null">`creater` = #{creater}, </if>
+			<if test="createdate != null">`createDate` = #{createdate}, </if>
+			<if test="updater != null">`updater` = #{updater}, </if>
+			<if test="updatdate != null">`updatDate` = #{updatdate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from user where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from user where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete> -->
+
+</mapper>
