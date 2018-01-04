@@ -12,7 +12,6 @@ import java.util.Date;
  * @date 2017-12-22 16:33:00 测试
  */
 public class ElevatorInfo  {
-	
 	//电梯信息表
 	private Integer id;
 	//关联到楼盘
