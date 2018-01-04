@@ -34,10 +34,10 @@
         </div>
         <div class="header-user">
             <a href="#" class="headerUser-item headerUser-item-user">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 陈露露开心快乐dfs！物业管理员工
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${userSession.userName }《用户角色：${userSession.userRole }》
 
             </a>
-            <a href="#" class="headerUser-item">
+            <a href="${pageContext.request.contextPath}/user/logout" class="headerUser-item">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span> 退出
             </a>
         </div>
@@ -111,12 +111,28 @@
                         <button type="button" class="btn btn-warning serchBtn">查 询</button>
                     </div>
                 </div>
-                <table class="${pageContext.request.contextPath }/statics/layui-hide" id="listTable" lay-filter="listTable"></table>
-                <script type="text/html" id="barlistTable">
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit" href="#">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                </script>
+                 <table class="layui-table" lay-data="{ height:600, url:'${pageContext.request.contextPath}/elevator/elevatorListData', page:true, id:'firmtable'}" lay-filter="firmtable">
+                <thead>
+                <tr>
+                    <th lay-data="{field: 'name'}">楼盘名称</th>
+                    <th lay-data="{field:'elevatorNumber'}">电梯类型</th>
+                    <th lay-data="{field:'occasion',width:150}">电梯使用场合</th>
+                    <th lay-data="{field:'identification'}">电梯标识</th>
+                    <th lay-data="{field:'code'}">注册代码</th>
+                    <th lay-data="{field:'model'}">电梯型号</th>
+                    <th lay-data="{field:'num'}">电梯编号</th>
+                    <th lay-data="{field:'useing'}">使用状态</th>
+                    <th lay-data="{field:'regist'}">注册状态</th>
+                    <th lay-data="{field:'maintain'}">首次维保日期</th>
+                    <th lay-data="{ align:'center', width:170,toolbar:'#barFirmTable'}">操作</th>
+                </tr>
+                </thead>
+            </table>
+            <script type="text/html" id="barFirmTable">
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
 
             </div>
         </form>
