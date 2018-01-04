@@ -11,16 +11,18 @@ import java.util.Date;
  * @email sunlightcs@gmail.com
  * @date 2017-12-22 16:33:00
  */
-public class Approval {
+public class Dictionary  {
 	
-	//审批表
+	//字典表
 	private Integer id;
-	//公司id
-	private Integer companyId;
-	//被审批公司角色
-	private Integer userRole;
-	//审批状态
-	private Integer approvalStuts;
+	//类型编码
+	private String typeCode;
+	//类型名称
+	private String typeName;
+	//类型值ID
+	private Integer valueId;
+	//类型值Name
+	private String valueName;
 	//创建人
 	private String creater;
 	//创建时间
@@ -36,23 +38,29 @@ public class Approval {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getCompanyId() {
-		return companyId;
+	public String getTypeCode() {
+		return typeCode;
 	}
-	public void setCompanyId(Integer companyId) {
-		this.companyId = companyId;
+	public void setTypeCode(String typeCode) {
+		this.typeCode = typeCode;
 	}
-	public Integer getUserRole() {
-		return userRole;
+	public String getTypeName() {
+		return typeName;
 	}
-	public void setUserRole(Integer userRole) {
-		this.userRole = userRole;
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
-	public Integer getApprovalStuts() {
-		return approvalStuts;
+	public Integer getValueId() {
+		return valueId;
 	}
-	public void setApprovalStuts(Integer approvalStuts) {
-		this.approvalStuts = approvalStuts;
+	public void setValueId(Integer valueId) {
+		this.valueId = valueId;
+	}
+	public String getValueName() {
+		return valueName;
+	}
+	public void setValueName(String valueName) {
+		this.valueName = valueName;
 	}
 	public String getCreater() {
 		return creater;
@@ -72,12 +80,14 @@ public class Approval {
 	public void setUpdater(String updater) {
 		this.updater = updater;
 	}
-	public Date getUpdatDate() {
+	public Date getUpdatDate(){
 		return updatDate;
 	}
 	public void setUpdatDate(Date updatDate) {
 		this.updatDate = updatDate;
 	}
+	
+	
 
 	
 }

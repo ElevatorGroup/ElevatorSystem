@@ -9,107 +9,67 @@ import java.util.Date;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2017-12-22 16:33:00
+ * @date 2018-1-2 
  */
 public class News  {
 	
 	//消息表
 	private Integer id;
 	//消息类型0维保提醒 1合同快到期提醒 2注册审核提醒
-	private Integer newstype;
+	private Integer newsType;
 	//消息内容
-	private String newscontent;
+	private String newsContent;
 	//创建人
 	private String creater;
 	//创建时间
-	private Date createdate;
+	private Date createDate;
 	//修改人
 	private String updater;
 	//修改时间
-	private Date updatdate;
-
-	/**
-	 * 设置：消息表
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：消息表
-	 */
+	private Date updatDate;
+	
 	public Integer getId() {
 		return id;
 	}
-	/**
-	 * 设置：消息类型0维保提醒 1合同快到期提醒 2注册审核提醒
-	 */
-	public void setNewstype(Integer newstype) {
-		this.newstype = newstype;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	/**
-	 * 获取：消息类型0维保提醒 1合同快到期提醒 2注册审核提醒
-	 */
-	public Integer getNewstype() {
-		return newstype;
+	public Integer getNewsType() {
+		return newsType;
 	}
-	/**
-	 * 设置：消息内容
-	 */
-	public void setNewscontent(String newscontent) {
-		this.newscontent = newscontent;
+	public void setNewsType(Integer newsType) {
+		this.newsType = newsType;
 	}
-	/**
-	 * 获取：消息内容
-	 */
-	public String getNewscontent() {
-		return newscontent;
+	public String getNewsContent() {
+		return newsContent;
 	}
-	/**
-	 * 设置：创建人
-	 */
-	public void setCreater(String creater) {
-		this.creater = creater;
+	public void setNewsContent(String newsContent) {
+		this.newsContent = newsContent;
 	}
-	/**
-	 * 获取：创建人
-	 */
 	public String getCreater() {
 		return creater;
 	}
-	/**
-	 * 设置：创建时间
-	 */
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
+	public void setCreater(String creater) {
+		this.creater = creater;
 	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreatedate() {
-		return createdate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	/**
-	 * 设置：修改人
-	 */
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	/**
-	 * 获取：修改人
-	 */
 	public String getUpdater() {
 		return updater;
 	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setUpdatdate(Date updatdate) {
-		this.updatdate = updatdate;
+	public void setUpdater(String updater) {
+		this.updater = updater;
 	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getUpdatdate() {
-		return updatdate;
+	public Date getUpdatDate() {
+		return updatDate;
 	}
+	public void setUpdatDate(Date updatDate) {
+		this.updatDate = updatDate;
+	}
+
+	
 }
