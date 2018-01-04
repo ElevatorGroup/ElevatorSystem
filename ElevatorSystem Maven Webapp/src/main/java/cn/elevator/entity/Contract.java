@@ -16,170 +16,100 @@ public class Contract  {
 	//合同表
 	private Integer id;
 	//甲公司ID
-	private Integer companyJid;
+	private Integer Company_JId;
 	//乙公司ID
-	private Integer companyYid;
+	private Integer Company_YId;
 	//合同图片
 	private String img;
 	//起始时间
-	private Date startdate;
+	private Date startDate;
 	//结束时间
-	private Date enddate;
+	private Date endDate;
 	//是否到期0未到期，1已到期
-	private Integer deadline;
+	private Integer deadlLine;
 	//合同类型0厂商与楼盘 1安装与楼盘 2楼盘与物业 3物业与维保
-	private Integer contracttype;
+	private Integer contractType;
 	//创建人
 	private String creater;
 	//创建时间
-	private Date createdate;
+	private Date createDate;
 	//修改人
 	private String updater;
 	//修改时间
-	private Date updatdate;
-
-	/**
-	 * 设置：合同表
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：合同表
-	 */
+	private Date updatDate;
+	
 	public Integer getId() {
 		return id;
 	}
-	/**
-	 * 设置：甲公司ID
-	 */
-	public void setCompanyJid(Integer companyJid) {
-		this.companyJid = companyJid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	/**
-	 * 获取：甲公司ID
-	 */
-	public Integer getCompanyJid() {
-		return companyJid;
+	public Integer getCompany_JId() {
+		return Company_JId;
 	}
-	/**
-	 * 设置：乙公司ID
-	 */
-	public void setCompanyYid(Integer companyYid) {
-		this.companyYid = companyYid;
+	public void setCompany_JId(Integer company_JId) {
+		Company_JId = company_JId;
 	}
-	/**
-	 * 获取：乙公司ID
-	 */
-	public Integer getCompanyYid() {
-		return companyYid;
+	public Integer getCompany_YId() {
+		return Company_YId;
 	}
-	/**
-	 * 设置：合同图片
-	 */
-	public void setImg(String img) {
-		this.img = img;
+	public void setCompany_YId(Integer company_YId) {
+		Company_YId = company_YId;
 	}
-	/**
-	 * 获取：合同图片
-	 */
 	public String getImg() {
 		return img;
 	}
-	/**
-	 * 设置：起始时间
-	 */
-	public void setStartdate(Date startdate) {
-		this.startdate = startdate;
+	public void setImg(String img) {
+		this.img = img;
 	}
-	/**
-	 * 获取：起始时间
-	 */
-	public Date getStartdate() {
-		return startdate;
+	public Date getStartDate() {
+		return startDate;
 	}
-	/**
-	 * 设置：结束时间
-	 */
-	public void setEnddate(Date enddate) {
-		this.enddate = enddate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	/**
-	 * 获取：结束时间
-	 */
-	public Date getEnddate() {
-		return enddate;
+	public Date getEndDate() {
+		return endDate;
 	}
-	/**
-	 * 设置：是否到期0未到期，1已到期
-	 */
-	public void setDeadline(Integer deadline) {
-		this.deadline = deadline;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	/**
-	 * 获取：是否到期0未到期，1已到期
-	 */
-	public Integer getDeadline() {
-		return deadline;
+	public Integer getDeadlLine() {
+		return deadlLine;
 	}
-	/**
-	 * 设置：合同类型0厂商与楼盘 1安装与楼盘 2楼盘与物业 3物业与维保
-	 */
-	public void setContracttype(Integer contracttype) {
-		this.contracttype = contracttype;
+	public void setDeadlLine(Integer deadlLine) {
+		this.deadlLine = deadlLine;
 	}
-	/**
-	 * 获取：合同类型0厂商与楼盘 1安装与楼盘 2楼盘与物业 3物业与维保
-	 */
-	public Integer getContracttype() {
-		return contracttype;
+	public Integer getContractType() {
+		return contractType;
 	}
-	/**
-	 * 设置：创建人
-	 */
-	public void setCreater(String creater) {
-		this.creater = creater;
+	public void setContractType(Integer contractType) {
+		this.contractType = contractType;
 	}
-	/**
-	 * 获取：创建人
-	 */
 	public String getCreater() {
 		return creater;
 	}
-	/**
-	 * 设置：创建时间
-	 */
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
+	public void setCreater(String creater) {
+		this.creater = creater;
 	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreatedate() {
-		return createdate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	/**
-	 * 设置：修改人
-	 */
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	/**
-	 * 获取：修改人
-	 */
 	public String getUpdater() {
 		return updater;
 	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setUpdatdate(Date updatdate) {
-		this.updatdate = updatdate;
+	public void setUpdater(String updater) {
+		this.updater = updater;
 	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getUpdatdate() {
-		return updatdate;
+	public Date getUpdatDate() {
+		return updatDate;
 	}
+	public void setUpdatDate(Date updatDate) {
+		this.updatDate = updatDate;
+	}
+
+	
 }

@@ -16,128 +16,76 @@ public class Newsrecord  {
 	//消息记录表
 	private Integer id;
 	//消息id
-	private Integer newsid;
+	private Integer newsId;
 	//用户id
-	private Integer userid;
+	private Integer userId;
 	//消息状态0已读1未读
-	private Integer newsstate;
+	private Integer newsState;
 	//是否删除0删除1显示
 	private Integer del;
 	//创建人
 	private String creater;
 	//创建时间
-	private Date createdate;
+	private Date createDate;
 	//修改人
 	private String updater;
 	//修改时间
-	private Date updatdate;
-
-	/**
-	 * 设置：消息记录表
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：消息记录表
-	 */
+	private Date updatDate;
+	
 	public Integer getId() {
 		return id;
 	}
-	/**
-	 * 设置：消息id
-	 */
-	public void setNewsid(Integer newsid) {
-		this.newsid = newsid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	/**
-	 * 获取：消息id
-	 */
-	public Integer getNewsid() {
-		return newsid;
+	public Integer getNewsId() {
+		return newsId;
 	}
-	/**
-	 * 设置：用户id
-	 */
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setNewsId(Integer newsId) {
+		this.newsId = newsId;
 	}
-	/**
-	 * 获取：用户id
-	 */
-	public Integer getUserid() {
-		return userid;
+	public Integer getUserId() {
+		return userId;
 	}
-	/**
-	 * 设置：消息状态0已读1未读
-	 */
-	public void setNewsstate(Integer newsstate) {
-		this.newsstate = newsstate;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	/**
-	 * 获取：消息状态0已读1未读
-	 */
-	public Integer getNewsstate() {
-		return newsstate;
+	public Integer getNewsState() {
+		return newsState;
 	}
-	/**
-	 * 设置：是否删除0删除1显示
-	 */
-	public void setDel(Integer del) {
-		this.del = del;
+	public void setNewsState(Integer newsState) {
+		this.newsState = newsState;
 	}
-	/**
-	 * 获取：是否删除0删除1显示
-	 */
 	public Integer getDel() {
 		return del;
 	}
-	/**
-	 * 设置：创建人
-	 */
-	public void setCreater(String creater) {
-		this.creater = creater;
+	public void setDel(Integer del) {
+		this.del = del;
 	}
-	/**
-	 * 获取：创建人
-	 */
 	public String getCreater() {
 		return creater;
 	}
-	/**
-	 * 设置：创建时间
-	 */
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
+	public void setCreater(String creater) {
+		this.creater = creater;
 	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreatedate() {
-		return createdate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	/**
-	 * 设置：修改人
-	 */
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	/**
-	 * 获取：修改人
-	 */
 	public String getUpdater() {
 		return updater;
 	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setUpdatdate(Date updatdate) {
-		this.updatdate = updatdate;
+	public void setUpdater(String updater) {
+		this.updater = updater;
 	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getUpdatdate() {
-		return updatdate;
+	public Date getUpdatDate() {
+		return updatDate;
 	}
+	public void setUpdatDate(Date updatDate) {
+		this.updatDate = updatDate;
+	}
+
+	
 }
