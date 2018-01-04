@@ -9,7 +9,7 @@ import java.util.Date;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2017-12-22 16:33:00
+ * @date 2017-12-22 16:33:00 测试
  */
 public class ElevatorInfo  {
 	
