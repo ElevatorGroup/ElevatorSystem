@@ -44,7 +44,7 @@ public class ElevatorInfoController {
 			}else if(user.getUserRole()==1){
 				logger.debug("$$$$楼盘用户============");
 				logger.debug("获取的公司id"+user.getCompanyId());
-				elevatorInfoList=elevatorInfoService.getElevatorList(user.getCompanyId());
+				
 				for(int i=0;i<elevatorInfoList.size();i++){
 					logger.debug("**********************"+elevatorInfoList.get(i).getElevatorNumber());
 				}
@@ -63,9 +63,10 @@ public class ElevatorInfoController {
 		}
 		@ResponseBody//用来拿取后台电梯的数据
 		@RequestMapping(value = "/elevatorListData", method = RequestMethod.GET)
-		public Object elevatorMain1() throws Exception {
+		public Object elevatorMain1(HttpSession session) throws Exception {
 				Map<String,Object> elevatorInfoMap=new HashMap<String,Object>();
 			List<ElevatorInfo> elevatorInfoList=new ArrayList<ElevatorInfo>();
+			elevatorInfoList=elevatorInfoService.getElevatorList(((User)session.getAttribute(Constants.USER_SESSION)).getCompanyId());
 			elevatorInfoMap.put("code",0);
 			elevatorInfoMap.put("msg","");
 			elevatorInfoMap.put("count",elevatorInfoList.size());
