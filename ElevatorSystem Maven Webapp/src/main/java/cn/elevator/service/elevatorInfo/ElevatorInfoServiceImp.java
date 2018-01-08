@@ -14,12 +14,22 @@ public class ElevatorInfoServiceImp implements ElevatorInfoService {
 	@Resource
 	private ElevatorInfoMapper elevatorInfoMapper;
 
-	@Override
-	public List<ElevatorInfo> getElevatorList(Integer buildingId)
-			throws Exception {
-		
-		return (List<ElevatorInfo>) elevatorInfoMapper.getElevatorList(buildingId);
 
+
+	@Override
+	public Integer getElevatorCount(Integer buildingId) throws Exception {
+		// TODO Auto-generated method stub
+		return elevatorInfoMapper.getElevatorCount(buildingId);
 	}
 
+	@Override
+	public List<ElevatorInfo> getElevatorList(Integer buildingId,
+			String buildingName, Integer elevatorType, String elevatorCode,
+			String registrationCode, Integer usingState, Integer from,
+			Integer pageSize) throws Exception {
+		// TODO Auto-generated method stub
+		return (List<ElevatorInfo>)elevatorInfoMapper.getElevatorList(buildingId, buildingName, elevatorType, elevatorCode, registrationCode, usingState, from, pageSize);
+	}
+
+	
 }

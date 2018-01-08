@@ -2,11 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.elevator.dao.user.UserMapper">
-
+<!-- 根据用户返回整个用户对象 -->
 	<select id="login" resultType="User">
-		select * from user where userName = #{userName}
+		select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
+		u.password,u.buildingID,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate, 
+		(select d.valueName  from dictionary d where d.typeCode="user_role" and d.valueId=u.userRole) as userRoleName
+		from user u where userName = #{userName}
 	</select>
-
+	
+	
+	
+	
+	 <!-- 根据用户角色返回该用户对应的楼盘列表 -->
+	<!-- <select id="get"></select>
+	
+	
+	
+	<resultMap type="Building" id="getBuildingList">
+		<id property="id" coloumn=""/>
+		<result property="user"/>
+	</resultMap> --> 
+	
+	
 	<!-- <select id="queryList" resultType="cn.elevator.entity.UserEntity">
 		select * from user 
 		<if test="offset != null and limit != null">

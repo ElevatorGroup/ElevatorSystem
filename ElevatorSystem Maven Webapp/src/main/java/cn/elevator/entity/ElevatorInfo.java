@@ -14,8 +14,19 @@ import java.util.Date;
 public class ElevatorInfo  {
 	//电梯信息表
 	private Integer id;
+	public String getBuildingName() {
+		return buildingName;
+	}
+	public void setBuildingName(String buildingName) {
+		this.buildingName = buildingName;
+	}
 	//关联到楼盘
 	private Integer buildingId;
+	
+	
+	
+	//连表查询，新添字段楼盘名称
+	private String buildingName;
 	//电梯型号
 	private String elevatorModel;
 	//电梯唯一编号

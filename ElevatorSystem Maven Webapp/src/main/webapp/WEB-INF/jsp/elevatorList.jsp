@@ -48,7 +48,7 @@
 			<div class="header-user">
 				<a href="#" class="headerUser-item headerUser-item-user"> <span
 					class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					${userSession.userName }《用户角色：${userSession.userRole }》 </a> <a
+					${userSession.userName }《用户角色：${userSession.userRoleName }》 </a> <a
 					href="${pageContext.request.contextPath}/user/logout"
 					class="headerUser-item"> <span class="glyphicon glyphicon-off"
 					aria-hidden="true"></span> 退出 </a>
@@ -89,17 +89,24 @@
 
 		<!--右边{-->
 		<div class="main-r">
-			<form action="">
+			<form action="${pageContext.request.contextPath }/elevator/elevatorListUI">
 				<div class="defaultAre">
 					<div class="serchAre clearfix">
-						<div class="form-group">
-							<label for="" class=" control-label">楼盘名称</label> <input
-								type="text" class="form-control">
+					<!-- 1楼盘名称 -->
+						<div class="selectAre">
+							<label for="" class=" control-label">楼盘</label>
+							<div class="serchAreform-group">
+								<select class="selectpicker" name="buildingName" title="请选择电梯类型">
+									<option>银泰</option>
+									<option>保利</option>
+								</select>
+							</div>
 						</div>
+						<!-- 2电梯类型 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">电梯类型</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" title="请选择电梯类型">
+								<select class="selectpicker" name="elevatorType" title="请选择电梯类型">
 									<option>观光电梯</option>
 									<option>乘客电梯</option>
 									<option>杂货电梯</option>
@@ -107,32 +114,44 @@
 								</select>
 							</div>
 						</div>
+						<!-- 3设备识别码 -->
 						<div class="form-group">
-							<label for="" class=" control-label">电梯标识</label> <input
-								type="text" class="form-control">
+							<label for="" class=" control-label">设备识别码</label> <input
+								type="text" name="elevatorCode" class="form-control">
 						</div>
+						
+					
+						<!-- 4注册代码 -->
 						<div class="form-group form-group-code">
 							<label for="" class=" control-label">注册代码</label> <input
-								type="text" class="form-control">
+								type="text" name="registrationCode" class="form-control">
 						</div>
-						<div class="form-group">
-							<label for="" class=" control-label">使用状态</label> <input
-								type="text" class="form-control">
-						</div>
-						<div class="selectAre form-group">
-							<label for="" class=" control-label">使用状态</label>
+						<!-- 5注册状态 -->
+						<div class="selectAre">
+							<label for="" class=" control-label">注册状态</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" title="">
-									<option>使用中</option>
-									<option>停用</option>
-									<option>维修中</option>
-									<option>维保中</option>
-									<option>故障</option>
+								<select class="selectpicker" name="registrationStatus" title="请选择注册状态">
+									<option>已注册</option>
+									<option>未注册</option>
 								</select>
 							</div>
 						</div>
+						
+						
+						<!-- 6使用状态 -->
+						<div class="selectAre">
+							<label for="" class=" control-label">使用状态</label>
+							<div class="serchAreform-group">
+								<select class="selectpicker" name="usingState" title="请选择使用状态">
+									<option>使用中</option>
+									<option>停用</option>
+								</select>
+							</div>
+						</div>
+							
+						
 						<div class="form-group-button fl">
-							<button type="button" class="btn btn-warning serchBtn">查询</button>
+							<button type="submit" class="btn btn-warning serchBtn">查询</button>
 						</div>
 					</div>
 					
@@ -141,9 +160,9 @@
 					 <table class="layui-table" lay-data="{ height:600, url:'${pageContext.request.contextPath }/elevator/elevatorListData', page:true, id:'firmtable'}" lay-filter="firmtable">
                 <thead>
                 <tr>
-                    <th lay-data="{field: 'buildingId'}">楼盘名称</th>
+                    <th lay-data="{field: 'buildingName'}">楼盘名称</th>
                     <th lay-data="{field:'elevatorType'}">电梯类型</th>
-                    <th lay-data="{field:'elevatorCode'}">电梯标识</th>
+                    <th lay-data="{field:'elevatorCode'}">设备识别码</th>
                     <th lay-data="{field:'registrationCode'}">注册代码</th>
                     <th lay-data="{field:'elevatorModel'}">电梯型号</th>
                     <th lay-data="{field:'elevatorNumber'}">电梯编号</th>

@@ -31,10 +31,10 @@ public class User  {
 	private String wenXin;
 	//用户密码
 	private String password;
-	//楼盘id只有楼盘id不为空时为物业普通员工
-	private Integer realtyPeopleNum;
-	//维保人员工号只有维保人员工号不为空时为维保普通员工
-	private Integer maintenancePoopleNum;
+	//物业普通员工对应楼盘id,其他用户都为空
+	private Integer buildingID;
+	//维保普通员工对应修理的电梯id,其他用户都为空
+	private String elevatorID;
 	//创建人
 	private String creater;
 	//创建时间
@@ -44,6 +44,18 @@ public class User  {
 	//修改时间
 	private Date updatDate;
 	
+	
+	
+	
+	//新添加的字段，外表链接
+	//用户角色名称
+	private String userRoleName;
+	public String getUserRoleName() {
+		return userRoleName;
+	}
+	public void setUserRoleName(String userRoleName) {
+		this.userRoleName = userRoleName;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -98,17 +110,18 @@ public class User  {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getRealtyPeopleNum() {
-		return realtyPeopleNum;
+	
+	public Integer getBuildingID() {
+		return buildingID;
 	}
-	public void setRealtyPeopleNum(Integer realtyPeopleNum) {
-		this.realtyPeopleNum = realtyPeopleNum;
+	public void setBuildingID(Integer buildingID) {
+		this.buildingID = buildingID;
 	}
-	public Integer getMaintenancePoopleNum() {
-		return maintenancePoopleNum;
+	public String getElevatorID() {
+		return elevatorID;
 	}
-	public void setMaintenancePoopleNum(Integer maintenancePoopleNum) {
-		this.maintenancePoopleNum = maintenancePoopleNum;
+	public void setElevatorID(String elevatorID) {
+		this.elevatorID = elevatorID;
 	}
 	public String getCreater() {
 		return creater;
