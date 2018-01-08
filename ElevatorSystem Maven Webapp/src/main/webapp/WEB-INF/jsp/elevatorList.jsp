@@ -141,7 +141,7 @@
     <!--}右边-->
     <!--footer{-->
     <div class="footer">
-        湖北省孝感市孝南区孝南区|© 2017  cdoptima Inc. All Rights Reserved &nbsp;&nbsp;
+        湖北省孝感市孝南区质监局|© 2017  cdoptima Inc. All Rights Reserved &nbsp;&nbsp;
     </div>
     <!--}footer-->
 </div>
