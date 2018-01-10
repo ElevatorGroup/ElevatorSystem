@@ -6,13 +6,26 @@ import org.apache.ibatis.annotations.Param;
 import cn.elevator.entity.ElevatorInfo;
 
 public interface ElevatorInfoService {
-	public List<ElevatorInfo> getElevatorList(Integer buildingId,
-			String buildingName,
+	public List<ElevatorInfo> getElevatorList(
+			Integer buildingId,
 			Integer elevatorType,
 			String elevatorCode,
 			String registrationCode,
+			Integer registrationStatus,
 			Integer usingState,
 			Integer from,
 			Integer pageSize)throws Exception;
+	
+	public List<ElevatorInfo> getRealtyElevatorList(
+			Integer maintenanceId,
+			Integer realtyId,
+			Integer elevatorType,
+			String elevatorCode,
+			String registrationCode,
+			Integer registrationStatus,
+			Integer usingState,
+			Integer from,
+			Integer pageSize)throws Exception;
+	
 	public Integer getElevatorCount(Integer buildingId)throws Exception;
 }

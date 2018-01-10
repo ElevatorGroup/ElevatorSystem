@@ -14,6 +14,22 @@
 			</if>
 		</trim>
 	</select>
+	
+	<!-- 电梯类型 -->
+	<select id="getElevatorType" resultType="Dictionary">
+		SELECT valueName,valueId FROM  dictionary  WHERE typeCode="elevatorType"
+	</select>
+	
+	<!-- 电梯注册状态 -->
+	<select id="getRegistrationStatus" resultType="Dictionary">
+		SELECT valueName,valueId FROM  dictionary  WHERE typeCode="registrationStatus"
+	</select>
+	
+	
+	<!-- 电梯使用状态 -->
+	<select id="getUsingState" resultType="Dictionary">
+		SELECT valueName,valueId FROM  dictionary  WHERE typeCode="usingState"
+	</select>
 
 	
 	 

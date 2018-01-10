@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,55 +42,34 @@ public class ElevatorInfoController {
 
 	//跳到List界面
 		@RequestMapping(value = "/elevatorListUI")
-		public String elevatorMain(Model model,HttpSession session,
-				@RequestParam(value="buildingName",required=false) String buildingName,
-				@RequestParam(value="elevatorType",required=false) Integer elevatorType,
-				@RequestParam(value="elevatorCode",required=false) String elevatorCode,
-				@RequestParam(value="registrationCode",required=false) String registrationCode,
-				@RequestParam(value="usingState",required=false) Integer usingState,
-				@RequestParam(value="page",required=false) Integer page,
-				@RequestParam(value="limit",required=false) Integer limit) throws Exception {
-			User user=(User)session.getAttribute(Constants.USER_SESSION);
+		public String elevatorMain(Model model) throws Exception {	
+			//模糊查询的选择初始值：电梯类型，注册状态，使用状态
+			model.addAttribute("elevatorTypeList", dictionaryService.getElevatorType());
+			model.addAttribute("registrationStatusList", dictionaryService.getRegistrationStatus());
+			model.addAttribute("usingStateList", dictionaryService.getUsingState());
 			
-			List<ElevatorInfo> elevatorInfoList=new ArrayList<ElevatorInfo>();
-			logger.debug("处理后跳转的页面###################");
-			if(user.getUserRole()==0){
-				logger.debug("$$$$质检局用户============");
-			}else if(user.getUserRole()==1){
-				logger.debug("$$$$楼盘用户============");
-				logger.debug("获取的公司id"+user.getCompanyId());
-				
-				for(int i=0;i<elevatorInfoList.size();i++){
-					logger.debug("**********************"+elevatorInfoList.get(i).getElevatorNumber());
-				}
-			}else if(user.getUserRole()==2){
-				logger.debug("$$$$物业管理员============");
-			}else if(user.getUserRole()==3){
-				logger.debug("$$$$物业普通员工============");
-			}else if(user.getUserRole()==4){
-				logger.debug("$$$$维保管理员============");
-			}else if(user.getUserRole()==5){
-				logger.debug("$$$$维保普通员工============");
-			}
-			model.addAttribute("elevatorInfoList", elevatorInfoList);
-			//储层楼盘的信息
-			Building building=buildingService.getBuidingById(user.getCompanyId());
-			//model.addAllAttributes("BuildingInfo",building);
 			return "elevatorList";
 
 		}
 		@ResponseBody//用来拿取后台电梯的数据
 		@RequestMapping(value = "/elevatorListData")
 		public Object elevatorMain1(Model model,HttpSession session,
-				@RequestParam(value="buildingName",required=false) String buildingName,
+				/*@RequestParam(value="userRole",required=true) Integer userRole,
+				@RequestParam(value="id",required=true) Integer id,*/
+				@RequestParam(value="buildingId",required=false) Integer buildingId,
+				@RequestParam(value="Company_YId",required=false) Integer Company_YId,
+				@RequestParam(value="maintenanceId",required=false) Integer maintenanceId,
 				@RequestParam(value="elevatorType",required=false) Integer elevatorType,
 				@RequestParam(value="elevatorCode",required=false) String elevatorCode,
 				@RequestParam(value="registrationCode",required=false) String registrationCode,
+				@RequestParam(value="registrationStatus",required=false) Integer registrationStatus,
 				@RequestParam(value="usingState",required=false) Integer usingState,
 				@RequestParam(value="page",required=false) Integer page,
-				@RequestParam(value="limit",required=false) Integer limit) throws Exception {
+				@RequestParam(value="limit",required=false) Integer limit
+				) throws Exception {
+			
 				Map<String,Object> elevatorInfoMap=new HashMap<String,Object>();
-			List<ElevatorInfo> elevatorInfoList=new ArrayList<ElevatorInfo>();//储层每页的数据
+			
 			//limit每一页显示的条数
 			if(null==limit||limit==0){
 				limit=10;
@@ -100,11 +80,41 @@ public class ElevatorInfoController {
 			}else{
 				page=(page-1)*limit;
 			}
-			elevatorInfoList=elevatorInfoService.getElevatorList(((User)session.getAttribute(Constants.USER_SESSION)).getCompanyId(),
-					buildingName, elevatorType, elevatorCode, registrationCode, usingState, page, limit);
+			User user=(User)session.getAttribute(Constants.USER_SESSION);//获取缓存session里的User对象
+			
+			//进行角色判断
+			List<ElevatorInfo> elevatorInfoList=new ArrayList<ElevatorInfo>();//储层不同角色的电梯详情
+			int elevatorCount=0;//储层不同角色的电梯总数据条数
+			User userElevatorList=null;//通过user对象获取的电梯集合
+			if(user.getUserRole()==0){
+				elevatorCount=userService.getCountBy0(user.getUserRole(), user.getId());
+			}else if(user.getUserRole()==1){
+				elevatorCount=userService.getCountBy1(user.getUserRole(), user.getId());
+			}else if(user.getUserRole()==2){
+				elevatorCount=userService.getCountBy2(user.getUserRole(), user.getId());
+			}else if(user.getUserRole()==3){
+				elevatorCount=userService.getCountBy3(user.getUserRole(), user.getId());
+			}else if(user.getUserRole()==4){
+				elevatorCount=userService.getCountBy4(user.getUserRole(), user.getId());
+			}else if(user.getUserRole()==5){
+				elevatorCount=userService.getCountBy5(user.getUserRole(), user.getId());
+			}
+			
+			userElevatorList=userService.getElevatorInfoList(
+					user.getUserRole(),user.getId(),
+					 buildingId,Company_YId, maintenanceId, 
+					elevatorType, elevatorCode,
+					registrationCode, registrationStatus, 
+					usingState, page,
+					limit);
+			
+			elevatorInfoList=userElevatorList.getElevatorList();
+			
+			logger.debug("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+elevatorCount);
+			
 			elevatorInfoMap.put("code",0);
 			elevatorInfoMap.put("msg","");
-			elevatorInfoMap.put("count",elevatorInfoService.getElevatorCount(((User)session.getAttribute(Constants.USER_SESSION)).getCompanyId()));
+			elevatorInfoMap.put("count",elevatorCount);
 			elevatorInfoMap.put("data",elevatorInfoList);
 			return elevatorInfoMap;
 

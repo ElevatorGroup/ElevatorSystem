@@ -1,6 +1,7 @@
 package cn.elevator.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.elevator.entity.ElevatorInfo;
 import cn.elevator.entity.User;
 import cn.elevator.service.user.UserService;
 import cn.elevator.tools.Constants;
@@ -60,7 +63,20 @@ public class UserController {
 			return "/login";
 		}
 		
+		
+		
+		
 //注册页面
 //注册处理
+		
+		
+		/*@ResponseBody
+		@RequestMapping("/test/{id}")
+		public Object getList(@PathVariable("id")Integer id) throws Exception{
+			System.out.println(">>>>>>>>>>>>test");
+			User user=userService.getElevatorInfoList(id);
+			List<ElevatorInfo> list=user.getElevatorList();
+			return list;
+		}*/
 		
 }

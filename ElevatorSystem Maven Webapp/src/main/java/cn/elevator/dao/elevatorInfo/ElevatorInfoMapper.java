@@ -7,11 +7,23 @@ import org.apache.ibatis.annotations.Param;
 import cn.elevator.entity.ElevatorInfo;
 
 public interface  ElevatorInfoMapper {
-	public List<ElevatorInfo> getElevatorList(@Param("buildingId")Integer buildingId,
-			@Param("buildingName")String buildingName,
+	public List<ElevatorInfo> getBuildingElevatorList(
+			@Param("buildingId")Integer buildingId,
 			@Param("elevatorType")Integer elevatorType,
 			@Param("elevatorCode")String elevatorCode,
 			@Param("registrationCode")String registrationCode,
+			@Param("registrationStatus")Integer registrationStatus,
+			@Param("usingState")Integer usingState,
+			@Param("from")Integer from,
+			@Param("pageSize")Integer pageSize)throws Exception;
+	
+	public List<ElevatorInfo> getRealtyElevatorList(
+			@Param("maintenanceId")Integer maintenanceId,
+			@Param("realtyId")Integer realtyId,
+			@Param("elevatorType")Integer elevatorType,
+			@Param("elevatorCode")String elevatorCode,
+			@Param("registrationCode")String registrationCode,
+			@Param("registrationStatus")Integer registrationStatus,
 			@Param("usingState")Integer usingState,
 			@Param("from")Integer from,
 			@Param("pageSize")Integer pageSize)throws Exception;

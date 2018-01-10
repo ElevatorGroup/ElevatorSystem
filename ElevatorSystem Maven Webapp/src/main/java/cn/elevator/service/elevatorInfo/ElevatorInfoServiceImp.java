@@ -22,13 +22,25 @@ public class ElevatorInfoServiceImp implements ElevatorInfoService {
 		return elevatorInfoMapper.getElevatorCount(buildingId);
 	}
 
+
 	@Override
 	public List<ElevatorInfo> getElevatorList(Integer buildingId,
-			String buildingName, Integer elevatorType, String elevatorCode,
-			String registrationCode, Integer usingState, Integer from,
+			Integer elevatorType, String elevatorCode, String registrationCode,
+			Integer registrationStatus, Integer usingState, Integer from,
 			Integer pageSize) throws Exception {
+		
+		return elevatorInfoMapper.getBuildingElevatorList(buildingId, elevatorType, elevatorCode, registrationCode, registrationStatus, usingState, from, pageSize);
+	}
+
+
+	@Override
+	public List<ElevatorInfo> getRealtyElevatorList(Integer maintenanceId,
+			Integer realtyId, Integer elevatorType, String elevatorCode,
+			String registrationCode, Integer registrationStatus,
+			Integer usingState, Integer from, Integer pageSize)
+			throws Exception {
 		// TODO Auto-generated method stub
-		return (List<ElevatorInfo>)elevatorInfoMapper.getElevatorList(buildingId, buildingName, elevatorType, elevatorCode, registrationCode, usingState, from, pageSize);
+		return elevatorInfoMapper.getRealtyElevatorList(maintenanceId, realtyId, elevatorType, elevatorCode, registrationCode, registrationStatus, usingState, from, pageSize);
 	}
 
 	

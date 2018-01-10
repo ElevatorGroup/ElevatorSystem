@@ -1,6 +1,7 @@
 package cn.elevator.entity;
 
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -12,7 +13,15 @@ import java.util.Date;
  * @date 2017-12-22 16:32:36
  */
 public class Realty {
+	//新添加   楼盘集合
+	private List<Building> BuildingList;
 	
+	public List<Building> getBuildingList() {
+		return BuildingList;
+	}
+	public void setBuildingList(List<Building> buildingList) {
+		BuildingList = buildingList;
+	}
 	//物业表id
 	private Integer id;
 	//公司名称

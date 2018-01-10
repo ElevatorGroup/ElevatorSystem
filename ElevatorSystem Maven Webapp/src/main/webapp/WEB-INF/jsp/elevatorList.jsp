@@ -34,22 +34,27 @@
 			<div class="header-flashes">
 				<ul class="nav nav-pills" role="tablist">
 					<li role="presentation"><a href="#">全部 <span class="badge">18</span>
-					</a></li>
+					</a>
+					</li>
 					<li role="presentation"><a href="#">离线 <span class="badge">0</span>
-					</a></li>
+					</a>
+					</li>
 					<li role="presentation"><a href="#">故障 <span class="badge">0</span>
-					</a></li>
+					</a>
+					</li>
 					<li role="presentation"><a href="#">检修 <span class="badge">3</span>
-					</a></li>
+					</a>
+					</li>
 					<li role="presentation"><a href="#">正常 <span class="badge">15</span>
-					</a></li>
+					</a>
+					</li>
 				</ul>
 			</div>
 			<div class="header-user">
 				<a href="#" class="headerUser-item headerUser-item-user"> <span
 					class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					${userSession.userName }《用户角色：${userSession.userRoleName }》 </a> <a
-					href="${pageContext.request.contextPath}/user/logout"
+					${userSession.userName }[用户角色：${userSession.userRoleName }] </a>
+					 <a href="${pageContext.request.contextPath}/user/logout"
 					class="headerUser-item"> <span class="glyphicon glyphicon-off"
 					aria-hidden="true"></span> 退出 </a>
 			</div>
@@ -68,20 +73,15 @@
 			<div class="vertical-menu">
 				<ul>
 					<li><a href=""><i class="iconfont icon-xinxi"></i><em>消息提醒</em>
-					</a>
-					</li>
+					</a></li>
 					<li><a href=""><i class="iconfont icon-loupan"></i><em>楼盘信息</em>
-					</a>
-					</li>
+					</a></li>
 					<li><a href=""><i class="iconfont icon-wuye"></i><em>物业信息</em>
-					</a>
-					</li>
+					</a></li>
 					<li><a href=""><i class="iconfont icon-icon02"></i><em>添加电梯</em>
-					</a>
-					</li>
+					</a></li>
 					<li><a href=""><i class="iconfont icon-hetong"></i><em>合同信息</em>
-					</a>
-					</li>
+					</a></li>
 				</ul>
 			</div>
 		</div>
@@ -89,91 +89,129 @@
 
 		<!--右边{-->
 		<div class="main-r">
-			<form action="${pageContext.request.contextPath }/elevator/elevatorListUI">
+			<form
+				action="${pageContext.request.contextPath }/elevator/elevatorListUI">
 				<div class="defaultAre">
 					<div class="serchAre clearfix">
-					<!-- 1楼盘名称 -->
+						<!-- 1楼盘名称 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">楼盘</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="buildingName" title="请选择电梯类型">
+								<select class="selectpicker" name="buildingId" title="请选择电梯类型">
 									<option>银泰</option>
 									<option>保利</option>
 								</select>
 							</div>
 						</div>
-						<!-- 2电梯类型 -->
+						<!-- 2物业公司-->
+						<div class="selectAre">
+							<label for="" class=" control-label">物业公司</label>
+							<div class="serchAreform-group">
+								<select class="selectpicker" name="elevatorType" title="请选择物业公司">
+									<option>刘磊物业公司</option>
+									<option>汪传胜物业公司</option>
+								</select>
+							</div>
+						</div>
+
+						<!-- 3维保公司 -->
+						<div class="selectAre">
+							<label for="" class=" control-label">维保公司</label>
+							<div class="serchAreform-group">
+								<select class="selectpicker" name="elevatorType" title="请选择维保公司">
+									<option>刘磊维保公司</option>
+									<option>汪传胜维保公司</option>
+
+								</select>
+							</div>
+						</div>
+
+						<!-- 4电梯类型 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">电梯类型</label>
 							<div class="serchAreform-group">
 								<select class="selectpicker" name="elevatorType" title="请选择电梯类型">
-									<option>观光电梯</option>
-									<option>乘客电梯</option>
-									<option>杂货电梯</option>
-									<option>载货电梯</option>
+									<c:forEach items="${elevatorTypeList}" var="item" varStatus="status">
+										<option>${item.valueName}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
-						<!-- 3设备识别码 -->
+						<!-- 5设备识别码 -->
 						<div class="form-group">
 							<label for="" class=" control-label">设备识别码</label> <input
 								type="text" name="elevatorCode" class="form-control">
 						</div>
-						
-					
-						<!-- 4注册代码 -->
+
+
+						<!-- 6注册代码 -->
 						<div class="form-group form-group-code">
 							<label for="" class=" control-label">注册代码</label> <input
 								type="text" name="registrationCode" class="form-control">
 						</div>
-						<!-- 5注册状态 -->
+						<!-- 7注册状态 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">注册状态</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="registrationStatus" title="请选择注册状态">
-									<option>已注册</option>
-									<option>未注册</option>
+								<select class="selectpicker" name="registrationStatus"
+									title="请选择注册状态">
+									<c:forEach items="${registrationStatusList}" var="item" varStatus="status">
+										<option>${item.valueName}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
-						
-						
-						<!-- 6使用状态 -->
+
+
+						<!-- 8使用状态 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">使用状态</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="usingState" title="请选择使用状态">
-									<option>使用中</option>
-									<option>停用</option>
-								</select>
+								<%-- <select class="selectpicker" name="usingState" title="请选择使用状态">
+									<c:forEach items="${usingStateList}" var="item" varStatus="status">
+										<option>${item.valueName}</option>
+									</c:forEach>
+								</select> --%>
+								
+									<select class="selectpicker" name="usingState" title="请选择使用状态">
+									<c:if test="${usingStateList != null }">
+									   <c:forEach var="item" items="${usingStateList}">
+									   		<option <c:if test="${item.valueName == usingState }">selected="selected"</c:if>
+									   		value="${item.valueName}">${item.valueName}</option>
+									   </c:forEach>
+									</c:if>
+        							<select>
 							</div>
 						</div>
-							
-						
+
+
 						<div class="form-group-button fl">
 							<button type="submit" class="btn btn-warning serchBtn">查询</button>
 						</div>
 					</div>
-					
 
 
-					 <table class="layui-table" lay-data="{ height:600, url:'${pageContext.request.contextPath }/elevator/elevatorListData', page:true, id:'firmtable'}" lay-filter="firmtable">
-                <thead>
-                <tr>
-                    <th lay-data="{field: 'buildingName'}">楼盘名称</th>
-                    <th lay-data="{field:'elevatorType'}">电梯类型</th>
-                    <th lay-data="{field:'elevatorCode'}">设备识别码</th>
-                    <th lay-data="{field:'registrationCode'}">注册代码</th>
-                    <th lay-data="{field:'elevatorModel'}">电梯型号</th>
-                    <th lay-data="{field:'elevatorNumber'}">电梯编号</th>
-                    <th lay-data="{field:'usingState'}">使用状态</th>
-                    <th lay-data="{field:'registrationCode'}">注册状态</th>
-                    <th lay-data="{field:'firstMaintenance'}">首次维保日期</th>
-                    <th lay-data="{ align:'center', width:170,toolbar:'#barFirmTable'}">操作</th>
-                </tr>
-                </thead>
-            </table>
-            <script type="text/html" id="barFirmTable">
+
+					<table class="layui-table"
+						lay-data="{ height:600, url:'${pageContext.request.contextPath }/elevator/elevatorListData', page:true, id:'firmtable'}"
+						lay-filter="firmtable">
+						<thead>
+							<tr>
+								<th lay-data="{field: 'buildingName'}">楼盘名称</th>
+								<th lay-data="{field:'elevatorType'}">电梯类型</th>
+								<th lay-data="{field:'elevatorCode'}">设备识别码</th>
+								<th lay-data="{field:'registrationCode'}">注册代码</th>
+								<th lay-data="{field:'elevatorModel'}">电梯型号</th>
+								<th lay-data="{field:'elevatorNumber'}">电梯编号</th>
+								<th lay-data="{field:'usingState'}">使用状态</th>
+								<th lay-data="{field:'registrationCode'}">注册状态</th>
+								<th lay-data="{field:'firstMaintenance'}">首次维保日期</th>
+								<th
+									lay-data="{ align:'center', width:170,toolbar:'#barFirmTable'}">操作</th>
+							</tr>
+						</thead>
+					</table>
+					<script type="text/html" id="barFirmTable">
                 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>

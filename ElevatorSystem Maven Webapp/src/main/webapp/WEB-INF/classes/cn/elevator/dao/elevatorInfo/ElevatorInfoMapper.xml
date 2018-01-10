@@ -3,161 +3,84 @@
 
 <mapper namespace="cn.elevator.dao.elevatorInfo.ElevatorInfoMapper">
 
-	<select id="getElevatorList" resultType="ElevatorInfo"> 
-		SELECT e.id,e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
+	<select id="getBuildingElevatorList" resultType="ElevatorInfo">
+		SELECT
+		e.id,e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
 		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,
 		e.registrationCode,e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,
 		e.creater,e.createDate,e.updatDate,e.projectId,
-		(select companyName from building where id=e.buildingId) as buildingName
-		FROM elevatorinfo e WHERE e.buildingId=#{buildingId} 
-		 <if test="e.buildingName != null and buildingName != ''">
-				and e.buildingId like CONCAT ('%',#{buildingName},'%')
-			</if>
-			<if test="elevatorType != null">
-				and e.elevatorType = #{elevatorType}
-			</if>
-			<if test="elevatorCode != null and elevatorCode != ''">
-				and e.elevatorCode like CONCAT ('%',#{elevatorCode},'%')
-			</if>
-			<if test="registrationCode != null and registrationCode!= ''">
-				and e.registrationCode like CONCAT ('%',#{registrationCode},'%')
-			</if>
-			<if test="usingState != null">
-				and e.usingState = #{usingState}
-			</if>
-			
-		 ORDER BY e.id ASC LIMIT #{from},#{pageSize}
+		(select companyName
+		from building where id=e.buildingId) as buildingName
+		FROM elevatorinfo
+		e WHERE buildingId = #{buildingId}
+		<if test="elevatorType != null">
+			and elevatorType = #{elevatorType}
+		</if>
+		<if test="elevatorCode != null and elevatorCode != ''">
+			and elevatorCode like CONCAT ('%',#{elevatorCode},'%')
+		</if>
+		<if test="registrationCode != null and registrationCode!= ''">
+			and registrationCode like CONCAT
+			('%',#{registrationCode},'%')
+		</if>
+		<if test="registrationStatus != null">
+			and registrationStatus = #{registrationStatus}
+		</if>
+
+		<if test="usingState != null">
+			and usingState = #{usingState}
+		</if>
+
+		ORDER BY e.id ASC LIMIT #{from},#{pageSize}
 	</select>
-	
-	<!-- <select id="getAppInfoList" resultType="AppInfo">
-		select a.id, a.softwareName,a.APKName,a.supportROM,a.softwareSize,a.devId,
-				(select devName from dev_user where id = a.devId) as devName,
-				a.status,
-				(select valueName from data_dictionary d where  a.status=d.valueId AND d.typeCode='APP_STATUS') as statusName,
-				a.flatformId,
-				(select valueName from data_dictionary d where  a.flatformId=d.valueId AND d.typeCode='APP_FLATFORM') as flatformName,
-				a.categoryLevel1,
-				(select categoryName from app_category c where  c.id=a.categoryLevel1) as categoryLevel1Name,
-				a.categoryLevel2,
-				(select categoryName from app_category c where  c.id=a.categoryLevel2) as categoryLevel2Name,
-				a.categoryLevel3,
-				(select categoryName from app_category c where  c.id=a.categoryLevel3) as categoryLevel3Name,
-				a.downloads,
-				a.onSaleDate,
-				a.versionId,
-				(select v.versionNo from app_version v where v.id=a.versionId ) as versionNo
-			from  app_info a
-		<trim prefix="where" prefixOverrides="and | or">
-			<if test="softwareName != null and softwareName != ''">
-				and a.softwareName like CONCAT ('%',#{softwareName},'%')
-			</if>
-			<if test="status != null">
-				and a.status = #{status}
-			</if>
-			<if test="categoryLevel1 != null">
-				and a.categoryLevel1 = #{categoryLevel1}
-			</if>
-			<if test="categoryLevel2 != null">
-				and a.categoryLevel2 = #{categoryLevel2}
-			</if>
-			<if test="categoryLevel3 != null">
-				and a.categoryLevel3 = #{categoryLevel3}
-			</if>
-			<if test="flatformId != null">
-				and a.flatformId = #{flatformId}
-			</if>
-			<if test="devId != null">
-				and a.devId = #{devId}
-			</if>
-		</trim>
-		order by creationDate DESC limit #{from},#{pageSize}
-	</select> -->
-	
-	<select id="getElevatorCount" resultType="Integer"> 
-		SELECT COUNT(1) FROM elevatorinfo WHERE buildingId=#{buildingId}
+	<select id="getRealtyElevatorList" resultType="ElevatorInfo">
+		select e.*,(select companyName from building b where
+		b.id=e.buildingId) as buildingName,(select valueName from dictionary d
+		where d.valueId=e.elevatorType and d.typeCode='elevatorType') as
+		elevatorTypeName,(select valueName from dictionary d where
+		d.valueId=e.usingState and d.typeCode='usingState') as
+		usingStateName,(select valueName from dictionary d where
+		d.valueId=e.registrationStatus and d.typeCode='registrationStatus') as
+		registrationStatusName from ElevatorInfo e join (select b.* from
+		building b join (select c.Company_JId Jid ,c.Company_YId Yid from
+		contract c join realty r on r.id=c.Company_YId where c.contractType=2
+		) as result
+		on b.id=result.Jid and result.Yid=#{realtyId}) build on
+		e.buildingId=build.id
+		WHERE 1=1
+		<if test="maintenanceId != null">
+			and maintenanceId = #{maintenanceId}
+		</if>
+		<if test="elevatorType != null">
+			and elevatorType = #{elevatorType}
+		</if>
+		<if test="elevatorCode != null and elevatorCode != ''">
+			and elevatorCode like CONCAT ('%',#{elevatorCode},'%')
+		</if>
+		<if test="registrationCode != null and registrationCode!= ''">
+			and registrationCode like CONCAT
+			('%',#{registrationCode},'%')
+		</if>
+		<if test="registrationStatus != null">
+			and registrationStatus = #{registrationStatus}
+		</if>
+		<if test="usingState != null">
+			and usingState = #{usingState}
+		</if>
+
+		ORDER BY e.id ASC LIMIT #{from},#{pageSize}
 	</select>
-	
-	
+
 	
 
-	<!-- <select id="queryList" resultType="cn.elevator.entity.UserEntity">
-		select * from user 
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
+	<select id="getElevatorCount" resultType="Integer">
+		SELECT COUNT(1) FROM
+		elevatorinfo WHERE buildingId=#{buildingId}
 	</select>
+
+
+
+
 	
- 	<select id="queryTotal" resultType="int">
-		select count(*) from user 
-	</select>
-	 
-	<insert id="save" parameterType="cn.elevator.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into user
-		(
-			`role`, 
-			`companyId`, 
-			`deleted`, 
-			`name`, 
-			`tel`, 
-			`yhname`, 
-			`wenXin`, 
-			`password`, 
-			`buildingId`, 
-			`guarantor`, 
-			`creater`, 
-			`createDate`, 
-			`updater`, 
-			`updatDate`
-		)
-		values
-		(
-			#{role}, 
-			#{companyid}, 
-			#{deleted}, 
-			#{name}, 
-			#{tel}, 
-			#{yhname}, 
-			#{wenxin}, 
-			#{password}, 
-			#{buildingid}, 
-			#{guarantor}, 
-			#{creater}, 
-			#{createdate}, 
-			#{updater}, 
-			#{updatdate}
-		)
-	</insert>
-	 
-	<update id="update" parameterType="cn.elevator.entity.UserEntity">
-		update user 
-		<set>
-			<if test="role != null">`role` = #{role}, </if>
-			<if test="companyid != null">`companyId` = #{companyid}, </if>
-			<if test="deleted != null">`deleted` = #{deleted}, </if>
-			<if test="name != null">`name` = #{name}, </if>
-			<if test="tel != null">`tel` = #{tel}, </if>
-			<if test="yhname != null">`yhname` = #{yhname}, </if>
-			<if test="wenxin != null">`wenXin` = #{wenxin}, </if>
-			<if test="password != null">`password` = #{password}, </if>
-			<if test="buildingid != null">`buildingId` = #{buildingid}, </if>
-			<if test="guarantor != null">`guarantor` = #{guarantor}, </if>
-			<if test="creater != null">`creater` = #{creater}, </if>
-			<if test="createdate != null">`createDate` = #{createdate}, </if>
-			<if test="updater != null">`updater` = #{updater}, </if>
-			<if test="updatdate != null">`updatDate` = #{updatdate}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="delete">
-		delete from user where id = #{value}
-	</delete>
-	
-	<delete id="deleteBatch">
-		delete from user where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete> -->
 
 </mapper>

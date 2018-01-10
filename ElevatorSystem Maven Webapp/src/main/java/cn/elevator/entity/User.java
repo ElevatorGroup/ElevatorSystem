@@ -1,6 +1,7 @@
 package cn.elevator.entity;
 
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -46,10 +47,18 @@ public class User  {
 	
 	
 	
-	
+	   
 	//新添加的字段，外表链接
 	//用户角色名称
 	private String userRoleName;
+	//电梯集合
+	private List<ElevatorInfo> elevatorList;
+	public List<ElevatorInfo> getElevatorList() {
+		return elevatorList;
+	}
+	public void setElevatorList(List<ElevatorInfo> elevatorList) {
+		this.elevatorList = elevatorList;
+	}
 	public String getUserRoleName() {
 		return userRoleName;
 	}
@@ -69,6 +78,7 @@ public class User  {
 		this.userRole = userRole;
 	}
 	public Integer getCompanyId() {
+		
 		return companyId;
 	}
 	public void setCompanyId(Integer companyId) {
