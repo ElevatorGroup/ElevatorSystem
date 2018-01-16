@@ -89,17 +89,22 @@
 
 		<!--右边{-->
 		<div class="main-r">
-			<form
-				action="${pageContext.request.contextPath }/elevator/elevatorListUI">
+			<form action="${pageContext.request.contextPath }/elevator/elevatorListUI" method="get">
 				<div class="defaultAre">
 					<div class="serchAre clearfix">
 						<!-- 1楼盘名称 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">楼盘</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="buildingId" title="请选择电梯类型">
-									<option>银泰</option>
-									<option>保利</option>
+								
+								
+								<select class="selectpicker" name="buildingId" value="${buildingId}" >
+									<option name="" value="">请选择楼盘</option>
+									<c:forEach items="${buildingName}" var="item" varStatus="status">
+										<option   value="${item.id}"  <c:if test="${buildingId == item.id}">selected</c:if> >
+										${item.companyName}</option>
+										
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -130,7 +135,8 @@
 						<div class="selectAre">
 							<label for="" class=" control-label">电梯类型</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="elevatorType" title="请选择电梯类型">
+								<select class="selectpicker" name="elevatorType" value="${elevatorType}" >
+									<option name="elevatorType" value="">请选择电梯类型</option>
 									<c:forEach items="${elevatorTypeList}" var="item" varStatus="status">
 										<option>${item.valueName}</option>
 									</c:forEach>
@@ -140,25 +146,30 @@
 						<!-- 5设备识别码 -->
 						<div class="form-group">
 							<label for="" class=" control-label">设备识别码</label> <input
-								type="text" name="elevatorCode" class="form-control">
+								type="text" name="elevatorCode" value="${elevatorCode }" class="form-control">
 						</div>
 
 
 						<!-- 6注册代码 -->
 						<div class="form-group form-group-code">
 							<label for="" class=" control-label">注册代码</label> <input
-								type="text" name="registrationCode" class="form-control">
+								type="text" name="registrationCode" value="${registrationCode}" class="form-control">
 						</div>
 						<!-- 7注册状态 -->
 						<div class="selectAre">
 							<label for="" class=" control-label">注册状态</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="registrationStatus"
-									title="请选择注册状态">
+								<select class="selectpicker" name="registrationStatus" value="${registrationStatus}">
+									<option name="registrationStatus" value="">请选择注册状态</option>
 									<c:forEach items="${registrationStatusList}" var="item" varStatus="status">
-										<option>${item.valueName}</option>
+										<option value="${item.valueId }" <c:if test="${registrationStatus==item.valueId }" >selected</c:if>>${item.valueName}</option>
 									</c:forEach>
 								</select>
+								
+								
+								
+								
+								
 							</div>
 						</div>
 
@@ -167,20 +178,15 @@
 						<div class="selectAre">
 							<label for="" class=" control-label">使用状态</label>
 							<div class="serchAreform-group">
-								<%-- <select class="selectpicker" name="usingState" title="请选择使用状态">
-									<c:forEach items="${usingStateList}" var="item" varStatus="status">
-										<option>${item.valueName}</option>
-									</c:forEach>
-								</select> --%>
-								
-									<select class="selectpicker" name="usingState" title="请选择使用状态">
-									<c:if test="${usingStateList != null }">
-									   <c:forEach var="item" items="${usingStateList}">
-									   		<option <c:if test="${item.valueName == usingState }">selected="selected"</c:if>
-									   		value="${item.valueName}">${item.valueName}</option>
+									<select class="selectpicker" name="usingState" value="${usingState}" >
+										<option name="usingState" value="">请选择使用状态</option>
+									   <c:forEach var="item" items="${usingStateList}" varStatus="status">
+									   		<option  value="${item.valueId}" <c:if test="${usingState == item.valueId}">selected</c:if>> ${item.valueName}</option>
 									   </c:forEach>
-									</c:if>
         							<select>
+        							
+        							
+        							
 							</div>
 						</div>
 
@@ -193,17 +199,17 @@
 
 
 					<table class="layui-table"
-						lay-data="{ height:600, url:'${pageContext.request.contextPath }/elevator/elevatorListData', page:true, id:'firmtable'}"
+						lay-data="{ height:600, url:'${pageContext.request.contextPath }/elevator/elevatorListData?${params}', page:true, id:'firmtable'}"
 						lay-filter="firmtable">
 						<thead>
 							<tr>
-								<th lay-data="{field: 'buildingName'}">楼盘名称</th>
-								<th lay-data="{field:'elevatorType'}">电梯类型</th>
+								<th lay-data="{field:'buildingName'}">楼盘名称</th>
+								<th lay-data="{field:'elevatorTyepName'}">电梯类型</th>
 								<th lay-data="{field:'elevatorCode'}">设备识别码</th>
 								<th lay-data="{field:'registrationCode'}">注册代码</th>
 								<th lay-data="{field:'elevatorModel'}">电梯型号</th>
 								<th lay-data="{field:'elevatorNumber'}">电梯编号</th>
-								<th lay-data="{field:'usingState'}">使用状态</th>
+								<th lay-data="{field:'usingStateName'}">使用状态</th>
 								<th lay-data="{field:'registrationCode'}">注册状态</th>
 								<th lay-data="{field:'firstMaintenance'}">首次维保日期</th>
 								<th

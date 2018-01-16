@@ -27,6 +27,25 @@ public class ElevatorInfo  {
 	
 	//连表查询，新添字段楼盘名称
 	private String buildingName;
+	
+	//连表查询，新添字段电梯类型名称
+	private String elevatorTyepName;
+	
+	//连表查询，新添字段使用状态名称
+	private String usingStateName;
+	
+	public String getElevatorTyepName() {
+		return elevatorTyepName;
+	}
+	public void setElevatorTyepName(String elevatorTyepName) {
+		this.elevatorTyepName = elevatorTyepName;
+	}
+	public String getUsingStateName() {
+		return usingStateName;
+	}
+	public void setUsingStateName(String usingStateName) {
+		this.usingStateName = usingStateName;
+	}
 	//电梯型号
 	private String elevatorModel;
 	//电梯唯一编号
@@ -41,7 +60,7 @@ public class ElevatorInfo  {
 	private Date firstMaintenance;
 	//关联到维保公司ID
 	private Integer maintenanceId;
-	//关联到维保人员ID如果新楼盘没有维保人员，那么值为空。
+	//关联到维保人员ID。
 	private String maintenancePersonId;
 	//设备识别码
 	private String elevatorCode;

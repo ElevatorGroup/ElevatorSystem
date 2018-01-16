@@ -59,8 +59,8 @@ public class UserController {
 		public String logout( HttpSession session)
 				throws Exception {
 			session.removeAttribute("Constants.USER_SESSION");
-			logger.debug("sessioin里的值："+((User)session.getAttribute("Constants.USER_SESSION")).getWenXin());
-			return "/login";
+			//logger.debug("sessioin里的值："+((User)session.getAttribute("Constants.USER_SESSION")).getWenXin());
+			return "/userLogin";
 		}
 		
 		

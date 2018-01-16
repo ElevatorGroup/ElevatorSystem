@@ -1,5 +1,6 @@
 package cn.elevator.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import java.util.List;
  * @date 2017-12-22 16:31:49
  */
 public class User  {
-	
 	//用户表
 	private Integer id;
 	//用户角色0.质检公司1.楼盘2.物业管理员3.物业人员4.维保公司5维保人员
@@ -52,7 +52,7 @@ public class User  {
 	//用户角色名称
 	private String userRoleName;
 	//电梯集合
-	private List<ElevatorInfo> elevatorList;
+	private List<ElevatorInfo> elevatorList=new ArrayList<ElevatorInfo>();
 	public List<ElevatorInfo> getElevatorList() {
 		return elevatorList;
 	}

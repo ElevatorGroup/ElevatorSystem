@@ -4,9 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import cn.elevator.entity.Building;
 import cn.elevator.entity.ElevatorInfo;
 
 public interface  ElevatorInfoMapper {
+	
+	public List<Building> getBuildingName(@Param("userRole")Integer userRole,
+			@Param("id")Integer id);
+	
+	
+	
+	
 	public List<ElevatorInfo> getBuildingElevatorList(
 			@Param("buildingId")Integer buildingId,
 			@Param("elevatorType")Integer elevatorType,

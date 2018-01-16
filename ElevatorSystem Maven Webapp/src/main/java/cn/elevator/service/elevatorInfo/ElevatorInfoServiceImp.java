@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.elevator.dao.elevatorInfo.ElevatorInfoMapper;
+import cn.elevator.entity.Building;
 import cn.elevator.entity.ElevatorInfo;
 
 @Service
@@ -43,5 +44,14 @@ public class ElevatorInfoServiceImp implements ElevatorInfoService {
 		return elevatorInfoMapper.getRealtyElevatorList(maintenanceId, realtyId, elevatorType, elevatorCode, registrationCode, registrationStatus, usingState, from, pageSize);
 	}
 
+
+	@Override
+	public List<Building> getBuildingName(Integer userRole, Integer id) {
+		// TODO Auto-generated method stub
+		return elevatorInfoMapper.getBuildingName(userRole, id);
+	}
+
+
+	
 	
 }

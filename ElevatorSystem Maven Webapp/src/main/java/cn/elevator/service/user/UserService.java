@@ -25,23 +25,18 @@ public interface  UserService {
 			  Integer pageSize)throws Exception;
 	  
 	  //通过不同的角色获取电梯条数
-	  public Integer getCountBy0(
-			  Integer userRole,
-			  Integer id)throws Exception;
-	  public Integer getCountBy1(
-			  Integer userRole,
-			  Integer id)throws Exception;
-	  public Integer getCountBy2(
-			  Integer userRole,
-			  Integer id)throws Exception;
-	  public Integer getCountBy3(
-			  Integer userRole,
-			  Integer id)throws Exception;
-	  public Integer getCountBy4(
-			  Integer userRole,
-			  Integer id)throws Exception;
-	  public Integer getCountBy5(
-			  Integer userRole,
-			  Integer id)throws Exception;
+		 public int getCountBy(
+				  Integer userRole,
+				  Integer id,
+				  Integer buildingId,
+				  Integer Company_YId,
+				  Integer maintenanceId,
+				  Integer elevatorType,
+				  String elevatorCode,
+				  String registrationCode,
+				  Integer registrationStatus,
+				  Integer usingState
+				 );
+
 	 
 }

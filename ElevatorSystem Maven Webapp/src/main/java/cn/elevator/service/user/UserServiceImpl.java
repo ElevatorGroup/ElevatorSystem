@@ -40,60 +40,35 @@ public class UserServiceImpl implements UserService{
 
 
 
-	@Override
-	public Integer getCountBy0(Integer userRole, Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return userMapper.getCountBy0(userRole, id);
-	}
 
 
 
 
 
-	@Override
-	public Integer getCountBy1(Integer userRole, Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return userMapper.getCountBy1(userRole, id);
-	}
 
 
 
 
 
-	@Override
-	public Integer getCountBy2(Integer userRole, Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return userMapper.getCountBy2(userRole, id);
-	}
+
+
+
+
+
+
+
 
 
 
 
 
 	@Override
-	public Integer getCountBy3(Integer userRole, Integer id) throws Exception {
+	public int getCountBy(Integer userRole, Integer id, Integer buildingId,
+			Integer Company_YId, Integer maintenanceId, Integer elevatorType,
+			String elevatorCode, String registrationCode,
+			Integer registrationStatus, Integer usingState) {
 		// TODO Auto-generated method stub
-		return userMapper.getCountBy3(userRole, id);
-	}
-
-
-
-
-
-	@Override
-	public Integer getCountBy4(Integer userRole, Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return userMapper.getCountBy4(userRole, id);
-	}
-
-
-
-
-
-	@Override
-	public Integer getCountBy5(Integer userRole, Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return userMapper.getCountBy5(userRole, id);
+		return userMapper.getCountBy(userRole, id, buildingId, Company_YId, maintenanceId, elevatorType, elevatorCode, registrationCode, registrationStatus, usingState);
 	}
 
 

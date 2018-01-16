@@ -34,25 +34,19 @@ public interface UserMapper {
 	  
 	  
 	  //通过不同的角色获取电梯条数
-	  public Integer getCountBy0(
+	 public int getCountBy(
 			  @Param("userRole")Integer userRole,
-			  @Param("id")Integer id)throws Exception;
-	  public Integer getCountBy1(
-			  @Param("userRole")Integer userRole,
-			  @Param("id")Integer id)throws Exception;
-	  public Integer getCountBy2(
-			  @Param("userRole")Integer userRole,
-			  @Param("id")Integer id)throws Exception;
-	  public Integer getCountBy3(
-			  @Param("userRole")Integer userRole,
-			  @Param("id")Integer id)throws Exception;
-	  public Integer getCountBy4(
-			  @Param("userRole")Integer userRole,
-			  @Param("id")Integer id)throws Exception;
-	  public Integer getCountBy5(
-			  @Param("userRole")Integer userRole,
-			  @Param("id")Integer id)throws Exception;
-	 
+			  @Param("id")Integer id,
+			  @Param("buildingId")Integer buildingId,
+			  @Param("Company_YId")Integer Company_YId,
+			  @Param("maintenanceId")Integer maintenanceId,
+			  @Param("elevatorType")Integer elevatorType,
+			  @Param("elevatorCode")String elevatorCode,
+			  @Param("registrationCode")String registrationCode,
+			  @Param("registrationStatus")Integer registrationStatus,
+			  @Param("usingState")Integer usingState
+			  
+			 );
 	
 	
 }
