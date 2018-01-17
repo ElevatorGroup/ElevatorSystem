@@ -46,103 +46,41 @@
 </select>
 
 
+<!-- 通过电梯id获取电梯对象 -->
+<select id="getElevatorById" parameterType="Integer" resultType="ElevatorInfo">
+	select * from elevatorinfo  where id=#{id}
+
+</select>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- <select id="getBuildingElevatorList" resultType="ElevatorInfo">
-		SELECT
-		e.id,e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
-		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,
-		e.registrationCode,e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,
-		e.creater,e.createDate,e.updatDate,e.projectId,
-		(select companyName
-		from building where id=e.buildingId) as buildingName
-		FROM elevatorinfo
-		e WHERE buildingId = #{buildingId}
-		<if test="elevatorType != null">
-			and elevatorType = #{elevatorType}
-		</if>
-		<if test="elevatorCode != null and elevatorCode != ''">
-			and elevatorCode like CONCAT ('%',#{elevatorCode},'%')
-		</if>
-		<if test="registrationCode != null and registrationCode!= ''">
-			and registrationCode like CONCAT
-			('%',#{registrationCode},'%')
-		</if>
-		<if test="registrationStatus != null">
-			and registrationStatus = #{registrationStatus}
-		</if>
-
-		<if test="usingState != null">
-			and usingState = #{usingState}
-		</if>
-
-		ORDER BY e.id ASC LIMIT #{from},#{pageSize}
-	</select>
-	<select id="getRealtyElevatorList" resultType="ElevatorInfo">
-		select e.*,(select companyName from building b where
-		b.id=e.buildingId) as buildingName,(select valueName from dictionary d
-		where d.valueId=e.elevatorType and d.typeCode='elevatorType') as
-		elevatorTypeName,(select valueName from dictionary d where
-		d.valueId=e.usingState and d.typeCode='usingState') as
-		usingStateName,(select valueName from dictionary d where
-		d.valueId=e.registrationStatus and d.typeCode='registrationStatus') as
-		registrationStatusName from ElevatorInfo e join (select b.* from
-		building b join (select c.Company_JId Jid ,c.Company_YId Yid from
-		contract c join realty r on r.id=c.Company_YId where c.contractType=2
-		) as result
-		on b.id=result.Jid and result.Yid=#{realtyId}) build on
-		e.buildingId=build.id
-		WHERE 1=1
-		<if test="maintenanceId != null">
-			and maintenanceId = #{maintenanceId}
-		</if>
-		<if test="elevatorType != null">
-			and elevatorType = #{elevatorType}
-		</if>
-		<if test="elevatorCode != null and elevatorCode != ''">
-			and elevatorCode like CONCAT ('%',#{elevatorCode},'%')
-		</if>
-		<if test="registrationCode != null and registrationCode!= ''">
-			and registrationCode like CONCAT
-			('%',#{registrationCode},'%')
-		</if>
-		<if test="registrationStatus != null">
-			and registrationStatus = #{registrationStatus}
-		</if>
-		<if test="usingState != null">
-			and usingState = #{usingState}
-		</if>
-
-		ORDER BY e.id ASC LIMIT #{from},#{pageSize}
-	</select>
-
+<!-- 通过id删除电梯对象 -->
+<select id="delElevatorById" parameterType="Integer" >
 	
 
-	<select id="getElevatorCount" resultType="Integer">
-		SELECT COUNT(1) FROM
-		elevatorinfo WHERE buildingId=#{buildingId}
-	</select>
- -->
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

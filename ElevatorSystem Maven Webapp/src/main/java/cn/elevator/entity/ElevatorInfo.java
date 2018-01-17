@@ -34,6 +34,15 @@ public class ElevatorInfo  {
 	//连表查询，新添字段使用状态名称
 	private String usingStateName;
 	
+	//连表查询，新添字段注册状态名称
+		private String registrationStatusName;
+	
+	public String getRegistrationStatusName() {
+			return registrationStatusName;
+		}
+		public void setRegistrationStatusName(String registrationStatusName) {
+			this.registrationStatusName = registrationStatusName;
+		}
 	public String getElevatorTyepName() {
 		return elevatorTyepName;
 	}

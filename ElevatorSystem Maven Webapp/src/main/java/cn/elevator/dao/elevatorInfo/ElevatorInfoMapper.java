@@ -36,4 +36,7 @@ public interface  ElevatorInfoMapper {
 			@Param("from")Integer from,
 			@Param("pageSize")Integer pageSize)throws Exception;
 	public Integer getElevatorCount(@Param("buildingId")Integer buildingId)throws Exception;
+
+	public ElevatorInfo getElevatorById(@Param("id")Integer id)throws Exception;
+
 }

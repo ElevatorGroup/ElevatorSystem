@@ -33,4 +33,6 @@ public interface ElevatorInfoService {
 			Integer pageSize)throws Exception;
 	
 	public Integer getElevatorCount(Integer buildingId)throws Exception;
+	
+	public ElevatorInfo getElevatorById(Integer id)throws Exception;
 }

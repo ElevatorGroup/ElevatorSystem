@@ -52,6 +52,15 @@ public class ElevatorInfoServiceImp implements ElevatorInfoService {
 	}
 
 
+	@Override
+	public ElevatorInfo getElevatorById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return elevatorInfoMapper.getElevatorById(id);
+	}
+
+
+	
+
 	
 	
 }

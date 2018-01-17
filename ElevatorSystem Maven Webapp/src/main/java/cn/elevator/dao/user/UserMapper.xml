@@ -41,9 +41,10 @@
 			<result property="registrationStatus" column="registrationStatus"/>
 			<result property="proactivelyDate" column="proactivelyDate"/>
 			<result property="projectId" column="projectId"/>
-			<result property="buildingName" column="companyName"/>
-			<result property="elevatorTyepName" column="valueName"/>
-			<result property="usingStateName" column="valueName1"/>
+			<result property="buildingName" column="companyName"/><!-- 楼盘名称 -->
+			<result property="elevatorTyepName" column="valueName"/><!-- 电梯类型名称 -->
+			<result property="usingStateName" column="valueName1"/><!-- 使用状态-->
+			<result property="registrationStatusName" column="valueName2"/><!-- 注册状态 -->
 			
 		</collection>
 	
@@ -52,78 +53,55 @@
 	
 	
 	<select id="getElevatorInfoList" resultMap="getElevatorByUserRole" >
-		<!-- 0 质监局-->
-		<if test="userRole==0">
-			SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
+	
+		SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
 		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
 		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
 		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,
 		(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
 		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
+		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='registrationStatus' AND d.valueId=e.registrationStatus)AS valueName2
 		
-		
-		 FROM USER u,elevatorinfo e WHERE userRole=#{userRole} and u.id=#{id}
+		 FROM USER u,elevatorinfo e WHERE
+		<!-- 0 质监局-->
+		<if test="userRole==0">
+		 userRole=#{userRole} and u.id=#{id}
 		</if>
 		
 		
 		<!-- 1 楼盘用户 -->
 		<if test="userRole==1">
-		SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
-		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
-		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
-		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
-		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
-		
-		  FROM USER u,elevatorinfo e  WHERE u.companyId=e.buildingId AND u.userRole=#{userRole} AND u.id=#{id}
+		 u.companyId=e.buildingId AND u.userRole=#{userRole} AND u.id=#{id}
 		</if>
 		
 		
 		
 		<!-- 2 物业管理员 -->
 		<if test="userRole==2">
-		SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
-		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
-		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
-		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
-		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
-		FROM USER u,elevatorinfo e WHERE 
-		e.buildingId IN (SELECT company_Jid FROM contract WHERE contractType=2 AND company_Yid=u.companyId) AND userRole=#{userRole} and u.id=#{id}
+	
+		e.buildingId IN (SELECT company_Jid FROM contract WHERE contractType=2 
+		AND company_Yid=u.companyId) AND userRole=#{userRole} and u.id=#{id}
 		</if>
 		
 		
 		
 		<!-- 3 物业普通员工 -->
 		<if test="userRole==3">
-		SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
-		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
-		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
-		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
-		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1 
-		FROM USER u,elevatorinfo e WHERE 
+	 
 		e.buildingId=u.buildingId AND u.userRole=#{userRole} and u.id=#{id}
 		</if>
 		
 		
 		<!-- 4 维保管理员 -->
 		<if test="userRole==4">
-	SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
-		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
-		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
-		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
-		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
-		FROM USER u,elevatorinfo e WHERE 
+ 
 		 u.companyId=e.maintenanceId AND u.userRole=#{userRole} and u.id=#{id}
 		</if>
 		
 		
 		<!-- 5 维保普通员工 -->
 		<if test="userRole==5">
-	SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
-		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
-		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
-		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
-		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
-		 FROM USER u,elevatorinfo e WHERE 
+	 
 		e.maintenancePersonId=u.id AND u.userRole=#{userRole} and u.id=#{id} 
 		</if>
 		

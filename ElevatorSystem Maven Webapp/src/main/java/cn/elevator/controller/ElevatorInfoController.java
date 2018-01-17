@@ -58,6 +58,18 @@ public class ElevatorInfoController {
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "limit", required = false) Integer limit)
 			throws Exception {
+		
+		if(elevatorCode!=null){
+			logger.debug("空格之前"+elevatorCode);
+			String trimElevatorCode=elevatorCode.trim();
+			elevatorCode=trimElevatorCode;
+			logger.debug("去空格之后"+elevatorCode);
+		}
+		
+		if(registrationCode!=null){
+			String trimRegistrationCode=registrationCode.trim();
+			registrationCode=trimRegistrationCode;
+		}
 		// 模糊查询的选择初始值：电梯类型，注册状态，使用状态
 		model.addAttribute("elevatorTypeList",
 				dictionaryService.getElevatorType());
@@ -93,6 +105,8 @@ public class ElevatorInfoController {
 		model.addAttribute("elevatorCode", elevatorCode);
 		model.addAttribute("registrationCode", registrationCode);
 		model.addAttribute("registrationStatus", registrationStatus);
+		model.addAttribute("usingState", usingState);
+		
 		return "elevatorList";
 	}
 
@@ -114,11 +128,23 @@ public class ElevatorInfoController {
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "limit", required = false) Integer limit)
 			throws Exception {
+		
+		if(elevatorCode!=null){
+			logger.debug("空格之前"+elevatorCode);
+			String trimElevatorCode=elevatorCode.trim();
+			elevatorCode=trimElevatorCode;
+			logger.debug("去空格之后"+elevatorCode);
+		}
+		
+		if(registrationCode!=null){
+			String trimRegistrationCode=registrationCode.trim();
+			registrationCode=trimRegistrationCode;
+		}
 		logger.debug("页面的参数是1111：" + registrationCode);
 
 		Map<String, Object> elevatorInfoMap = new HashMap<String, Object>();
-		logger.debug("页面URL：" + request.getQueryString());
-		elevatorInfoMap.put("url", request.getQueryString());
+		/*logger.debug("页面URL：" + request.getQueryString());
+		elevatorInfoMap.put("url", request.getQueryString());*/
 		// limit每一页显示的条数
 		if (null == limit || limit == 0) {
 			limit = 10;
@@ -145,8 +171,13 @@ public class ElevatorInfoController {
 				user.getId(), buildingId, Company_YId, maintenanceId,
 				elevatorType, elevatorCode, registrationCode,
 				registrationStatus, usingState, page, limit);
+		if(userElevatorList==null){
+			
+		}else{
+			elevatorInfoList = userElevatorList.getElevatorList();
+		}
 
-		elevatorInfoList = userElevatorList.getElevatorList();
+		
 
 		logger.debug("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 				+ elevatorCount);
@@ -156,91 +187,28 @@ public class ElevatorInfoController {
 		elevatorInfoMap.put("count", elevatorCount);
 		elevatorInfoMap.put("data", elevatorInfoList);
 
-		model.addAttribute("buildingId", buildingId);
-		model.addAttribute("Company_YId", Company_YId);
-		model.addAttribute("maintenanceId", maintenanceId);
-		model.addAttribute("elevatorType", elevatorType);
-		model.addAttribute("elevatorCode", elevatorCode);
-		model.addAttribute("registrationCode", registrationCode);
-		model.addAttribute("registrationStatus", registrationStatus);
+		
 
 		return elevatorInfoMap;
 
 	}
+	
+	
+	@ResponseBody
+	// 单个电梯详细信息
+	@RequestMapping(value = "/elevatorDetail")
+	public Object getElevator(@RequestParam(value = "id", required =true)Integer id){
+		ElevatorInfo ele=null;
+		try {
+			ele=elevatorInfoService.getElevatorById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ele;
+		
+	}
 
-	/*
-	 * @ResponseBody//用来拿取后台电梯的数据
-	 * 
-	 * @RequestMapping(value = "/elevatorListData") public String
-	 * elevatorMain1(Model model,HttpSession session,HttpServletRequest request,
-	 * 
-	 * @RequestParam(value="buildingId",required=false) Integer buildingId,
-	 * 
-	 * @RequestParam(value="Company_YId",required=false) Integer Company_YId,
-	 * 
-	 * @RequestParam(value="maintenanceId",required=false) Integer
-	 * maintenanceId,
-	 * 
-	 * @RequestParam(value="elevatorType",required=false) Integer elevatorType,
-	 * 
-	 * @RequestParam(value="elevatorCode",required=false) String elevatorCode,
-	 * 
-	 * @RequestParam(value="registrationCode",required=false) String
-	 * registrationCode,
-	 * 
-	 * @RequestParam(value="registrationStatus",required=false) Integer
-	 * registrationStatus,
-	 * 
-	 * @RequestParam(value="usingState",required=false) Integer usingState,
-	 * 
-	 * @RequestParam(value="page",required=false) Integer page,
-	 * 
-	 * @RequestParam(value="limit",required=false) Integer limit ) throws
-	 * Exception { logger.debug("页面的参数是1111："+registrationCode);
-	 * 
-	 * Map<String,Object> elevatorInfoMap=new HashMap<String,Object>();
-	 * logger.debug("页面URL："+request.getQueryString());
-	 * elevatorInfoMap.put("url", request.getQueryString()); //limit每一页显示的条数
-	 * if(null==limit||limit==0){ limit=10; } //page 页码，转换为显示位置
-	 * if(null==page||page==0){ page=0; }else{ page=(page-1)*limit; } User
-	 * user=(
-	 * User)session.getAttribute(Constants.USER_SESSION);//获取缓存session里的User对象
-	 * 
-	 * //进行角色判断 List<ElevatorInfo> elevatorInfoList=new
-	 * ArrayList<ElevatorInfo>();//储层不同角色的电梯详情 int
-	 * elevatorCount=0;//储层不同角色的电梯总数据条数 User
-	 * userElevatorList=null;//通过user对象获取的电梯集合
-	 * logger.debug("页面的参数是："+registrationCode);
-	 * 
-	 * elevatorCount=userService.getCountBy(user.getUserRole(), user.getId(),
-	 * buildingId, Company_YId, maintenanceId, elevatorType, elevatorCode,
-	 * registrationCode, registrationStatus, usingState);
-	 * userElevatorList=userService.getElevatorInfoList(
-	 * user.getUserRole(),user.getId(), buildingId,Company_YId, maintenanceId,
-	 * elevatorType, elevatorCode, registrationCode, registrationStatus,
-	 * usingState, page, limit);
-	 * 
-	 * //elevatorInfoList=userElevatorList.getElevatorList();
-	 * 
-	 * logger.debug("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+elevatorCount)
-	 * ;
-	 * 
-	 * elevatorInfoMap.put("code",0); elevatorInfoMap.put("msg","");
-	 * elevatorInfoMap.put("count",elevatorCount);
-	 * elevatorInfoMap.put("data",elevatorInfoList); //储层数据连接和map参数
-	 * //model.addAttribute(url, map);
-	 * 
-	 * model.addAttribute("buildingId", buildingId);
-	 * model.addAttribute("Company_YId", Company_YId);
-	 * model.addAttribute("maintenanceId", maintenanceId);
-	 * model.addAttribute("elevatorType", elevatorType);
-	 * model.addAttribute("elevatorCode", elevatorCode);
-	 * model.addAttribute("registrationCode", registrationCode);
-	 * model.addAttribute("registrationStatus", registrationStatus);
-	 * 
-	 * return "elevatorList";
-	 * 
-	 * }
-	 */
+
+	
 
 }

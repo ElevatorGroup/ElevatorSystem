@@ -40,7 +40,6 @@
 					 <a href="${pageContext.request.contextPath}/user/logout"
 					class="headerUser-item"> <span class="glyphicon glyphicon-off"
 					aria-hidden="true"></span> 退出 </a>
-					<input id="roleId" type="hidden" value="${userSession.userRole }"/>
 			</div>
     </div>
 </div>
@@ -119,7 +118,7 @@
 						<div class="selectAre">
 							<label for="" class=" control-label">物业公司</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="" title="请选择物业公司">
+								<select class="selectpicker" name="elevatorType" title="请选择物业公司">
 									<option>刘磊物业公司</option>
 									<option>汪传胜物业公司</option>
 								</select>
@@ -130,7 +129,7 @@
 						<div class="selectAre">
 							<label for="" class=" control-label">维保公司</label>
 							<div class="serchAreform-group">
-								<select class="selectpicker" name="" title="请选择维保公司">
+								<select class="selectpicker" name="elevatorType" title="请选择维保公司">
 									<option>刘磊维保公司</option>
 									<option>汪传胜维保公司</option>
 
@@ -142,8 +141,11 @@
 						<div class="selectAre">
 							<label for="" class=" control-label">电梯类型</label>
 							<div class="serchAreform-group">
+								
+								
+								
 								<select class="selectpicker" name="elevatorType" value="${elevatorType}" >
-										<option name="elevatorType" value="">请选择电梯类型</option>
+										<option name="elevatorType" value="">请选择使用状态</option>
 									   <c:forEach var="item" items="${elevatorTypeList}" varStatus="status">
 									   		<option  value="${item.valueId}" <c:if test="${elevatorType == item.valueId}">selected</c:if>> ${item.valueName}</option>
 									   </c:forEach>
@@ -210,7 +212,6 @@
 						lay-filter="firmtable">
 						<thead>
 							<tr>
-								
 								<th lay-data="{field:'buildingName'}">楼盘名称</th>
 								<th lay-data="{field:'elevatorTyepName'}">电梯类型</th>
 								<th lay-data="{field:'elevatorCode'}">设备识别码</th>
@@ -225,7 +226,6 @@
 							</tr>
 						</thead>
 					</table>
-					<input type="hidden" id="path" value="${pageContext.request.contextPath }"/>
 					<script type="text/html" id="barFirmTable">
                 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
