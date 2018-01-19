@@ -29,11 +29,10 @@ public class MaintenanceServiceImp implements MaintenanceService{
 		}
 		return bool;
 	}
+	
 	@Override
-	public List<User> getUserList(Integer id, Integer userRole)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return maintenanceMapper.getUserList(id, userRole);
+	public List<User> getUserList(Integer id, String realName) throws Exception {
+		return maintenanceMapper.getUserList(id, realName);
 	}
 	
 

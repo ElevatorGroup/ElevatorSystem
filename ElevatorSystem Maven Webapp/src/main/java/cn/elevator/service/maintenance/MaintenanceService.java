@@ -10,6 +10,6 @@ import cn.elevator.entity.User;
 public interface MaintenanceService {
 	public Maintenance getMaintenance(Integer id,Integer userRole)throws Exception;
 	public Boolean updateMaintenance(Maintenance maintenance)throws Exception;
-	public List<User> getUserList(Integer id,Integer userRole)throws Exception;
+	public List<User> getUserList(Integer id,String realName)throws Exception;
 
 }
