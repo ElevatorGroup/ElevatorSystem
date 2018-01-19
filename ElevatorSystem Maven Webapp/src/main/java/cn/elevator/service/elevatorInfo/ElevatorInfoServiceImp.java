@@ -59,6 +59,19 @@ public class ElevatorInfoServiceImp implements ElevatorInfoService {
 	}
 
 
+	@Override
+	public Boolean delElevatorById(Integer id) throws Exception {
+		Boolean bool=false;
+		if(elevatorInfoMapper.delElevatorById(id)>0){
+			bool=true;
+		}else{
+			bool=false;
+		}
+		return bool;
+	}
+
+
+
 	
 
 	

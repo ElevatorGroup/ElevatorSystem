@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.elevator.dao.maintenance.MaintenanceMapper">
+	<!-- 获取维保公司信息 -->
+	<select id="getMaintenance" parameterType="Integer" resultType="Maintenance">
+
+		SELECT
+		m.id,m.companyName,m.companyAddress,m.creditCode,m.businessLicense,m.representative,
+		m.companyTel,m.fax,m.contactPerson,m.contactNumber,m.installType,m.creater,
+		m.createDate,m.updater,m.updatDate FROM maintenance m
+		WHERE id=(SELECT u.companyId FROM USER u WHERE u.id=#{id} AND
+		u.userRole=#{userRole})
+
+	</select>
+
+
+	<update id="updateMaintenance" parameterType="Maintenance" >
+		update maintenance 
+
+		<trim prefix="set" suffixOverrides=",">
+			<if test="companyName!=null">companyName=#{companyName},</if>
+			<if test="companyAddress!=null">companyAddress=#{companyAddress},</if>
+			<if test="businessLicense!=null">businessLicense=#{businessLicense},</if>
+			<if test="representative!=null">representative=#{representative},</if>
+			<if test="companyTel!=null">companyTel=#{companyTel},</if>
+			<if test="fax!=null">fax=#{fax},</if>
+			<if test="contactPerson!=null">contactPerson=#{contactPerson},</if>
+			<if test="contactNumber!=null">contactNumber=#{contactNumber},</if>
+			<if test="installType!=null">installType=#{installType},</if>
+			<if test="updater!=null">updater=#{updater},</if>
+			<if test="updatDate!=null">updatDate=#{updatDate}</if>
+		</trim>
+		WHERE id=#{id}
+	</update>
+	
+	<select id="getUserList" parameterType="Integer" resultType="User">
+		SELECT u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,
+		u.userName,u.wenXin,u.password,u.buildingID,u.elevatorID,u.creater,u.createDate
+		,u.updater,u.updatDate 
+		FROM USER u WHERE 
+		companyId=(SELECT  u.companyId FROM USER u WHERE u.userRole =#{userRole} AND u.id=#{id})
+		AND u.userRole=5  
+	
+	</select>
+
+
+
+
+
+</mapper>

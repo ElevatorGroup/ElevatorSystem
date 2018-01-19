@@ -54,10 +54,10 @@
 
 
 <!-- 通过id删除电梯对象 -->
-<select id="delElevatorById" parameterType="Integer" >
-	
+<update id="delElevatorById" parameterType="Integer" >
+	UPDATE elevatorinfo SET softDel=1 WHERE id=#{id}
 
-</select>
+</update>
 
 
 

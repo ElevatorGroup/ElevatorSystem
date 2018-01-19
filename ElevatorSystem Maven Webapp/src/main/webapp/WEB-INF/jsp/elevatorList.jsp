@@ -80,8 +80,8 @@
                     <li><a href=""><i class="iconfont icon-hetong"></i><em>楼盘信息</em></a></li>
                     <li><a href=""><i class="iconfont icon-hetong"></i><em>维保管理</em></a>
                         <div class="vertical-menu-list">
-                            <a class="fl" href=""><i class="iconfont icon-dianti"></i><em>公司信息管理</em></a>
-                            <a class="fl" href=""><i class="iconfont icon-hetong1"></i><em>维保人员管理</em></a>
+                            <a class="fl" href="${pageContext.request.contextPath }/maintenance/maintenanceView"><i class="iconfont icon-dianti"></i><em>公司信息管理</em></a>
+                            <a class="fl" href="${pageContext.request.contextPath }/maintenance/maintenanceUser"><i class="iconfont icon-hetong1"></i><em>维保人员管理</em></a>
                             <a class="fl" href=""><i class="iconfont icon-hetong1"></i><em>维保工作管理</em></a>
                             <a class="fl" href=""><i class="iconfont icon-jiuyuan"></i><em>维保记录管理</em></a>
                             <a class="fl" href=""><i class="iconfont icon-jiuyuan"></i><em>维保合同管理</em></a>

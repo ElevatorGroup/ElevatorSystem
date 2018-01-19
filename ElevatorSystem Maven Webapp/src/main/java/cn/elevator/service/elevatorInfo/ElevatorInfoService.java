@@ -35,4 +35,5 @@ public interface ElevatorInfoService {
 	public Integer getElevatorCount(Integer buildingId)throws Exception;
 	
 	public ElevatorInfo getElevatorById(Integer id)throws Exception;
+	public Boolean delElevatorById(Integer id)throws Exception;
 }

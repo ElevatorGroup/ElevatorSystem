@@ -14,6 +14,24 @@ import java.util.Date;
 public class ElevatorInfo  {
 	//电梯信息表
 	private Integer id;
+	
+	//是否删除
+	private Integer softDel;
+	public Integer getSoftDel() {
+		return softDel;
+	}
+	public void setSoftDel(Integer softDel) {
+		this.softDel = softDel;
+	}
+	public String getRegistrationCodeImg() {
+		return registrationCodeImg;
+	}
+	public void setRegistrationCodeImg(String registrationCodeImg) {
+		this.registrationCodeImg = registrationCodeImg;
+	}
+	//电梯注册使用证书图片路径
+	private String registrationCodeImg;
+	
 	public String getBuildingName() {
 		return buildingName;
 	}

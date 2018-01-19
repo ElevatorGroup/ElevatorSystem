@@ -93,58 +93,67 @@
 <!--右边{-->
     <div class="main-r">
         <div class="defaultAre">
-                <div class="elevatorInfo-wr addStaff-wr">
-                    <div class="form-group-Property-tit">
-                    	<h4>维保公司信息：</h4>
-                    	<a href="${pageContext.request.contextPath }/maintenance/maintenanceModify" class="layui-btn changeProperty-btn" >修改</a>
-                    </div>
+            <form action="${pageContext.request.contextPath }/maintenance/maintenanceModifySave" 
+             method="post" enctype="multipart/form-data" class="changeProperty">
+                <div class="elevatorInfo-wr">
+                    <h4>物业信息修改</h4>
                     <div class="elevatorInfo-item">
                         <div class="elevatorInfo-item-bd clearfix">
+                        <input type="hidden"  name="id" value="${maintenance.id}" >
                             <div class="form-group">
-                                <label  class=" control-label">公司名称：</label>
-                                <span class="form-group-info">${maintenance.companyName }</span>
+                                <label for="name" class=" control-label">公司名称</label>
+                                <input type="text"  name="companyName" value="${maintenance.companyName }" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">公司地址：</label>
-                                <span class="form-group-info">${maintenance.companyAddress }</span>
+                                <label for="address" class=" control-label">公司地址</label>
+                                <input type="text"  name="companyAddress"  value="${maintenance.companyAddress }" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="code" class=" control-label">统一社会信用代码</label>
+                                <input type="text"  name="creditCode" value="${maintenance.creditCode }"  class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">统一社会信用代码：</label>
-                                <span class="form-group-info">${maintenance.creditCode }</span>
+                                <label for="ceo" class=" control-label">法定代表人</label>
+                                <input type="text"  name="representative" value="${maintenance.representative }" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">法定代表人：</label>
-                                <span class="form-group-info">${maintenance.representative }</span>
+                                <label for="tel" class=" control-label">公司电话</label>
+                                <input type="text"  name="companyTel"  value="${maintenance.companyTel }" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">公司电话：</label>
-                                <span class="form-group-info">${maintenance.companyTel }</span>
+                                <label class=" control-label">单位传真</label>
+                                <input type="text"   name="fax" value="${maintenance.fax }" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">单位传真：</label>
-                                <span class="form-group-info">${maintenance.fax }</span>
+                                <label for="coo" class=" control-label">负责人</label>
+                                <input type="text"  name="contactPerson" value="${maintenance.contactPerson }"  class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">负责人：</label>
-                                <span class="form-group-info">${maintenance.contactPerson }</span>
+                                <label for="sphone" class=" control-label">负责人手机号码</label>
+                                <input type="text"  name="contactNumber" value="${maintenance.contactNumber }"  class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class=" control-label">负责人电话：</label>
-                                <span class="form-group-info">${maintenance.contactNumber }</span>
-                            </div>
-                            <div class="form-group form-group-img">
-                                <label class=" control-label">营业执照：</label>
-                                <span class="form-group-info-img">
-                                	<img src="${maintenance.businessLicense }" alt=""/>
-                                </span>
+                                <label  class=" control-label">营业执照</label>
+                                <div class="control-label-img-wr">
+                                <span class="control-label-img-thumb"><img src="${maintenance.businessLicense }" alt=""/></span>
+                                <input type="button" name="value1" vlaue="修改"/>
+                                <input id="attachid" type="file" name="attach" id="businessLicense" class="item-file control-label-img-btn" ></div>
+                                <h4>${uploadFileError }</h4>
+                                
                             </div>
                         </div>
-                        
-                         <div class="register-btn">
-                        	<input type="button" value="返回" class="item-submit btn btn-success">
-                    	</div>
                     </div>
+                    <!--btn{-->
+                    <div class="register-btn">
+                        <input type="submit" value="提交" class="item-submit btn btn-success">
+                        <input  id="backloc" type="button" value="返回" class="item-submit btn btn-success">
+                    </div>
+                    
+                    <!--}btn-->
                 </div>
+
+            </form>
         </div>
 
     </div>

@@ -207,6 +207,19 @@ public class ElevatorInfoController {
 		return ele;
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/elevatorDel")
+	public Object delElevator(@RequestParam(value="id",required=true)Integer id){
+		Boolean bool=false;
+		try {
+			bool=elevatorInfoService.delElevatorById(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bool;
+	}
 
 
 	

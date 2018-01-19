@@ -41,6 +41,8 @@
 			<result property="registrationStatus" column="registrationStatus"/>
 			<result property="proactivelyDate" column="proactivelyDate"/>
 			<result property="projectId" column="projectId"/>
+			<result property="registrationCodeImg" column="registrationCodeImg"/>
+			<result property="softDel" column="softDel"/>
 			<result property="buildingName" column="companyName"/><!-- 楼盘名称 -->
 			<result property="elevatorTyepName" column="valueName"/><!-- 电梯类型名称 -->
 			<result property="usingStateName" column="valueName1"/><!-- 使用状态-->
@@ -54,7 +56,7 @@
 	
 	<select id="getElevatorInfoList" resultMap="getElevatorByUserRole" >
 	
-		SELECT e.id AS e_id, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
+		SELECT e.id AS e_id,e.softDel,e.registrationCodeImg, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
 		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
 		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
 		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,
@@ -62,7 +64,7 @@
 		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
 		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='registrationStatus' AND d.valueId=e.registrationStatus)AS valueName2
 		
-		 FROM USER u,elevatorinfo e WHERE
+		 FROM USER u,elevatorinfo e WHERE e.softDel=0 and
 		<!-- 0 质监局-->
 		<if test="userRole==0">
 		 userRole=#{userRole} and u.id=#{id}
@@ -222,7 +224,7 @@
 		<if test="usingState != null">
 			and usingState = #{usingState}
 		</if>
-			) AS a
+			and e.softDel=0 ) AS a
 	</select> 
 	 
 	 
