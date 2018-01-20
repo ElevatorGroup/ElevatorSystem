@@ -12,5 +12,6 @@ public interface MaintenanceMapper {
 	public Integer updateMaintenance(Maintenance maintenance)throws Exception;
 	
 	public List<User> getUserList(@Param("id")Integer id,@Param("realName")String realName)throws Exception;
+	public Integer addMainUser(User user)throws Exception;
 
 }

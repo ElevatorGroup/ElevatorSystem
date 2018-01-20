@@ -35,5 +35,18 @@ public class MaintenanceServiceImp implements MaintenanceService{
 		return maintenanceMapper.getUserList(id, realName);
 	}
 	
+	
+	@Override
+	public Boolean addMainUser(User user) throws Exception {
+		Boolean bool=false;
+		if(maintenanceMapper.addMainUser(user)>0){  
+			bool=true;
+		}else{
+			bool=false;
+		}
+		return bool;
+	}
+	
+	
 
 }

@@ -38,30 +38,6 @@ public class UserServiceImpl implements UserService{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	@Override
 	public int getCountBy(Integer userRole, Integer id, Integer buildingId,
 			Integer Company_YId, Integer maintenanceId, Integer elevatorType,
@@ -69,6 +45,31 @@ public class UserServiceImpl implements UserService{
 			Integer registrationStatus, Integer usingState) {
 		// TODO Auto-generated method stub
 		return userMapper.getCountBy(userRole, id, buildingId, Company_YId, maintenanceId, elevatorType, elevatorCode, registrationCode, registrationStatus, usingState);
+	}
+
+
+
+
+
+	@Override
+	public Boolean updateUser(User user) throws Exception {
+		Boolean bool=false;
+		if(userMapper.updateUser(user)>0){
+			bool=true;
+		}else{
+			bool=false;
+		}
+		return bool;
+	}
+
+
+
+
+
+	@Override
+	public User getUserById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.getUserById(id);
 	}
 
 

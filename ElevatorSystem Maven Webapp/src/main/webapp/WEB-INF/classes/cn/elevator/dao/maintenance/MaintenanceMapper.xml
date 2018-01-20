@@ -43,18 +43,16 @@
 		companyId=(SELECT  u.companyId FROM USER u WHERE u.userRole =4 AND u.id=#{id})
 		AND u.userRole=5 
 		<if test="realName!=null">
-			and like CONCAT('%', #{realName}, '%')  
+			and realName like CONCAT('%', #{realName}, '%')  
 		</if> 
 	
 	</select>
 	
-	<!-- 管理人员模糊查询 -->
-	<!-- <select id="likeUser" parameterType="Integer" resultType="User">
-		SELECT u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,
-		u.userName,u.wenXin,u.password,u.buildingID,u.elevatorID,u.creater,u.createDate
-		,u.updater,u.updatDate
-		 from user u where u.companyId=#{companyId} and u.userRole=5
-	</select> -->
+	<!-- 添加维保人员 -->
+	<insert id="addMainUser" parameterType="User" >
+		INSERT INTO USER(userRole,companyId,deleted,realName,tel,wenXin,userName,password)
+		VALUES(5,#{companyId},0,#{realName},#{tel},#{wenXin},#{userName},#{password})
+	</insert>
 
 
 

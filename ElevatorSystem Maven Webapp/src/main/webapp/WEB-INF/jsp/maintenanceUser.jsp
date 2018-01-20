@@ -109,13 +109,15 @@
                     <div class="form-group-button fl">
                         <button type="button" class="btn btn-warning addServer">新增维保人员</button>
                     </div>
+                    <input type="hidden" id="path" value="${pageContext.request.contextPath }"/>
                 </div>
             
             <!--}serch-->
-            <h3 class="tith3">维保人员信息</h3>
-            <table class="layui-table" lay-data="{ page:true, url:'${pageContext.request.contextPath }/maintenance/userDabase', id:'wy-stafftable',width:900}" lay-filter="wy-stafftable">
+            <h3 class="tith3">维保人员信息${param1}</h3>
+            <table class="layui-table" lay-data="{ page:true, url:'${pageContext.request.contextPath }/maintenance/userDabase?${param1}', id:'wy-stafftable',width:900}" lay-filter="wy-stafftable">
                 <thead>
                 <tr>
+                <th  lay-data="{field: 'id' }">123</th>
                     <th lay-data="{field: 'realName'}">真实姓名</th>
                     <th lay-data="{field: 'tel'}">联系电话</th>
                     <th lay-data="{field: 'userName'}">用户名</th>
@@ -134,7 +136,7 @@
                 </tbody> -->
             </table>
             <script type="text/html" id="barwy-stafftable">
-                <a class="layui-btn layui-btn-xs editServer" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-xs editServer"  lay-event="edit">修改</a>
             </script>
 			</form>
         </div>

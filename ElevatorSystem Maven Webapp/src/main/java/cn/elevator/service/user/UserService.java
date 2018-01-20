@@ -37,6 +37,12 @@ public interface  UserService {
 				  Integer registrationStatus,
 				  Integer usingState
 				 );
+		 
+		 //通过id修改User对象
+		 public Boolean updateUser(User user)throws Exception;
+		 
+		 //通过id获得User对象
+		 public User getUserById(Integer id)throws Exception;
 
 	 
 }

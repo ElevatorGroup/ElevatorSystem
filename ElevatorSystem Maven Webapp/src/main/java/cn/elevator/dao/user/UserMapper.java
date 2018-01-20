@@ -47,6 +47,11 @@ public interface UserMapper {
 			  @Param("usingState")Integer usingState
 			  
 			 );
+	 
+	 //通过id修改User对象
+	 public int updateUser(User user)throws Exception;
 	
+	 //通过id获得User对象
+	 public User getUserById(@Param("id")Integer id)throws Exception;
 	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,13 +71,18 @@ public class UserController {
 //注册处理
 		
 		
-		/*@ResponseBody
-		@RequestMapping("/test/{id}")
-		public Object getList(@PathVariable("id")Integer id) throws Exception{
-			System.out.println(">>>>>>>>>>>>test");
-			User user=userService.getElevatorInfoList(id);
-			List<ElevatorInfo> list=user.getElevatorList();
-			return list;
-		}*/
+//通过id获取User对象
+		@ResponseBody
+		@RequestMapping(value="/UserById")
+		 public User getUserById(@RequestParam(value="id",required=true)Integer id){
+			 User userData=null;
+			 try {
+				userData=userService.getUserById(id);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 return userData;
+		 }
 		
 }

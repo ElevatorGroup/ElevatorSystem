@@ -11,5 +11,6 @@ public interface MaintenanceService {
 	public Maintenance getMaintenance(Integer id,Integer userRole)throws Exception;
 	public Boolean updateMaintenance(Maintenance maintenance)throws Exception;
 	public List<User> getUserList(Integer id,String realName)throws Exception;
+	public Boolean addMainUser(User user)throws Exception;
 
 }

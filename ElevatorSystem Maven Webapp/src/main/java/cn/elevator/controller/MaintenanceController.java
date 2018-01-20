@@ -140,7 +140,7 @@ public class MaintenanceController {
 		logger.debug("参数值："+realName);
 		model.addAttribute("realName", realName);
 		
-		model.addAttribute("param", request.getQueryString());
+		model.addAttribute("param1", request.getQueryString());
 		logger.debug("链接参数："+request.getQueryString());
 		return "maintenanceUser";
 	}
@@ -164,5 +164,37 @@ public class MaintenanceController {
 		map.put("count",userList.size());
 		map.put("data",userList);
 		return map;
+	}
+	
+//添加维保人员
+	@RequestMapping(value="/addMainUser")
+	public String addMainUser(HttpSession session,User user){
+		logger.debug("user值==========》"+user.getUserName());
+		User user1=(User) session.getAttribute(Constants.USER_SESSION);
+		Maintenance maintenance=null;
+		try {
+			maintenance = maintenanceService.getMaintenance(user1.getId(), user1.getUserRole());
+			user.setCompanyId(maintenance.getId());
+			logger.debug("companyId"+user.getCompanyId());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			maintenanceService.addMainUser(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "maintenanceUser";
+	}
+	
+	
+	//维保工作分配
+	@RequestMapping(value="/maintenanceWork")
+	public String maintenanceWork(){
+		logger.debug("进入分配任务============");
+		return "/maintenanceWork";
 	}
 }
