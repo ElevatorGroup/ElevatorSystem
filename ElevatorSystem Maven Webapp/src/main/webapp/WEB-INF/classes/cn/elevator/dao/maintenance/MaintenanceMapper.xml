@@ -34,15 +34,27 @@
 		WHERE id=#{id}
 	</update>
 	
-	<select id="getUserList" parameterType="Integer" resultType="User">
+	<!-- 维保管理员进入就能查看到该维保公司所有的维保人员信息 -->
+	<select id="getUserList"  resultType="User">
 		SELECT u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,
 		u.userName,u.wenXin,u.password,u.buildingID,u.elevatorID,u.creater,u.createDate
 		,u.updater,u.updatDate 
 		FROM USER u WHERE 
-		companyId=(SELECT  u.companyId FROM USER u WHERE u.userRole =#{userRole} AND u.id=#{id})
-		AND u.userRole=5  
+		companyId=(SELECT  u.companyId FROM USER u WHERE u.userRole =4 AND u.id=#{id})
+		AND u.userRole=5 
+		<if test="realName!=null">
+			and like CONCAT('%', #{realName}, '%')  
+		</if> 
 	
 	</select>
+	
+	<!-- 管理人员模糊查询 -->
+	<!-- <select id="likeUser" parameterType="Integer" resultType="User">
+		SELECT u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,
+		u.userName,u.wenXin,u.password,u.buildingID,u.elevatorID,u.creater,u.createDate
+		,u.updater,u.updatDate
+		 from user u where u.companyId=#{companyId} and u.userRole=5
+	</select> -->
 
 
 

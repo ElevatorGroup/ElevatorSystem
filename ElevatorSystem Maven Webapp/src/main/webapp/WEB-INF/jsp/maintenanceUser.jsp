@@ -97,20 +97,20 @@
     <div class="main-r">
         <div class="defaultAre">
             <!--serch{-->
-            <form action="" method="post" class="elevatorSerch-fu">
+            <form action="${pageContext.request.contextPath }/maintenance/maintenanceUser" method="get" class="elevatorSerch-fu">
                 <div class="serchAre clearfix">
                     <div class="form-group">
                         <label for="" class=" control-label">姓名</label>
-                        <input type="text" class="form-control"  >
+                        <input type="text" name="realName" value="${realName}" class="form-control"  >
                     </div>
                     <div class="form-group-button fl">
-                        <button type="button" class="btn btn-warning serchBtn">查 询</button>
+                        <button type="submit" class="btn btn-warning serchBtn">查 询</button>
                     </div>
                     <div class="form-group-button fl">
                         <button type="button" class="btn btn-warning addServer">新增维保人员</button>
                     </div>
                 </div>
-            </form>
+            
             <!--}serch-->
             <h3 class="tith3">维保人员信息</h3>
             <table class="layui-table" lay-data="{ page:true, url:'${pageContext.request.contextPath }/maintenance/userDabase', id:'wy-stafftable',width:900}" lay-filter="wy-stafftable">
@@ -123,7 +123,7 @@
                     <th lay-data="{ align:'center', width:100,toolbar:'#barwy-stafftable'}">操作</th>
                 </tr>
                 </thead>
-                <tbody>
+                <!-- <tbody>
                     <tr>
                         <td>张四</td>
                         <td>男</td>
@@ -131,12 +131,12 @@
                         <td>银泰城</td>
                         <td>ZN58541102S</td>
                     </tr>
-                </tbody>
+                </tbody> -->
             </table>
             <script type="text/html" id="barwy-stafftable">
                 <a class="layui-btn layui-btn-xs editServer" lay-event="edit">修改</a>
             </script>
-
+			</form>
         </div>
 
     </div>

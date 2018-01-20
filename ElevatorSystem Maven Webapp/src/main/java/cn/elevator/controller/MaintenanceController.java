@@ -17,6 +17,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -132,21 +133,27 @@ public class MaintenanceController {
 	}
 
 
-//维保管理人员页面
+//维保管理人员页面作用1，回显，2带参 3获取动态参数链接
 	@RequestMapping(value="/maintenanceUser")
-	public String maintenanceUser(){
+	public String maintenanceUser(HttpSession session,HttpServletRequest request,Model model,
+			@RequestParam(value="realName",required=false)String realName){
+		logger.debug("参数值："+realName);
+		model.addAttribute("realName", realName);
+		
+		model.addAttribute("param", request.getQueryString());
+		logger.debug("链接参数："+request.getQueryString());
 		return "maintenanceUser";
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value="/userDabase")
-	public Object getUserList(HttpSession session){
+	public Object getUserList(HttpSession session,@RequestParam(value="realName",required=false)String realName){
 		User user=(User) session.getAttribute(Constants.USER_SESSION);
 		List<User> userList=new ArrayList<User>();//储存查询出的userList
 		Map<String,Object> map=new HashMap<String,Object>();
 				try {
-					userList=maintenanceService.getUserList(user.getId(),user.getUserRole());
+					userList=maintenanceService.getUserList(user.getId(),realName);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
