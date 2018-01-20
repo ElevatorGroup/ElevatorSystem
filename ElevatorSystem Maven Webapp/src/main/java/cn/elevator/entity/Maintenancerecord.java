@@ -13,187 +13,120 @@ import java.util.Date;
  */
 public class Maintenancerecord {
 	
-	//电梯维修记录表电梯急救情况
+	//保养记录表普通维保情况
 	private Integer id;
-	//电梯ID
-	private Integer elevatorid;
-	//电梯发生急救信号时间
-	private Date problemtime;
-	//维修时间
-	private Date maintenancedate1;
-	//关联到维修人员ID
-	private Integer userid;
-	//故障原因
-	private String problem;
-	//维修时长
-	private Integer maintenancetime;
-	//完成时间NFC打卡
-	private Date maintenancedate2;
-	//维修类型0.困人 1非困人
-	private Integer maintenancetype;
+	//电梯编码
+	private String elevatorNumber;
+	//保养时间
+	private Date maintenanceTime;
+	//保养状态0.待保养，1已保养，2.保养过期
+	private Integer state;
+	//维保材料
+	private String maintenanceMaterial;
+	//备注
+	private String reason;
+	//物业签字照片
+	private String imgrealty;
+	//NFC开始时间
+	private Date startNFC;
+	//NFC结束时间
+	private String endNFC;
+	//保养人员ID(可以有多个人)
+	private String userId;
 	//创建人
 	private String creater;
 	//创建时间
-	private Date createdate;
+	private Date createDate;
 	//修改人
 	private String updater;
 	//修改时间
-	private Date updatdate;
-
-	/**
-	 * 设置：电梯维修记录表电梯急救情况
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：电梯维修记录表电梯急救情况
-	 */
+	private Date updatDate;
+	
 	public Integer getId() {
 		return id;
 	}
-	/**
-	 * 设置：电梯ID
-	 */
-	public void setElevatorid(Integer elevatorid) {
-		this.elevatorid = elevatorid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	/**
-	 * 获取：电梯ID
-	 */
-	public Integer getElevatorid() {
-		return elevatorid;
+	public String getElevatorNumber() {
+		return elevatorNumber;
 	}
-	/**
-	 * 设置：电梯发生急救信号时间
-	 */
-	public void setProblemtime(Date problemtime) {
-		this.problemtime = problemtime;
+	public void setElevatorNumber(String elevatorNumber) {
+		this.elevatorNumber = elevatorNumber;
 	}
-	/**
-	 * 获取：电梯发生急救信号时间
-	 */
-	public Date getProblemtime() {
-		return problemtime;
+	public Date getMaintenanceTime() {
+		return maintenanceTime;
 	}
-	/**
-	 * 设置：维修时间
-	 */
-	public void setMaintenancedate1(Date maintenancedate1) {
-		this.maintenancedate1 = maintenancedate1;
+	public void setMaintenanceTime(Date maintenanceTime) {
+		this.maintenanceTime = maintenanceTime;
 	}
-	/**
-	 * 获取：维修时间
-	 */
-	public Date getMaintenancedate1() {
-		return maintenancedate1;
+	public Integer getState() {
+		return state;
 	}
-	/**
-	 * 设置：关联到维修人员ID
-	 */
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setState(Integer state) {
+		this.state = state;
 	}
-	/**
-	 * 获取：关联到维修人员ID
-	 */
-	public Integer getUserid() {
-		return userid;
+	public String getMaintenanceMaterial() {
+		return maintenanceMaterial;
 	}
-	/**
-	 * 设置：故障原因
-	 */
-	public void setProblem(String problem) {
-		this.problem = problem;
+	public void setMaintenanceMaterial(String maintenanceMaterial) {
+		this.maintenanceMaterial = maintenanceMaterial;
 	}
-	/**
-	 * 获取：故障原因
-	 */
-	public String getProblem() {
-		return problem;
+	public String getReason() {
+		return reason;
 	}
-	/**
-	 * 设置：维修时长
-	 */
-	public void setMaintenancetime(Integer maintenancetime) {
-		this.maintenancetime = maintenancetime;
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
-	/**
-	 * 获取：维修时长
-	 */
-	public Integer getMaintenancetime() {
-		return maintenancetime;
+	public String getImgrealty() {
+		return imgrealty;
 	}
-	/**
-	 * 设置：完成时间NFC打卡
-	 */
-	public void setMaintenancedate2(Date maintenancedate2) {
-		this.maintenancedate2 = maintenancedate2;
+	public void setImgrealty(String imgrealty) {
+		this.imgrealty = imgrealty;
 	}
-	/**
-	 * 获取：完成时间NFC打卡
-	 */
-	public Date getMaintenancedate2() {
-		return maintenancedate2;
+	public Date getStartNFC() {
+		return startNFC;
 	}
-	/**
-	 * 设置：维修类型0.困人 1非困人
-	 */
-	public void setMaintenancetype(Integer maintenancetype) {
-		this.maintenancetype = maintenancetype;
+	public void setStartNFC(Date startNFC) {
+		this.startNFC = startNFC;
 	}
-	/**
-	 * 获取：维修类型0.困人 1非困人
-	 */
-	public Integer getMaintenancetype() {
-		return maintenancetype;
+	public String getEndNFC() {
+		return endNFC;
 	}
-	/**
-	 * 设置：创建人
-	 */
-	public void setCreater(String creater) {
-		this.creater = creater;
+	public void setEndNFC(String endNFC) {
+		this.endNFC = endNFC;
 	}
-	/**
-	 * 获取：创建人
-	 */
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getCreater() {
 		return creater;
 	}
-	/**
-	 * 设置：创建时间
-	 */
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
+	public void setCreater(String creater) {
+		this.creater = creater;
 	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreatedate() {
-		return createdate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	/**
-	 * 设置：修改人
-	 */
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	/**
-	 * 获取：修改人
-	 */
 	public String getUpdater() {
 		return updater;
 	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setUpdatdate(Date updatdate) {
-		this.updatdate = updatdate;
+	public void setUpdater(String updater) {
+		this.updater = updater;
 	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getUpdatdate() {
-		return updatdate;
+	public Date getUpdatDate() {
+		return updatDate;
 	}
+	public void setUpdatDate(Date updatDate) {
+		this.updatDate = updatDate;
+	}
+	
+	
+	
 }

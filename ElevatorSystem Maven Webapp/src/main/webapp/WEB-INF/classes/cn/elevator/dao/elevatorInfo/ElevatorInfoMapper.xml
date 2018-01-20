@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.elevator.dao.elevatorInfo.ElevatorInfoMapper">
+
+
+<!-- 通过不同的角色获取不同的楼盘，物业，维保公司 -->
+<!-- 通过用户id和用户角色获取楼盘 -->
+<select id="getBuildingName" parameterType="Integer" resultType="Building">
+<!-- 0质检局 -->
+	<if test="userRole==0">
+	 select b.companyName,b.id from building b
+	</if>
+<!-- 1楼盘用户 -->
+	<if test="userRole==1">
+	 select b.companyName ,b.id from building b,user u 
+	 where u.companyId=b.id 
+	 and u.userRole=#{userRole} and u.id=#{id}
+	</if>
+<!-- 2物业管理员 -->	
+	<if test="userRole==2">
+	 SELECT b.companyName,b.id FROM building b,USER u
+	 WHERE b.id IN (SELECT c.Company_JId FROM contract c WHERE c.Company_YId=u.companyId AND  c.contractType=2 )
+	 AND u.userRole=#{userRole} AND u.id=#{id}
+	</if>
+	
+	
+<!-- 3物业普通员工 -->
+	<if test="userRole==3">
+	 SELECT b.companyName,b.id FROM building b,USER u
+	 where b.id=buildingId 
+	 and u.userRole=#{userRole} and u.id=#{id}
+	</if>
+<!-- 4维保管理员 -->	
+	<if test="userRole==4">
+	 SELECT b.companyName,b.id FROM building b,USER u
+	 where b.id in (select e.buildingId from elevatorInfo e where e.maintenanceId=u.companyId)
+	 and u.userRole=#{userRole} and u.id=#{id}
+	</if>
+<!-- 5维保普通员工 -->	
+	<if test="userRole==5">
+	 select b.companyName ,b.id from building b,user u 
+	 where b.id in(select e.buildingId from elevatorInfo e where e.maintenancePersonId=u.id)
+	 and u.userRole=#{userRole} and u.id=#{id}
+	</if>
+</select>
+
+
+<!-- 通过电梯id获取电梯对象 -->
+<select id="getElevatorById" parameterType="Integer" resultType="ElevatorInfo">
+	select * from elevatorinfo  where id=#{id}
+
+</select>
+
+
+<!-- 通过id删除电梯对象 -->
+<update id="delElevatorById" parameterType="Integer" >
+	UPDATE elevatorinfo SET softDel=1 WHERE id=#{id}
+
+</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+</mapper>

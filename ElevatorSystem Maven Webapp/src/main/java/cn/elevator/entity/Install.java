@@ -16,212 +16,124 @@ public class Install  {
 	//安装公司表
 	private Integer id;
 	//公司名称
-	private String companyname;
+	private String companyName;
 	//公司地址
-	private String companyaddress;
+	private String companyAddress;
 	//统一社会信用代码
-	private String creditcode;
+	private String creditCode;
 	//营业执照图片
-	private String businesslicense;
+	private String businessLicense;
 	//法定代表人
 	private String representative;
 	//公司电话
-	private String companytel;
+	private String companyTel;
 	//单位传真
 	private String fax;
 	//负责人
-	private String contactperson;
+	private String contactPerson;
 	//负责人电话
-	private String contactnumber;
+	private String contactNumber;
 	//审批状态
-	private Integer installtype;
+	private Integer installType;
 	//创建人
 	private String creater;
 	//创建时间
-	private Date createdate;
+	private Date createDate;
 	//修改人
 	private String updater;
 	//修改时间
-	private Date updatdate;
-
-	/**
-	 * 设置：安装公司表
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：安装公司表
-	 */
+	private Date updatDate;
+	
 	public Integer getId() {
 		return id;
 	}
-	/**
-	 * 设置：公司名称
-	 */
-	public void setCompanyname(String companyname) {
-		this.companyname = companyname;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	/**
-	 * 获取：公司名称
-	 */
-	public String getCompanyname() {
-		return companyname;
+	public String getCompanyName() {
+		return companyName;
 	}
-	/**
-	 * 设置：公司地址
-	 */
-	public void setCompanyaddress(String companyaddress) {
-		this.companyaddress = companyaddress;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
-	/**
-	 * 获取：公司地址
-	 */
-	public String getCompanyaddress() {
-		return companyaddress;
+	public String getCompanyAddress() {
+		return companyAddress;
 	}
-	/**
-	 * 设置：统一社会信用代码
-	 */
-	public void setCreditcode(String creditcode) {
-		this.creditcode = creditcode;
+	public void setCompanyAddress(String companyAddress) {
+		this.companyAddress = companyAddress;
 	}
-	/**
-	 * 获取：统一社会信用代码
-	 */
-	public String getCreditcode() {
-		return creditcode;
+	public String getCreditCode() {
+		return creditCode;
 	}
-	/**
-	 * 设置：营业执照图片
-	 */
-	public void setBusinesslicense(String businesslicense) {
-		this.businesslicense = businesslicense;
+	public void setCreditCode(String creditCode) {
+		this.creditCode = creditCode;
 	}
-	/**
-	 * 获取：营业执照图片
-	 */
-	public String getBusinesslicense() {
-		return businesslicense;
+	public String getBusinessLicense() {
+		return businessLicense;
 	}
-	/**
-	 * 设置：法定代表人
-	 */
-	public void setRepresentative(String representative) {
-		this.representative = representative;
+	public void setBusinessLicense(String businessLicense) {
+		this.businessLicense = businessLicense;
 	}
-	/**
-	 * 获取：法定代表人
-	 */
 	public String getRepresentative() {
 		return representative;
 	}
-	/**
-	 * 设置：公司电话
-	 */
-	public void setCompanytel(String companytel) {
-		this.companytel = companytel;
+	public void setRepresentative(String representative) {
+		this.representative = representative;
 	}
-	/**
-	 * 获取：公司电话
-	 */
-	public String getCompanytel() {
-		return companytel;
+	public String getCompanyTel() {
+		return companyTel;
 	}
-	/**
-	 * 设置：单位传真
-	 */
-	public void setFax(String fax) {
-		this.fax = fax;
+	public void setCompanyTel(String companyTel) {
+		this.companyTel = companyTel;
 	}
-	/**
-	 * 获取：单位传真
-	 */
 	public String getFax() {
 		return fax;
 	}
-	/**
-	 * 设置：负责人
-	 */
-	public void setContactperson(String contactperson) {
-		this.contactperson = contactperson;
+	public void setFax(String fax) {
+		this.fax = fax;
 	}
-	/**
-	 * 获取：负责人
-	 */
-	public String getContactperson() {
-		return contactperson;
+	public String getContactPerson() {
+		return contactPerson;
 	}
-	/**
-	 * 设置：负责人电话
-	 */
-	public void setContactnumber(String contactnumber) {
-		this.contactnumber = contactnumber;
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
-	/**
-	 * 获取：负责人电话
-	 */
-	public String getContactnumber() {
-		return contactnumber;
+	public String getContactNumber() {
+		return contactNumber;
 	}
-	/**
-	 * 设置：审批状态
-	 */
-	public void setInstalltype(Integer installtype) {
-		this.installtype = installtype;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
-	/**
-	 * 获取：审批状态
-	 */
-	public Integer getInstalltype() {
-		return installtype;
+	public Integer getInstallType() {
+		return installType;
 	}
-	/**
-	 * 设置：创建人
-	 */
-	public void setCreater(String creater) {
-		this.creater = creater;
+	public void setInstallType(Integer installType) {
+		this.installType = installType;
 	}
-	/**
-	 * 获取：创建人
-	 */
 	public String getCreater() {
 		return creater;
 	}
-	/**
-	 * 设置：创建时间
-	 */
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
+	public void setCreater(String creater) {
+		this.creater = creater;
 	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreatedate() {
-		return createdate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	/**
-	 * 设置：修改人
-	 */
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	/**
-	 * 获取：修改人
-	 */
 	public String getUpdater() {
 		return updater;
 	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setUpdatdate(Date updatdate) {
-		this.updatdate = updatdate;
+	public void setUpdater(String updater) {
+		this.updater = updater;
 	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getUpdatdate() {
-		return updatdate;
+	public Date getUpdatDate() {
+		return updatDate;
 	}
+	public void setUpdatDate(Date updatDate) {
+		this.updatDate = updatDate;
+	}
+
+	
 }

@@ -110,7 +110,7 @@ hr {
 .loginBg{
   width: 100%;
   height: 100%;
-  background: transparent url('../images/bj.jpg') center center no-repeat;
+  background: transparent url('../images/bg.gif') center center repeat;
 }
 .login-wr{
   position: absolute;
@@ -229,7 +229,7 @@ hr {
   font-weight: 400; }
 .headerInfo{
   width: 810px;
-  margin-top: 25px;
+  margin-top: 18px;
   height: 40px;
 }
 .header-flashes{
@@ -269,6 +269,8 @@ hr {
 }
 .headerUser-item-user {
   width: 260px;
+  color: #fff !important;
+  text-underline: none !important;
 }
 
 .headerUser-item span{
@@ -312,22 +314,33 @@ hr {
   background-position: 0 -82px; }
 .ctrBtn a.exit:hover {
   background-position: -60px -82px; }
-
+body{
+  overflow: hidden;
+}
 .main {
   position: relative;
   width: 100%;
-  overflow: auto; }
+  overflow: hidden; }
 
 .vertical-menu-wr {
+  position: relative;
   float:left;
-  width: 118px;
+  width: 90px;
   border-right: 5px solid #1973b7;
   background: #008aff;
-  z-index: 10; }
+  z-index: 10;
+  overflow: hidden;
 
+}
+.main .vertical-menu-wr{
+  overflow: visible;
+}
+.vertical-menu{  
+
+}
 .presoner {
   width: 60px;
-  height: 80px;
+  height: 65px;
   padding: 10px 0;
   margin: 0 auto;}
 .presoner a {
@@ -371,30 +384,29 @@ hr {
 
 .vertical-menu {
   width: 100%;
-  padding: 1% 0 0; }
+  padding: 5px 0 0; }
 
 .vertical-menu ul li {
   width: 100%;
+  position: relative;
 }
 .vertical-menu ul li a {
   display: block;
   width: 100%;
-  padding: 10px 20px; }
+  padding: 10px 0 5px; }
 .vertical-menu ul li a i {
   display: block;
   margin: 0 auto;
-
   text-align: center;
   color: #fff;
-
   background: #49acff;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;}
 .vertical-menu ul li a i.iconfont{
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
    font-size:30px;
   -webkit-transition: font-size 0.25s ease-out 0s;
   -moz-transition: font-size 0.25s ease-out 0s;
@@ -402,7 +414,7 @@ hr {
 
 }
 .vertical-menu ul li a i.iconfont:hover{
-  font-size: 40px;
+  font-size: 35px;
 }
 
 .vertical-menu ul li a em {
@@ -412,9 +424,37 @@ hr {
   color: #fff;
   font-size: 14px;
   line-height: 25px; }
-.vertical-menu ul li a:hover {
-  background: #1973b7; }
+.vertical-menu ul li a:hover{background:#009cff}
+.vertical-menu ul li a.curr{
+  background: #0179c6;
+}
+.vertical-menu-list{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 85px;
+  background: #0179c6;
+  width: 240px;
+  z-index: 9;
 
+}
+.vertical-menu-list a{
+  width: 80px !important;
+}
+.vertical-menu ul li .vertical-menu-list a em{
+  font-size:12px;
+}
+.vertical-menu ul li .vertical-menu-list a i{
+  font-size:26px;
+}
+.vertical-menu ul li .vertical-menu-list a i:hover{
+  font-size:30px;
+}
+.vertical-menu ul li .layui-badge{
+  position: absolute;
+  top: -1px;
+  left: 53px;
+}
 .navi {
   position: absolute;
   top: 5px;
@@ -487,6 +527,11 @@ hr {
 
 .main-r{
   overflow: hidden;
+  margin-left: 90px;
+}
+.main-bd{
+  width: 100%;
+  overflow-y: auto;
 }
 
 .footer {
@@ -500,13 +545,16 @@ hr {
   line-height: 33px;
   width: 100%;
   text-align: right;
-  font-size: 12px; }
+  font-size: 12px;
+  z-index: 9;}
 
 
 
 /**table**/
 .defaultAre{
   padding: 20px;
+  overflow-y: auto;
+
 }
 table{
   width: 100%;
@@ -531,6 +579,9 @@ table tbody tr td{
 /**serch**/
 .serchAre{
   width: 100%;
+}
+.serchAre .form-group-button{
+  margin-right: 20px;
 }
 .serchAre .input-group, .serchAre .form-group, .selectAre{
   width: 240px;
@@ -562,28 +613,31 @@ table tbody tr td{
 }
 
 /**register**/
+.register-wr{
+  width: 100%;
+  background: transparent url('../images/bg.gif') 0 0 repeat;
+}
 .register-bg{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: -400px;
-  margin-left: -250px;
-  padding: 30px;
-  width: 600px;
-  height: 800px;
-  background: transparent url('../images/b.png') 0 0 repeat;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  padding: 20px 50px;
+  width: 100%;
+  background: #fff;
   -webkit-box-shadow:0 0 10px #757575;
   -moz-box-shadow:0 0 10px #757575;
   box-shadow:0 0 10px #757575;
+}
+.w800{
+  width: 800px;
+  margin: 0 auto;
+}
+.regiter-header{
+  height: 90px;
 }
 .register-tit{
   background: transparent url('../images/logo.png') 0 0 no-repeat;
   padding-left: 50px;
   line-height: 40px;
   font-size:20px;
+  margin-left: 58px;
 }
 .register-bg .form-group{
   width: 100%;
@@ -593,20 +647,21 @@ table tbody tr td{
 .register-bg .form-group label{
   display: block;
   float: left;
-  width: 140px;
+  width: 200px;
   padding-right: 15px;
   text-align: right;
   line-height: 30px;
+  font-weight:400
 }
 .register-bg .form-group{
   position: relative;
 }
 .register-bd{
   width: 100%;
-  padding-top: 30px;
+  padding-top: 15px;
 }
 .register-bg .form-group .form-control{
-  width: 200px;
+  width: 230px;
   height: 30px;
 }
 .register-btn{
@@ -624,11 +679,19 @@ table tbody tr td{
 .register-bg .form-group label.error{
   position: absolute;
   top: 0px;
-  left: 366px;
+  left: 406px;
   text-align: left !important;
   padding-left:25px;
   width: 300px;
-  background: transparent url('../images/err.png') 0 5px no-repeat;
+}
+.register-bg .layui-elem-quote span{
+  width: 188px;
+}
+.register-bg .layui-elem-quote span a{
+  color: #00a4ac;
+}
+.register-bg .layui-elem-quote span .registerForget{
+  color: #000;
 }
 .item-select{
   width: 200px;
@@ -637,4 +700,257 @@ table tbody tr td{
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+
+.elevatorInfo-wr{
+  width: 100%;
+  padding: 20px;
+}
+.elevatorInfo-wr h3{
+  font-size:18px
+}
+.elevatorInfo-wr h3 i{
+  color: #757575;
+}
+.elevatorInfo-item{
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+
+}
+.elevatorInfo-item h4{
+  font-weight:700;
+  font-size:16px !important;
+}
+.elevatorInfo-item-bd{
+  margin-top: 10px;
+}
+.elevatorInfo-item-bd .form-group{
+  width: 250px;
+  float: left;
+  height: 67px;
+}
+.elevatorInfo-item-bd .form-group label{
+  font-weight:400
+}
+.elevatorInfo-item-bd .form-control{
+  height: 28px;
+  width: 210px;
+}
+
+.elevatorInfo-item-bd .error{
+  color: #ff0000;
+  display: block;
+}
+.elevatorInfo-item-bd .form-group{
+  margin-bottom: 8px;
+}
+
+.tith3{
+  line-height: 30px;
+  font-weight:700
+}
+
+table.layui-table  td{
+  text-align: left;
+}
+
+.firmtableCheck{
+  padding: 20px 40px;
+
+}
+.firmtableCheck p{
+  line-height: 20px;
+  padding: 8px 0;
+  font-size:16px
+  ;width: 500px;
+  vertical-align: middle;
+}
+.firmtableCheck p img{
+  vertical-align: middle;
+  width: 25px;
+  height: auto;
+}
+.firmtableCheck p span{
+  float: left;
+  line-height: 20px;
+  font-weight:700;
+  width: 150px;
+  text-align: right;
+  font-size:16px
+}
+
+.layui-body{overflow-y: scroll;}
+.defaultAre table{
+  width: 100%;
+}
+.layui-table-cell{
+  padding: 0 5px;
+}
+
+.serchAre .form-long{
+  width: 300px;
+}
+.vertical-menu-bd{
+  position: relative;
+  width: 100%;
+
+}
+.vertical-menu-wr .slide-btn-box {
+   background-color: #06f;
+   width: 90px;
+   height: 20px;
+   position: absolute;
+   left: 0;
+   cursor: pointer;
+   z-index: 5001;
+  text-align: center;
+ }
+.vertical-menu-wr .slide-btn-box i{
+  color: #ffffff;
+  font-weight: 700;
+}
+.slide-btn-box-up{
+  top: 0;
+}
+.slide-btn-down{
+  bottom: 0;
+}
+
+.hidden{
+  display: none;
+}
+.slectSex{
+  display: inline-block;
+  width: 50px;
+}
+.addStaff-wr{
+  width: 720px;
+}
+.addStaff-wr .elevatorInfo-item-bd .form-group{
+  width: 600px;
+}
+.addStaff-wr .elevatorInfo-item-bd .form-control{
+  display: inline-block;
+}
+.addStaff-wr  .control-label{
+  width: 150px;
+  padding-right: 20px;
+  text-align: right;
+}
+.addStaff-wr .elevatorInfo-item-bd .error{
+  display: inline-block;
+  padding-left: 10px;
+}
+.addStaff-wr .elevatorInfo-item-bd .form-group{
+  height: 40px;
+}
+.addStaff-wr .selectAre{
+  display: inline-block;
+  float:none
+}
+.elevatorInfo-item-bd .form-control-simg{
+  background: none;
+  border:none;
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  height: 35px;
+}
+.form-group-info{
+  display: inline-block;
+  padding: 6px 12px;
+  line-height: 28px;
+}
+.form-group-info-img{
+  display: inline-block;
+  padding: 6px;
+}
+.form-group-info-img img{
+  width: 50px;
+  height: auto;
+}
+.addStaff-wr .elevatorInfo-item-bd .form-group-img{
+  height: auto;
+}
+.form-group-Property-tit{
+  width: 680px;
+  position: relative;
+}
+.changeProperty-btn{
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+
+.elevatorInfo-wr h4{
+  font-size:16px;
+}
+.control-label-img-thumb{
+  width: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.control-label-img-thumb img{
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+
+}
+.control-label-img-btn{
+  display: inline-block !important;
+  vertical-align: middle;
+  width: 176px;
+}
+.control-label-img-wr{
+  width: 100%;
+}
+
+.userTips{
+  position: absolute;
+  top: 0px;
+  left: 406px;
+  text-align: left !important;
+  padding-left: 25px;
+  width: 300px;
+  color: #f00;
+  line-height: 30px;
+}
+.addServer-bd{
+  width: 300px;
+}
+.register-examine{
+  width: 640px;
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none;
+  box-shadow: none ;
+}
+.register-examine .form-group .form-control{
+  border:none;
+  width: 300px;
+}
+.register-examine .register-examine-img{
+  height: 40px;
+}
+.register-examine .register-examine-img img{
+  height: 40px;
+  width: auto;
+}
+.register-examine-img-bt-wr{
+  width: 460px;
+}
+.register-examine-img-bt-wr img{
+  width: 100%;
+}
+
+.validate-box{
+  width: 230px;
+  height: 30px;
+}
+.register-bg .form-group .validate-box .form-control{
+  width: 100px;
+}
+.validate-box .btn-primary{
+  display: block;
+  float: right;
 }

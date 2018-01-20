@@ -2,89 +2,236 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.elevator.dao.user.UserMapper">
-
+<!-- 根据用户返回整个用户对象 -->
 	<select id="login" resultType="User">
-		select * from user where userName = #{userName}
+		select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
+		u.password,u.buildingID,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate, 
+		(select d.valueName  from dictionary d where d.typeCode="user_role" and d.valueId=u.userRole) as userRoleName
+		from user u where userName = #{userName}
 	</select>
-
-	<!-- <select id="queryList" resultType="cn.elevator.entity.UserEntity">
-		select * from user 
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
+	
+	
+	<resultMap type="User" id="getElevatorByUserRole">
+		<id property="id" column="id"/>
+		
+		<result property="userRole" column="userRole"/>
+		<result property="companyId" column="companyId"/>
+		<result property="realName" column="realName"/>
+		<result property="tel" column="tel"/>
+		<result property="userName" column="userName"/>
+		<result property="wenXin" column="wenXin"/>
+		<result property="buildingID" column="buildingID"/>
+		<result property="elevatorID" column="elevatorID"/>
+		
+		<collection property="elevatorList" ofType="ElevatorInfo">
+			<id property="id" column="e_id"></id>
+			<result property="buildingId" column="buildingId"/>
+			<result property="elevatorModel" column="elevatorModel"/>
+			<result property="elevatorNumber" column="elevatorNumber"/>
+			<result property="internalNumber" column="internalNumber"/>
+			<result property="elevatorType" column="elevatorType"/>
+			<result property="usingState" column="usingState"/>
+			<result property="firstMaintenance" column="firstMaintenance"/>
+			<result property="maintenanceId" column="maintenanceId"/>
+			<result property="maintenancePersonId" column="maintenancePersonId"/>
+			<result property="elevatorCode" column="elevatorCode"/>
+			<result property="registrationCode" column="registrationCode"/>
+			<result property="factoryNumber" column="factoryNumber"/>
+			<result property="usingNumber" column="usingNumber"/>
+			<result property="registrationStatus" column="registrationStatus"/>
+			<result property="proactivelyDate" column="proactivelyDate"/>
+			<result property="projectId" column="projectId"/>
+			<result property="registrationCodeImg" column="registrationCodeImg"/>
+			<result property="softDel" column="softDel"/>
+			<result property="buildingName" column="companyName"/><!-- 楼盘名称 -->
+			<result property="elevatorTyepName" column="valueName"/><!-- 电梯类型名称 -->
+			<result property="usingStateName" column="valueName1"/><!-- 使用状态-->
+			<result property="registrationStatusName" column="valueName2"/><!-- 注册状态 -->
+			
+		</collection>
+	
+	</resultMap>
+	
+	
+	
+	<select id="getElevatorInfoList" resultMap="getElevatorByUserRole" >
+	
+		SELECT e.id AS e_id,e.softDel,e.registrationCodeImg, e.buildingId,e.elevatorModel,e.elevatorNumber,e.internalNumber,e.elevatorType,
+		e.usingState,e.firstMaintenance,e.maintenanceId,e.maintenancePersonId,e.elevatorCode,e.registrationCode,
+		e.factoryNumber,e.usingNumber,e.registrationStatus,e.proactivelyDate,e.creater,e.createDate,e.updater,e.updatDate,e.projectId,
+		(SELECT companyName FROM building WHERE id=e.buildingId) AS companyName,
+		(SELECT d.valueName FROM dictionary d WHERE d.typeCode='elevatorType'AND d.valueId=e.elevatorType)AS valueName
+		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='usingState' AND d.valueId=e.usingState)AS valueName1
+		,(SELECT d.valueName FROM dictionary d WHERE d.typeCode='registrationStatus' AND d.valueId=e.registrationStatus)AS valueName2
+		
+		 FROM USER u,elevatorinfo e WHERE e.softDel=0 and
+		<!-- 0 质监局-->
+		<if test="userRole==0">
+		 userRole=#{userRole} and u.id=#{id}
 		</if>
+		
+		
+		<!-- 1 楼盘用户 -->
+		<if test="userRole==1">
+		 u.companyId=e.buildingId AND u.userRole=#{userRole} AND u.id=#{id}
+		</if>
+		
+		
+		
+		<!-- 2 物业管理员 -->
+		<if test="userRole==2">
+	
+		e.buildingId IN (SELECT company_Jid FROM contract WHERE contractType=2 
+		AND company_Yid=u.companyId) AND userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		
+		<!-- 3 物业普通员工 -->
+		<if test="userRole==3">
+	 
+		e.buildingId=u.buildingId AND u.userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		<!-- 4 维保管理员 -->
+		<if test="userRole==4">
+ 
+		 u.companyId=e.maintenanceId AND u.userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		<!-- 5 维保普通员工 -->
+		<if test="userRole==5">
+	 
+		e.maintenancePersonId=u.id AND u.userRole=#{userRole} and u.id=#{id} 
+		</if>
+		
+		
+		<!-- 模糊查询的8个条件参数+2个分页参数 =10参数-->
+		
+		<if test="buildingId != null">
+			and e.buildingId = #{buildingId}
+		</if>
+		<if test="Company_YId != null">
+			and Company_YId = #{Company_YId}
+		</if>
+		<if test="maintenanceId != null">
+			and maintenanceId = #{maintenanceId}
+		</if>
+		<if test="elevatorType != null">
+			and elevatorType = #{elevatorType}
+		</if>
+		<if test="elevatorCode != null and elevatorCode != ''">
+			and elevatorCode like CONCAT ('%',#{elevatorCode},'%')
+		</if>
+		<if test="registrationCode != null and registrationCode!= ''">
+			and registrationCode like CONCAT
+			('%',#{registrationCode},'%')
+		</if>
+		<if test="registrationStatus != null">
+			and registrationStatus = #{registrationStatus}
+		</if>
+		<if test="usingState != null">
+			and usingState = #{usingState}
+		</if>
+
+		ORDER BY e.id ASC LIMIT #{from},#{pageSize}
+		
 	</select>
 	
- 	<select id="queryTotal" resultType="int">
-		select count(*) from user 
-	</select>
 	 
-	<insert id="save" parameterType="cn.elevator.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into user
-		(
-			`role`, 
-			`companyId`, 
-			`deleted`, 
-			`name`, 
-			`tel`, 
-			`yhname`, 
-			`wenXin`, 
-			`password`, 
-			`buildingId`, 
-			`guarantor`, 
-			`creater`, 
-			`createDate`, 
-			`updater`, 
-			`updatDate`
-		)
-		values
-		(
-			#{role}, 
-			#{companyid}, 
-			#{deleted}, 
-			#{name}, 
-			#{tel}, 
-			#{yhname}, 
-			#{wenxin}, 
-			#{password}, 
-			#{buildingid}, 
-			#{guarantor}, 
-			#{creater}, 
-			#{createdate}, 
-			#{updater}, 
-			#{updatdate}
-		)
-	</insert>
 	 
-	<update id="update" parameterType="cn.elevator.entity.UserEntity">
-		update user 
-		<set>
-			<if test="role != null">`role` = #{role}, </if>
-			<if test="companyid != null">`companyId` = #{companyid}, </if>
-			<if test="deleted != null">`deleted` = #{deleted}, </if>
-			<if test="name != null">`name` = #{name}, </if>
-			<if test="tel != null">`tel` = #{tel}, </if>
-			<if test="yhname != null">`yhname` = #{yhname}, </if>
-			<if test="wenxin != null">`wenXin` = #{wenxin}, </if>
-			<if test="password != null">`password` = #{password}, </if>
-			<if test="buildingid != null">`buildingId` = #{buildingid}, </if>
-			<if test="guarantor != null">`guarantor` = #{guarantor}, </if>
-			<if test="creater != null">`creater` = #{creater}, </if>
-			<if test="createdate != null">`createDate` = #{createdate}, </if>
-			<if test="updater != null">`updater` = #{updater}, </if>
-			<if test="updatdate != null">`updatDate` = #{updatdate}</if>
-		</set>
-		where id = #{id}
-	</update>
+	<select id="getCountBy" resultType="Integer" >
+		<!-- 0 质监局-->
+		<if test="userRole==0">
+		SELECT COUNT(1) FROM (SELECT  u.id,e.id AS e_id
+		
+		 FROM USER u,elevatorinfo e WHERE userRole=#{userRole} AND u.id=#{id}
+		 
+		 
+		
+		</if>
+		
+		
+		<!-- 1 楼盘用户 -->
+		<if test="userRole==1">
+		SELECT COUNT(1) FROM (SELECT  u.id,e.id AS e_id
+		
+		FROM USER u,elevatorinfo e WHERE 
+		u.companyId=e.buildingId AND u.userRole=#{userRole} AND u.id=#{id}
+		</if>
+		
+		
+		
+		<!-- 2 物业管理员 -->
+		<if test="userRole==2">
+		SELECT COUNT(1) FROM (SELECT  u.id,e.id AS e_id
+		FROM USER u,elevatorinfo e WHERE 
+		e.buildingId IN (SELECT company_Jid FROM contract WHERE contractType=2 AND company_Yid=u.companyId) AND userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		
+		<!-- 3 物业普通员工 -->
+		<if test="userRole==3">
+		SELECT COUNT(1) FROM (SELECT  u.id,e.id AS e_id
+		 FROM USER u,elevatorinfo e WHERE 
+		e.buildingId=u.buildingId AND u.userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		<!-- 4 维保管理员 -->
+		<if test="userRole==4">
+	SELECT COUNT(1) FROM (SELECT  u.id,e.id AS e_id 
+		FROM USER u,elevatorinfo e WHERE 
+		 u.companyId=e.maintenanceId AND u.userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		<!-- 5 维保普通员工 -->
+		<if test="userRole==5">
+	SELECT COUNT(1) FROM (SELECT  u.id,e.id AS e_id
+		FROM USER u,elevatorinfo e WHERE 
+		e.maintenancePersonId=u.id AND u.userRole=#{userRole} and u.id=#{id}
+		</if>
+		
+		
+		<!-- 模糊查询的8个条件参数+2个分页参数 =10参数-->
+		
+		<if test="buildingId != null">
+			and e.buildingId = #{buildingId}
+		</if>
+		<if test="Company_YId != null">
+			and Company_YId = #{Company_YId}
+		</if>
+		<if test="maintenanceId != null">
+			and maintenanceId = #{maintenanceId}
+		</if>
+		<if test="elevatorType != null">
+			and elevatorType = #{elevatorType}
+		</if>
+		<if test="elevatorCode != null and elevatorCode != ''">
+			and elevatorCode like CONCAT ('%',#{elevatorCode},'%')
+		</if>
+		<if test="registrationCode != null and registrationCode!= ''">
+			and registrationCode like CONCAT
+			('%',#{registrationCode},'%')
+		</if>
+		<if test="registrationStatus != null">
+			and registrationStatus = #{registrationStatus}
+		</if>
+		<if test="usingState != null">
+			and usingState = #{usingState}
+		</if>
+			and e.softDel=0 ) AS a
+	</select> 
+	 
+	 
 	
-	<delete id="delete">
-		delete from user where id = #{value}
-	</delete>
 	
-	<delete id="deleteBatch">
-		delete from user where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete> -->
+	
+	
+	
 
 </mapper>

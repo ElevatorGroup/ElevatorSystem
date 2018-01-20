@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.elevator.dao.dictionary.DictionaryMapper">
+<!-- 通过typeCode,valueId找到对应的状态 -->
+	<select id="getUserRole" resultType="Dictionary">
+		select d.id,d.typeCode,d.typeName,d.valueId,d.valueName,d.creater,d.createDate,d.upDater,d.updatDate from  dictionary d
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="typeCode != null and buildingName != ''">
+				and d.typeCode = #{typeCode}
+			</if>
+			<if test="valueId != null">
+				and valueId = #{valueId}
+			</if>
+		</trim>
+	</select>
+	
+	<!-- 电梯类型 -->
+	<select id="getElevatorType" resultType="Dictionary">
+		SELECT valueName,valueId FROM  dictionary  WHERE typeCode="elevatorType"
+	</select>
+	
+	<!-- 电梯注册状态 -->
+	<select id="getRegistrationStatus" resultType="Dictionary">
+		SELECT valueName,valueId FROM  dictionary  WHERE typeCode="registrationStatus"
+	</select>
+	
+	
+	<!-- 电梯使用状态 -->
+	<select id="getUsingState" resultType="Dictionary">
+		SELECT valueName,valueId FROM  dictionary  WHERE typeCode="usingState"
+	</select>
+
+	
+	 
+
+	 
+	
+	
+
+
+</mapper>

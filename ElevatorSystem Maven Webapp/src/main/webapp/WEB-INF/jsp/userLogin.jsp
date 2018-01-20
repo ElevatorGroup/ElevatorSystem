@@ -45,8 +45,7 @@
 							</div>
 							<div class="login-tools">
 								<div class="checkbox">
-									<label> <input type="checkbox" id="remeberMe"
-										name="remeberMe">下次自动登陆 </label> <a href="#" class="fogetPw">忘记密码</a>
+								 <a href="#" class="fogetPw">忘记密码</a>
 								</div>
 							</div>
 							<div class="login-btn">

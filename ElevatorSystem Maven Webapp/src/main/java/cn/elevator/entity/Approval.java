@@ -16,114 +16,68 @@ public class Approval {
 	//审批表
 	private Integer id;
 	//公司id
-	private Integer companyid;
+	private Integer companyId;
 	//被审批公司角色
-	private Integer role;
+	private Integer userRole;
 	//审批状态
-	private Integer approvalstuts;
+	private Integer approvalStuts;
 	//创建人
 	private String creater;
 	//创建时间
-	private Date createdate;
+	private Date createDate;
 	//修改人
 	private String updater;
 	//修改时间
-	private Date updatdate;
-
-	/**
-	 * 设置：审批表
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：审批表
-	 */
+	private Date updatDate;
+	
 	public Integer getId() {
 		return id;
 	}
-	/**
-	 * 设置：公司id
-	 */
-	public void setCompanyid(Integer companyid) {
-		this.companyid = companyid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	/**
-	 * 获取：公司id
-	 */
-	public Integer getCompanyid() {
-		return companyid;
+	public Integer getCompanyId() {
+		return companyId;
 	}
-	/**
-	 * 设置：被审批公司角色
-	 */
-	public void setRole(Integer role) {
-		this.role = role;
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
 	}
-	/**
-	 * 获取：被审批公司角色
-	 */
-	public Integer getRole() {
-		return role;
+	public Integer getUserRole() {
+		return userRole;
 	}
-	/**
-	 * 设置：审批状态
-	 */
-	public void setApprovalstuts(Integer approvalstuts) {
-		this.approvalstuts = approvalstuts;
+	public void setUserRole(Integer userRole) {
+		this.userRole = userRole;
 	}
-	/**
-	 * 获取：审批状态
-	 */
-	public Integer getApprovalstuts() {
-		return approvalstuts;
+	public Integer getApprovalStuts() {
+		return approvalStuts;
 	}
-	/**
-	 * 设置：创建人
-	 */
-	public void setCreater(String creater) {
-		this.creater = creater;
+	public void setApprovalStuts(Integer approvalStuts) {
+		this.approvalStuts = approvalStuts;
 	}
-	/**
-	 * 获取：创建人
-	 */
 	public String getCreater() {
 		return creater;
 	}
-	/**
-	 * 设置：创建时间
-	 */
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
+	public void setCreater(String creater) {
+		this.creater = creater;
 	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreatedate() {
-		return createdate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	/**
-	 * 设置：修改人
-	 */
-	public void setUpdater(String updater) {
-		this.updater = updater;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	/**
-	 * 获取：修改人
-	 */
 	public String getUpdater() {
 		return updater;
 	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setUpdatdate(Date updatdate) {
-		this.updatdate = updatdate;
+	public void setUpdater(String updater) {
+		this.updater = updater;
 	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getUpdatdate() {
-		return updatdate;
+	public Date getUpdatDate() {
+		return updatDate;
 	}
+	public void setUpdatDate(Date updatDate) {
+		this.updatDate = updatDate;
+	}
+
+	
 }
