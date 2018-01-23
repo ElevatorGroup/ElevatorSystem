@@ -165,5 +165,8 @@
 <script src="${pageContext.request.contextPath }/statics/js/regular.js" charset="gbk"></script>
 <script src="${pageContext.request.contextPath }/statics/js/jquery.mousewheel.min.js"></script>
 <script src="${pageContext.request.contextPath }/statics/js/comm.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/table_clj.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/jquery.multi-select.js"></script>
+
 </body>
 </html>

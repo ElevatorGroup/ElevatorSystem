@@ -1,5 +1,7 @@
 package cn.elevator.service.user;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -70,6 +72,16 @@ public class UserServiceImpl implements UserService{
 	public User getUserById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return userMapper.getUserById(id);
+	}
+
+
+
+
+
+	@Override
+	public List<User> getUser_pt(Integer userRole, Integer id) throws Exception {
+		
+		return userMapper.getUser_pt(userRole, id);
 	}
 
 

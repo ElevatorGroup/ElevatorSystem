@@ -11,6 +11,7 @@
     <link href="${pageContext.request.contextPath }/statics/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/statics/font/iconfont.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/statics/css/bootstrap-select.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/statics/css/multi-select.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/layui/css/layui.css" media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -203,14 +204,16 @@
 						</div>
 					</div>
 
-
+					 <c:if test="${userSession.userRole==4 }" >
+					 	<button  type="button" class="layui-btn Maintenance-checkbox" data-type="getCheckLength">分配</button>
+					 </c:if>
 
 					<table class="layui-table"
 						lay-data="{ height:600, url:'${pageContext.request.contextPath }/elevator/elevatorListData?${params}', page:true, id:'firmtable'}"
 						lay-filter="firmtable">
 						<thead>
 							<tr>
-								
+								<th lay-data="{type:'checkbox', fixed: 'left'}"></th>
 								<th lay-data="{field:'buildingName'}">楼盘名称</th>
 								<th lay-data="{field:'elevatorTyepName'}">电梯类型</th>
 								<th lay-data="{field:'elevatorCode'}">设备识别码</th>
@@ -257,11 +260,14 @@
 <script src="${pageContext.request.contextPath }/statics/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/statics/js/bootstrap-select.js"></script>
 <script src="${pageContext.request.contextPath }/statics/layui/layui.js" charset="utf-8"></script>
-<script src="${pageContext.request.contextPath }/statics/js/table1.js" charset="gbk"></script>
+
 <script src="${pageContext.request.contextPath }/statics/js/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath }/statics/js/messages_zh.js"></script>
 <script src="${pageContext.request.contextPath }/statics/js/regular.js" charset="gbk"></script>
 <script src="${pageContext.request.contextPath }/statics/js/jquery.mousewheel.min.js"></script>
 <script src="${pageContext.request.contextPath }/statics/js/comm.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/table_clj.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/jquery.multi-select.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/table1.js" charset="gbk"></script>
 </body>
 </html>

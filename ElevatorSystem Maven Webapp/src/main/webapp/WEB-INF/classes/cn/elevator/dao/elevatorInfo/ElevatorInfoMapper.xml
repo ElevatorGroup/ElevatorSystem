@@ -61,6 +61,15 @@
 
 
 
+<!-- 给电梯添加维保人员，或修改维保人员 -->
+<update id="updateElevatorById" >
+	UPDATE elevatorinfo SET maintenancePersonId=#{maintenancePersonId} WHERE id=#{id}
+
+</update>
+
+
+
+
 
 
 

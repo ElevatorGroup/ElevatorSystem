@@ -1,5 +1,7 @@
 package cn.elevator.dao.user;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -53,5 +55,8 @@ public interface UserMapper {
 	
 	 //通过id获得User对象
 	 public User getUserById(@Param("id")Integer id)throws Exception;
+	 
+	 //物业管理员和维保管理员查看管理员工list列表
+	 public List<User> getUser_pt(@Param("userRole")Integer userRole,@Param("id")Integer id)throws Exception;
 	
 }

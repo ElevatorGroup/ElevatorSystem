@@ -1,5 +1,6 @@
 package cn.elevator.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -84,5 +85,24 @@ public class UserController {
 			}
 			 return userData;
 		 }
+		
+		
+		//传递普通用户对象列表让管理人员分配工作
+		@ResponseBody
+		@RequestMapping(value="/getUser_pt")
+		public List<User> getUser_pt(HttpSession session){
+			User ur=(User) session.getAttribute(Constants.USER_SESSION);
+			List<User> userList=new ArrayList<User>();
+			try {
+				userList=userService.getUser_pt(ur.getUserRole(),ur.getId());
+				logger.debug("员工人数："+userList.size());
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return userList;
+			
+		}
 		
 }

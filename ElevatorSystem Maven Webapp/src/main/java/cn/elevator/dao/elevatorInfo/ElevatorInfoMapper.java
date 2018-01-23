@@ -39,5 +39,10 @@ public interface  ElevatorInfoMapper {
 
 	public ElevatorInfo getElevatorById(@Param("id")Integer id)throws Exception;
 	public Integer delElevatorById(@Param("id")Integer id)throws Exception;
+	//给电梯修改维保人员
+	public Integer updateElevatorById(
+			@Param("maintenancePersonId")String maintenancePersonId,
+			@Param("id")Integer id
+			)throws Exception;
 
 }

@@ -1,5 +1,7 @@
 package cn.elevator.service.user;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import cn.elevator.entity.User;
@@ -43,6 +45,9 @@ public interface  UserService {
 		 
 		 //通过id获得User对象
 		 public User getUserById(Integer id)throws Exception;
+		 
+		 //物业管理员和维保管理员查看管理员工list列表
+		 public List<User> getUser_pt(Integer userRole,Integer id)throws Exception;
 
 	 
 }

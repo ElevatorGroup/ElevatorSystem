@@ -254,4 +254,20 @@ select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenX
 
 </select>
 
+<!-- 物业管理员+维保管理员 查看对应下面的普通员工信息 -->
+<select id="getUser_pt" parameterType="Integer" resultType="User">
+	select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
+		u.password,u.buildingID,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate 
+	FROM USER u WHERE  companyid =(SELECT u.`companyId` FROM USER u  WHERE u.`userRole`=#{userRole} AND u.id=#{id}) 
+	<if test="userRole==2">
+		AND userRole=3
+	</if>
+	
+	<if test="userRole==4">
+		AND userRole=5
+	</if>
+
+</select>
+
+
 </mapper>

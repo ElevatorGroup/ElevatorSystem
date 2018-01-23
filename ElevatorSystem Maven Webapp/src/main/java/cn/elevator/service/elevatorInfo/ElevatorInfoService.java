@@ -36,4 +36,9 @@ public interface ElevatorInfoService {
 	
 	public ElevatorInfo getElevatorById(Integer id)throws Exception;
 	public Boolean delElevatorById(Integer id)throws Exception;
+	
+	public Boolean updateElevatorById(
+			String maintenancePersonId,
+			Integer id
+			)throws Exception;
 }

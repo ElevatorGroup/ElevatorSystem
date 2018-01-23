@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import cn.elevator.entity.ElevatorInfo;
 import cn.elevator.entity.Maintenance;
 import cn.elevator.entity.User;
+import cn.elevator.service.elevatorInfo.ElevatorInfoService;
 import cn.elevator.service.maintenance.MaintenanceService;
 import cn.elevator.service.user.UserService;
 import cn.elevator.tools.Constants;
@@ -43,6 +44,8 @@ public class MaintenanceController {
 	private Logger logger = Logger.getLogger(MaintenanceController.class);
 	@Resource
 	private MaintenanceService maintenanceService;
+	@Resource
+	private ElevatorInfoService elevatorInfoService;
 //查看维保公司信息
 	@RequestMapping(value = "/maintenanceView")
 	public String maintenance(HttpSession session,Model model) throws Exception {
@@ -177,13 +180,12 @@ public class MaintenanceController {
 			user.setCompanyId(maintenance.getId());
 			logger.debug("companyId"+user.getCompanyId());
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 		try {
 			maintenanceService.addMainUser(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -192,9 +194,51 @@ public class MaintenanceController {
 	
 	
 	//维保工作分配
-	@RequestMapping(value="/maintenanceWork")
-	public String maintenanceWork(){
+	@RequestMapping(value="/maintenanceWork",method=RequestMethod.GET)
+	public String maintenanceWork(HttpServletRequest request,
+			@RequestParam(value="elevatorId",required=true)Integer elevatorId,
+			@RequestParam(value="userid",required=true)Integer userid){
 		logger.debug("进入分配任务============");
-		return "/maintenanceWork";
+		logger.debug("被分配的电梯是："+elevatorId);
+		logger.debug("获得的请求路径：======"+request.getQueryString());
+		logger.debug("被分配的人员是："+userid);
+		
+		String urlString=request.getQueryString();
+		//同样的参数name名称，可以分别获取值吗？
+		
+		
+		String[]name1=urlString.split("&");
+		List<Integer> list=new ArrayList<Integer>();//储存电梯id
+		String nameuid="";
+		for(int a=0;a<name1.length;a++){
+			/*System.out.println("分割后："+name1[a]);*/
+			if(name1[a].contains("userid=")){
+				System.out.println("userId"+name1[a]);
+				String name2=name1[a].substring(7);
+				
+				System.out.println("截取后userid的："+name2);
+				nameuid+=name2+",";
+				
+			}else if(name1[a].contains("elevatorId=")){
+				
+				int namev=Integer.parseInt(name1[a].substring(11));
+				list.add(namev);
+				
+			}
+		}
+		;
+		logger.debug("list的长度："+list.size());
+		for(int j=0;j<list.size();j++){
+			try {
+				elevatorInfoService.updateElevatorById(nameuid, list.get(j));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return "redirect:/maintenance/maintenanceUser";
 	}
+	
+	
 }

@@ -71,6 +71,17 @@ public class ElevatorInfoServiceImp implements ElevatorInfoService {
 	}
 
 
+	@Override
+	public Boolean updateElevatorById(String maintenancePersonId, Integer id)
+			throws Exception {
+		Boolean bool=false;
+		if(elevatorInfoMapper.updateElevatorById(maintenancePersonId, id)>0){
+			bool=true;
+		}
+		return bool;
+	}
+
+
 
 	
 

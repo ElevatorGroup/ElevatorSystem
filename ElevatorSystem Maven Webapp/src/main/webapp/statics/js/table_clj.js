@@ -27,7 +27,6 @@
         var firmtableTrVal = JSON.stringify(data);
         var firmtableEdit = $('.firmtableEdit').html();
         if(obj.event === 'detail'){
-        	
         	$.ajax({
     			type:"GET",//请求类型
     			url:$("#path").val()+"/elevator/elevatorDetail",//请求的url
@@ -229,13 +228,13 @@
     });
 
     //监听表格复选框选择
-    table.on('checkbox(wy-stafftable)', function(obj){
+    table.on('checkbox(firmtable)', function(obj){
         console.log(obj)
     });
     $(function(){
         var $ = layui.$, active = {
             getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('wy-stafftable')
+                var checkStatus = table.checkStatus('firmtable')
                     ,data = checkStatus.data;
                 if(data.length>0){
                     layer.open({
@@ -252,23 +251,51 @@
             active[type] ? active[type].call(this) : '';
         });
     });
+    
+    
     //维保
     $('.addServer').on('click',function(){
         layer.open({
-            title: '添加维保人员'
-            ,content: '<form action="" method="post" class="addSaa" novalidate="novalidate">       <div class="elevatorInfo-wr addStaff-wr">            <div class="elevatorInfo-item"><div class="elevatorInfo-item-bd clearfix">  <div class="form-group">            <label for="name" class=" control-label">姓名</label>  <input type="text" name="name" class="form-control">  </div> <div class="form-group">            <label for="sex" class=" control-label">性别</label>  <div class="selectAre"><span class="slectSex"><input type="radio" name="sex" value="男" title="男" checked="">男</span><span class="slectSex"><input type="radio" name="sex" value="女" title="女">女</span></div>  </div><div class="form-group">            <label for="age" class=" control-label">年龄</label>  <input type="text" name="age" class="form-control">  </div><div class="form-group">            <label for="phone" class=" control-label">手机号码</label>  <input type="text" name="phone" class="form-control">  </div><div class="form-group">            <label for="username" class=" control-label">用户名</label>  <input type="text" name="username" class="form-control">  </div><div class="form-group">            <label for="password" class=" control-label">密码</label>  <input type="text" name="password" class="form-control">  </div></div>            </div> <div class="register-btn">  <input type="submit" value="提交" class="item-submit btn btn-success">  </div> </div>  </form><script>$(".addSaa").validate({debug:true,rules:{name:{required:true},phone:{required:true,minlength:11,isMobile:true},username:{required:true},password:{required:true,rangelength:[6,16]},age:{required:true}},messages:{name:{required:"请输入姓名"},phone:{required:"请输入手机号",minlength:"确认手机不能小于11个字符",isMobile:"请正确填写您的手机号码"},username:{required:"请输入用户名"},password:{required:"请输入密码",rangelength:$.validator.format("密码长度为{0}-{16}个字符")},age:{required:"请输入年龄"}}});</script>'
+            title: '新增维保人员'
+            ,content: '<form action="'+$("#path").val()+'/maintenance/addMainUser" method="get" class="addSaa" novalidate="novalidate">       <div class="elevatorInfo-wr addStaff-wr">            <div class="elevatorInfo-item"><div class="elevatorInfo-item-bd clearfix">  <div class="form-group">            <label for="name" class=" control-label">姓名</label>  <input type="text" name="realName" value="" class="form-control">  </div>   <div class="form-group">            <label for="phone" class=" control-label">手机号码</label>  <input type="text" name="tel" value="" class="form-control">  </div><div class="form-group">            <label for="phone" class=" control-label">微信</label>  <input type="text" name="wenXin" value="" class="form-control">  </div><div class="form-group">            <label for="username" class=" control-label">用户名</label>  <input type="text" name="userName" value="" class="form-control">  </div><div class="form-group">            <label for="password" class=" control-label">密码</label>  <input type="password" name="password" value="" class="form-control">  </div></div>            </div> <div class="register-btn">  <input type="submit" value="提交" class="item-submit btn btn-success">  </div> </div>  </form>'
             ,btn:0
             ,area: '750px'
         });
     });
-    $('.editServer').on('click',function(){
-        layer.open({
-            title: '添加维保人员'
-            ,content: '<form action="" method="post" class="addSaa" novalidate="novalidate">       <div class="elevatorInfo-wr addStaff-wr">            <div class="elevatorInfo-item"><div class="elevatorInfo-item-bd clearfix">  <div class="form-group">            <label for="name" class=" control-label">姓名</label>  <input type="text" name="name" class="form-control" value="刘磊">  </div> <div class="form-group">            <label for="sex" class=" control-label">性别</label>  <div class="selectAre"><span class="slectSex"><input type="radio" name="sex" value="男" title="男" checked="">男</span><span class="slectSex"><input type="radio" name="sex" value="女" title="女">女</span></div>  </div><div class="form-group">            <label for="age" class=" control-label">年龄</label>  <input type="text" name="age" class="form-control" value="26">  </div><div class="form-group">            <label for="phone" class=" control-label">手机号码</label>  <input type="text" name="phone" class="form-control" value="13865656655">  </div><div class="form-group">            <label for="username" class=" control-label">用户名</label>  <input type="text" name="username" class="form-control" value="liulei">  </div><div class="form-group">            <label for="password" class=" control-label">密码</label>  <input type="password" name="password" class="form-control" value="liulei">  </div></div>            </div> <div class="register-btn">  <input type="submit" value="提交" class="item-submit btn btn-success">  </div> </div>  </form><script>$(".addSaa").validate({debug:true,rules:{name:{required:true},phone:{required:true,minlength:11,isMobile:true},username:{required:true},password:{required:true,rangelength:[6,16]},age:{required:true}},messages:{name:{required:"请输入姓名"},phone:{required:"请输入手机号",minlength:"确认手机不能小于11个字符",isMobile:"请正确填写您的手机号码"},username:{required:"请输入用户名"},password:{required:"请输入密码",rangelength:$.validator.format("密码长度为{0}-{16}个字符")},age:{required:"请输入年龄"}}});</script>'
-            ,btn:0
-            ,area: '750px'
-        });
+    
+    
+    table.on('tool(wy-stafftable)', function(obj){
+        var data = obj.data;
+        var firmtableTrVal = JSON.stringify(data);
+        var firmtableEdit = $('.firmtableEdit').html();
+        if(obj.event === 'edit'){
+        	alert(data.id);
+        	$.ajax({
+    			type:"GET",//请求类型
+    			url:$("#path").val()+"/user/UserById",//请求的url
+    			data:{id:data.id},//请求参数
+    			dataType:"json",//ajax接口（请求url）返回的数据类型
+    			success:function(result){//data：返回数据（json对象）
+    				layer.open({
+    		            title: '修改维保人员信息'
+    		            ,content: '<form action="'+$("#path").val()+'/maintenance/addMainUser" method="get" class="addSaa" novalidate="novalidate">       <div class="elevatorInfo-wr addStaff-wr">            <div class="elevatorInfo-item"><div class="elevatorInfo-item-bd clearfix">  <div class="form-group">            <label for="name" class=" control-label">姓名</label>  <input type="text" name="realName" value="'+result.realName+'" class="form-control">  </div>   <div class="form-group">            <label for="phone" class=" control-label">手机号码</label>  <input type="text" name="tel" value="'+result.tel+'" class="form-control">  </div><div class="form-group">            <label for="phone" class=" control-label">微信</label>  <input type="text" name="wenXin" value="'+result.wenXin+'" class="form-control">  </div><div class="form-group">            <label for="username" class=" control-label">用户名</label>  <input type="text" name="userName" value="'+result.userName+'" class="form-control">  </div><div class="form-group">            <label for="password" class=" control-label">密码</label>  <input type="password" name="password" value="'+result.password+'" class="form-control">  </div></div>            </div> <div class="register-btn">  <input type="submit" value="提交" class="item-submit btn btn-success">  </div> </div>  </form>'
+    		            ,btn:0
+    		            ,area: '750px'
+    		        });
+    			},
+    			error:function(data){//当访问时候，404，500 等非200的错误状态码
+    				alert("数据加载失败！");
+    			}
+    		});
+           
+        } else if(obj.event === 'del'){
+            layer.confirm('确定删除此行吗？', function(index){
+                obj.del();
+                layer.close(index);
+            });
+        }
     });
+   
     $('.register-examine-img-bt').on('click',function(){
         layer.open({
             title: '用户头像',
@@ -276,4 +303,57 @@
             ,area: '500px'
         })
     })
+    
+    
+    
+    
+    
+    
+    //监听分配维保人员(维保管理人员)
+    table.on('checkbox(firmtable)', function(obj){
+        console.log(obj)
+    });
+    $(function(){
+        var $ = layui.$, active = {
+            getCheckLength: function(){ //获取选中数目
+                var checkStatus = table.checkStatus('firmtable')
+                    ,data = checkStatus.data;
+                if(data.length>0){
+                	var str="";
+                	for(var a=0;a<data.length;a++){
+      					str+="<input type='text' name='elevatorId' value='"+data[a].id+"'/>";
+      				}
+                 	$.ajax({
+            			type:"GET",//请求类型
+            			url:$("#path").val()+"/user/getUser_pt",//请求的url
+            			/*data:,//请求参数
+*/            			
+            			dataType:"json",//ajax接口（请求url）返回的数据类型
+            			success:function(result){//data：返回数据（json对象）
+            				var b="";
+            				for(var a=0;a<result.length;a++){
+              					b+="<option value='"+result[a].id+"'>"+result[a].userName+"</option>" ;
+              				}
+            				  layer.open({
+                                  title: '分配维保人员工作',
+                                  content: "<form action='"+$("#path").val()+"/maintenance/maintenanceWork' method='get'><select id='custom-headers' name='userid' multiple='multiple'>" 
+                                	  +b+ "</select>"+str+"<div class='layui-layer-btn layui-layer-btn-'><input type='submit' class='layui-layer-btn0'><a class='layui-layer-btn1'>返回</a></div></form><script>$('#custom-headers').multiSelect();</script>"
+                                  ,area: '410px'
+                                ,btn:0 
+                              });
+            			},
+            			error:function(result){//当访问时候，404，500 等非200的错误状态码
+            				alert("数据加载无效！");
+            			}
+            		});
+                }else{
+                    alert("请至少选择一位物业人员")
+                }
+            }
+        };
+        $('.Maintenance-checkbox').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
 });
