@@ -4,8 +4,8 @@
 <mapper namespace="cn.elevator.dao.user.UserMapper">
 <!-- 根据用户名返回整个用户对象 -->
 	<select id="login" resultType="User">
-		select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
-		u.password,u.buildingID,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate, 
+		select  u.id,u.salt,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
+		u.password,u.buildingId,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate, 
 		(select d.valueName  from dictionary d where d.typeCode="user_role" and d.valueId=u.userRole) as userRoleName
 		from user u where userName = #{userName}
 	</select>
@@ -20,7 +20,8 @@
 		<result property="tel" column="tel"/>
 		<result property="userName" column="userName"/>
 		<result property="wenXin" column="wenXin"/>
-		<result property="buildingID" column="buildingID"/>
+		<result property="salt" column="salt"/>
+		<result property="buildingId" column="buildingId"/>
 		<result property="elevatorID" column="elevatorID"/>
 		
 		<collection property="elevatorList" ofType="ElevatorInfo">
@@ -249,7 +250,7 @@
 <select id="getUserById" parameterType="Integer" resultType="User">
 
 select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
-		u.password,u.buildingID,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate
+		u.password,u.buildingId,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate
  from User u where u.id=#{id}
 
 </select>
@@ -257,7 +258,7 @@ select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenX
 <!-- 物业管理员+维保管理员 查看对应下面的普通员工信息 -->
 <select id="getUser_pt" parameterType="Integer" resultType="User">
 	select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenXin,
-		u.password,u.buildingID,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate 
+		u.password,u.buildingId,u.elevatorID,u.creater,u.createDate,u.updater,u.updatDate 
 	FROM USER u WHERE  companyid =(SELECT u.`companyId` FROM USER u  WHERE u.`userRole`=#{userRole} AND u.id=#{id}) 
 	<if test="userRole==2">
 		AND userRole=3
@@ -270,4 +271,14 @@ select  u.id,u.userRole,u.companyId,u.deleted,u.realName,u.tel,u.userName,u.wenX
 </select>
 
 
+
+<!-- 注册sql语句 -->
+<insert id="saveUser" parameterType="User">
+		insert into user
+		(userRole,deleted,realName,tel,salt,userName,password,creater,createDate)
+		values
+		(#{userRole},#{deleted},#{realName},#{tel},#{salt},#{userName},#{password}, 
+			#{creater},#{createDate} 
+		)
+	</insert>
 </mapper>

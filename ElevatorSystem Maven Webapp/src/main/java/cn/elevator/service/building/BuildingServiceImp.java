@@ -15,5 +15,27 @@ public class BuildingServiceImp implements BuildingService{
 		
 		return buildingMapper.getBuidingById(buildingId);
 	}
+	@Override
+	public Boolean saveBuilding(Building building) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean flag = false;
+		if (buildingMapper.saveBuilding(building) > 0)
+			flag = true;
+		return flag;
+	}
 
+	@Override
+	public Boolean updateBuilding(Building building) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean flag = false;
+		if (buildingMapper.updateBuilding(building) > 0)
+			flag = true;
+		return flag;
+	}
+
+	@Override
+	public Building getBuildingByName(String companyName) throws Exception {
+		// TODO Auto-generated method stub
+		return buildingMapper.getBuildingByName(companyName);
+	}
 }

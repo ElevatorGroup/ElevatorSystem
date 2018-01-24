@@ -4,7 +4,7 @@
   font-family: microsoft yahei;
   color: #000; }
 
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, lengend, button, input, textarea, th, td, table, a, input {
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form,   button, input, textarea, th, td, table, a, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -63,9 +63,11 @@ q:before, q:after {
   content: ''; }
 
 legend {
+  -webkit-padding-start: 2px;
+  -webkit-padding-end: 2px;
   color: #000; }
 
-fieldset, img {
+ img {
   border: none; }
 
 button, input, select, textarea {
@@ -704,10 +706,13 @@ table tbody tr td{
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-
+.register-bd .item-selectdis{
+  width: 120px;
+}
 .elevatorInfo-wr{
-  width: 100%;
+  width: 800px;
   padding: 20px;
+  margin: 20px;
 }
 .elevatorInfo-wr h3{
   font-size:18px
@@ -750,8 +755,14 @@ table tbody tr td{
 }
 
 .tith3{
+  position: relative;
   line-height: 30px;
   font-weight:700
+}
+.tit-addBtn{
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 table.layui-table  td{
@@ -877,7 +888,7 @@ table.layui-table  td{
   height: auto;
 }
 .form-group-Property-tit{
-  width: 680px;
+  width: 720px;
   position: relative;
 }
 .changeProperty-btn{
@@ -919,6 +930,7 @@ table.layui-table  td{
   color: #f00;
   line-height: 30px;
 }
+
 .addServer-bd{
   width: 300px;
 }
@@ -956,4 +968,79 @@ table.layui-table  td{
 .validate-box .btn-primary{
   display: block;
   float: right;
+}
+fieldset{
+  border:1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+}
+fieldset .firmtableCheck{
+  padding:20px
+}
+.legend{
+  border:none;
+  width: 80px;
+  font-size:14px;
+  font-weight:700;
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+.list-autowidth li{
+  width: 50%;
+  float: left;
+  line-height: 25px;
+}
+.list-autowidth li span{
+  font-size:14px;
+  color: #666;
+}
+.fieldset .form-label{
+  float: left;
+  padding-left: 10px;
+}
+.form-element, .f-fix{
+  float: left;
+  margin-left: 5px;
+}
+.layui-layer-btn{
+  text-align: center;
+}
+.fieldset .elevatorInfo-item{
+  border:None
+}
+.elevatorInfo-wr{
+  padding: 0;
+}
+
+.layui-layer-dialog .layui-layer-content .firmtableCheck{
+  padding: 0;
+}
+.layui-tab-brief>.layui-tab-title .layui-this{
+  background: #009688;
+  color: #fff;
+}
+.fieldset table th,.fieldset table td{
+  border:none;
+  background: none;
+  text-align: left;
+  font-weight:400;
+  margin-left: 10px;
+
+}
+.fieldset table th{
+  padding-left: 10px;
+}
+
+.f-fix input{
+  border:1px solid #ccc;
+  line-height: 20px;
+  padding: 2px 5px;
+}
+.firmtableCheck .layui-input-block{
+  margin-top: 10px;
+  text-align: center;
+  margin-left: 0;
+}
+.maintenanceList{
+  width: 100%;
 }

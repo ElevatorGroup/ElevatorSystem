@@ -15,24 +15,6 @@
 	</select>
 
 
-	<update id="updateMaintenance" parameterType="Maintenance" >
-		update maintenance 
-
-		<trim prefix="set" suffixOverrides=",">
-			<if test="companyName!=null">companyName=#{companyName},</if>
-			<if test="companyAddress!=null">companyAddress=#{companyAddress},</if>
-			<if test="businessLicense!=null">businessLicense=#{businessLicense},</if>
-			<if test="representative!=null">representative=#{representative},</if>
-			<if test="companyTel!=null">companyTel=#{companyTel},</if>
-			<if test="fax!=null">fax=#{fax},</if>
-			<if test="contactPerson!=null">contactPerson=#{contactPerson},</if>
-			<if test="contactNumber!=null">contactNumber=#{contactNumber},</if>
-			<if test="installType!=null">installType=#{installType},</if>
-			<if test="updater!=null">updater=#{updater},</if>
-			<if test="updatDate!=null">updatDate=#{updatDate}</if>
-		</trim>
-		WHERE id=#{id}
-	</update>
 	
 	<!-- 维保管理员进入就能查看到该维保公司所有的维保人员信息 -->
 	<select id="getUserList"  resultType="User">
@@ -53,7 +35,61 @@
 		INSERT INTO USER(userRole,companyId,deleted,realName,tel,wenXin,userName,password)
 		VALUES(5,#{companyId},0,#{realName},#{tel},#{wenXin},#{userName},#{password})
 	</insert>
-
+ <select id="getMaintenanceByName" resultType="Maintenance">
+		select * from maintenance where companyName=#{companyName}
+	</select>
+	
+	<insert id="saveMaintenance" parameterType="Maintenance" >
+		insert into maintenance
+		(
+			 companyName , 
+			 companyAddress , 
+			 creditCode , 
+			 businessLicense , 
+			 representative , 
+			 companyTel , 
+			 fax , 
+			 contactPerson , 
+			 contactNumber , 
+			 installType , 
+			 creater , 
+			 createDate 
+		)
+		values
+		(
+			#{companyName}, 
+			#{companyAddress}, 
+			#{creditCode}, 
+			#{businessLicense}, 
+			#{representative}, 
+			#{companyTel}, 
+			#{fax}, 
+			#{contactPerson}, 
+			#{contactNumber}, 
+			#{installType}, 
+			#{creater}, 
+			#{createDate}
+		)
+	</insert>
+	 
+	<update id="updateMaintenance" parameterType="Maintenance">
+		update maintenance 
+		<set>
+			<if test="companyName != null"> companyName  = #{companyName}, </if>
+			<if test="companyAddress != null"> companyAddress  = #{companyAddress}, </if>
+			<if test="creditCode != null"> creditCode  = #{creditCode}, </if>
+			<if test="businessLicense != null"> businessLicense  = #{businessLicense}, </if>
+			<if test="representative != null"> representative  = #{representative}, </if>
+			<if test="companyTel != null"> companyTel  = #{companyTel}, </if>
+			<if test="fax != null"> fax  = #{fax}, </if>
+			<if test="contactPerson != null"> contactPerson  = #{contactPerson}, </if>
+			<if test="contactNumber != null"> contactNumber  = #{contactNumber}, </if>
+			<if test="installType != null"> installType  = #{installType}, </if>
+			<if test="updater != null"> updater  = #{updater}, </if>
+			<if test="updatDate != null"> updatDate  = #{updatDate}</if>
+		</set>
+		where id = #{id}
+	</update>
 
 
 

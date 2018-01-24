@@ -49,8 +49,8 @@
 								</div>
 							</div>
 							<div class="login-btn">
-								<button type="button" class="btn btn-primary btn-lg active">注
-									册</button>
+								<a href="${pageContext.request.contextPath }/user/register"  class="btn btn-primary btn-lg active">注
+									册</a>
 								<button type="submit" id="login"
 									class="btn btn-default btn-lg active">登 录</button>
 							</div>

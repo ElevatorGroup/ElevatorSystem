@@ -3,12 +3,70 @@
 
 <mapper namespace="cn.elevator.dao.building.BuildingMapper">
 
-	<select id="getBuidingById" resultType="Building"> 
-		SELECT * FROM building WHERE ID=#{ID} 
+	 <select id="getBuildingByName" resultType="Building">
+		select * from building where companyName=#{companyName}
 	</select>
-
-	
 	 
+	<insert id="saveBuilding" parameterType="Building" >
+		insert into building
+		(
+			 companyName , 
+			 companyAddress , 
+			 creditCode , 
+			 businessLicense , 
+			 representative , 
+			 companyTel , 
+			 fax , 
+			 contactPerson , 
+			 contactNumber , 
+			 elevatorNumber , 
+			 elevatorOccasion , 
+			 installationDate , 
+			 installType , 
+			 creater , 
+			 createDate
+		)
+		values
+		(
+			#{companyName}, 
+			#{companyAddress}, 
+			#{creditCode}, 
+			#{businessLicense}, 
+			#{representative}, 
+			#{companyTel}, 
+			#{fax}, 
+			#{contactPerson}, 
+			#{contactNumber}, 
+			#{elevatorNumber}, 
+			#{elevatorOccasion}, 
+			#{installationDate}, 
+			#{installType}, 
+			#{creater}, 
+			#{createDate}
+		)
+	</insert>
+	 
+	<update id="updateBuilding" parameterType="Building">
+		update building 
+		<set>
+			<if test="companyName != null"> companyName  = #{companyName}, </if>
+			<if test="companyAddress != null"> companyAddress  = #{companyAddress}, </if>
+			<if test="creditCode != null"> creditCode  = #{creditCode}, </if>
+			<if test="businessLicense != null"> businessLicense  = #{businessLicense}, </if>
+			<if test="representative != null"> representative  = #{representative}, </if>
+			<if test="companyTel != null"> companyTel  = #{companyTel}, </if>
+			<if test="fax != null"> fax  = #{fax}, </if>
+			<if test="contactPerson != null"> contactPerson  = #{contactPerson}, </if>
+			<if test="contactNumber != null"> contactNumber  = #{contactNumber}, </if>
+			<if test="elevatorNumber != null"> elevatorNumber  = #{elevatorNumber}, </if>
+			<if test="elevatorOccasion != null"> elevatorOccasion  = #{elevatorOccasion}, </if>
+			<if test="installationDate != null"> installationDate  = #{installationDate}, </if>
+			<if test="installType != null"> installType  = #{installType}, </if>
+			<if test="creater != null"> creater  = #{creater}, </if>
+			<if test="createDate != null"> createDate  = #{createDate}</if>
+		</set>
+		where ID = #{id}
+	</update>
 
 	 
 	

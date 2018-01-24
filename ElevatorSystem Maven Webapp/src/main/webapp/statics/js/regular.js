@@ -45,11 +45,7 @@ $(function(){
             },
             capadress:{
                 required:true,  //必填。如果验证方法不需要参数，则配置为true
-                rangelength:[2,30],
-                remote:{
-                    url:"ajax_check.action",
-                    type:"post"
-                }
+                rangelength:[2,30]
             },
 
             spass:{
@@ -113,7 +109,7 @@ $(function(){
                 rangelength:$.validator.format("请务必输入真实公司名称"),
             },
             capadress:{
-                required:"请输公司地址",
+                required:"请输入详细地址",
                 rangelength:$.validator.format("请务必输入真实公司地址"),
             },
             spass:{
@@ -628,3 +624,47 @@ $(".addHelpInfo").validate({
         }
     }
 });
+$(".addSaa").validate({
+    debug: true,
+    rules: {
+        name: {
+            required: true
+        },
+        phone: {
+            required: true,
+            minlength: 11,
+            isMobile: true
+        },
+        username: {
+            required: true
+        },
+        password: {
+            required: true,
+            rangelength: [6, 16]
+        },
+        age: {
+            required: true
+        }
+    },
+    messages: {
+        name: {
+            required: "请输入姓名"
+        },
+        phone: {
+            required: "请输入手机号",
+            minlength: "确认手机不能小于11个字符",
+            isMobile: "请正确填写您的手机号码"
+        },
+        username: {
+            required: "请输入用户名"
+        },
+        password: {
+            required: "请输入密码",
+            rangelength: $.validator.format("密码长度为{0}-{16}个字符")
+        },
+        age: {
+            required: "请输入年龄"
+        }
+    }
+});
+

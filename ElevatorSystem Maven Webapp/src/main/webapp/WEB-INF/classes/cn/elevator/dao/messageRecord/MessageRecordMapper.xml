@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="cn.elevator.dao.messageRecord.MessageRecordMapper">
+
+	<select id="getMessageRecordByPhone" resultType="MessageRecord">
+		select phoneNumber,sendTime,endTime,smsCode from messageRecord where phoneNumber=#{phoneNumber}
+	</select>
+
+	<insert id="saveMessageRecord" parameterType="MessageRecord">
+		insert into messageRecord
+		(
+		phoneNumber,
+		content,
+		sendTime,
+		endTime,
+		smsCode,
+		statusCode,
+		message,
+		taskId,
+		remainPoint,
+		successCounts
+		)
+		values
+		(
+		#{phoneNumber},
+		#{content},
+		#{sendTime},
+		#{endTime},
+		#{smsCode},
+		#{statusCode},
+		#{message},
+		#{taskId},
+		#{remainPoint},
+		#{successCounts}
+		)
+	</insert>
+</mapper>

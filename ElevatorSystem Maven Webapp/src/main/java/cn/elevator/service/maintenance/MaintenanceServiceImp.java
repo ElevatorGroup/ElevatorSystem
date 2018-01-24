@@ -19,16 +19,6 @@ public class MaintenanceServiceImp implements MaintenanceService{
 		
 		return maintenanceMapper.getMaintenance(id, userRole);
 	}
-	@Override
-	public Boolean updateMaintenance(Maintenance maintenance) throws Exception {
-		Boolean bool=false;
-		if(maintenanceMapper.updateMaintenance(maintenance)>0){
-			bool=true;
-		}else{
-			bool=false;
-		}
-		return bool;
-	}
 	
 	@Override
 	public List<User> getUserList(Integer id, String realName) throws Exception {
@@ -46,6 +36,32 @@ public class MaintenanceServiceImp implements MaintenanceService{
 		}
 		return bool;
 	}
+	@Override
+	public Maintenance getMaintenanceByName(String companyName)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return maintenanceMapper.getMaintenanceByName(companyName);
+	}
+
+	@Override
+	public Boolean saveMaintenance(Maintenance maintenance) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean falg = false;
+		if (maintenanceMapper.saveMaintenance(maintenance) > 0)
+			falg = true;
+		return falg;
+	}
+
+	@Override
+	public Boolean updateMaintenance(Maintenance maintenance) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean falg = false;
+		if (maintenanceMapper.updateMaintenance(maintenance) > 0)
+			falg = true;
+		return falg;
+	}
+
+
 	
 	
 

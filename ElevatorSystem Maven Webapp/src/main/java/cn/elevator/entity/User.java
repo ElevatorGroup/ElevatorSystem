@@ -1,6 +1,5 @@
 package cn.elevator.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import java.util.List;
  * @date 2017-12-22 16:31:49
  */
 public class User  {
+	
 	//用户表
 	private Integer id;
 	//用户角色0.质检公司1.楼盘2.物业管理员3.物业人员4.维保公司5维保人员
@@ -30,12 +30,14 @@ public class User  {
 	private String userName;
 	//微信号
 	private String wenXin;
+	//加密盐值
+	private String salt;
 	//用户密码
 	private String password;
-	//物业普通员工对应楼盘id,其他用户都为空
-	private Integer buildingID;
-	//维保普通员工对应修理的电梯id,其他用户都为空
-	private String elevatorID;
+	//楼盘id只有楼盘id不为空时为物业普通员工
+	private Integer buildingId;
+	//维保人员工号只有维保人员工号不为空时为维保普通员工
+	private Integer realtyId;
 	//创建人
 	private String creater;
 	//创建时间
@@ -44,26 +46,20 @@ public class User  {
 	private String updater;
 	//修改时间
 	private Date updatDate;
-	
-	
-	
-	   
-	//新添加的字段，外表链接
-	//用户角色名称
 	private String userRoleName;
-	//电梯集合
-	private List<ElevatorInfo> elevatorList=new ArrayList<ElevatorInfo>();
-	public List<ElevatorInfo> getElevatorList() {
-		return elevatorList;
-	}
-	public void setElevatorList(List<ElevatorInfo> elevatorList) {
-		this.elevatorList = elevatorList;
-	}
 	public String getUserRoleName() {
 		return userRoleName;
 	}
 	public void setUserRoleName(String userRoleName) {
 		this.userRoleName = userRoleName;
+	}
+	private List<ElevatorInfo> elevatorList;
+	
+	public List<ElevatorInfo> getElevatorList() {
+		return elevatorList;
+	}
+	public void setElevatorList(List<ElevatorInfo> elevatorList) {
+		this.elevatorList = elevatorList;
 	}
 	public Integer getId() {
 		return id;
@@ -78,7 +74,6 @@ public class User  {
 		this.userRole = userRole;
 	}
 	public Integer getCompanyId() {
-		
 		return companyId;
 	}
 	public void setCompanyId(Integer companyId) {
@@ -114,24 +109,29 @@ public class User  {
 	public void setWenXin(String wenXin) {
 		this.wenXin = wenXin;
 	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public Integer getBuildingID() {
-		return buildingID;
+	public Integer getBuildingId() {
+		return buildingId;
 	}
-	public void setBuildingID(Integer buildingID) {
-		this.buildingID = buildingID;
+	public void setBuildingId(Integer buildingId) {
+		this.buildingId = buildingId;
 	}
-	public String getElevatorID() {
-		return elevatorID;
+	public Integer getRealtyId() {
+		return realtyId;
 	}
-	public void setElevatorID(String elevatorID) {
-		this.elevatorID = elevatorID;
+	public void setRealtyId(Integer realtyId) {
+		this.realtyId = realtyId;
 	}
 	public String getCreater() {
 		return creater;

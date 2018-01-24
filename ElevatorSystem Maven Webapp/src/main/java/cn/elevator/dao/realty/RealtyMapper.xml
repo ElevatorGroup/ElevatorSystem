@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.elevator.dao.realty.RealtyMapper">
+
+	
+	 
+	<select id="getRealtyByName" resultType="Realty">
+		select * from realty where companyName=#{companyName}
+	</select>
+	 
+	<insert id="saveRealty" parameterType="Realty">
+		insert into realty
+		(
+			 companyName , 
+			 companyAddress , 
+			 creditCode , 
+			 businessLicense , 
+			 representative , 
+			 companyTel , 
+			 fax , 
+			 contactPerson , 
+			 contactNumber , 
+			 installType , 
+			 creater , 
+			 createDate 
+		)
+		values
+		(
+			#{companyName}, 
+			#{companyAddress}, 
+			#{creditCode}, 
+			#{businessLicense}, 
+			#{representative}, 
+			#{companyTel}, 
+			#{fax}, 
+			#{contactPerson}, 
+			#{contactNumber}, 
+			#{installType}, 
+			#{creater}, 
+			#{createDate}
+		)
+	</insert>
+	 
+	<update id="updateRealty" parameterType="Realty">
+		update realty 
+		<set>
+			<if test="companyName != null"> companyName  = #{companyName}, </if>
+			<if test="companyAddress != null"> companyAddress  = #{companyAddress}, </if>
+			<if test="creditCode != null"> creditCode  = #{creditCode}, </if>
+			<if test="businessLicense != null"> businessLicense  = #{businessLicense}, </if>
+			<if test="representative != null"> representative  = #{representative}, </if>
+			<if test="companyTel != null"> companyTel  = #{companyTel}, </if>
+			<if test="fax != null"> fax  = #{fax}, </if>
+			<if test="contactPerson != null"> contactPerson  = #{contactPerson}, </if>
+			<if test="contactNumber != null"> contactNumber  = #{contactNumber}, </if>
+			<if test="installType != null"> installType  = #{installType}, </if>
+			<if test="updater != null"> updater  = #{updater}, </if>
+			<if test="updatDate != null"> updatDate  = #{updatDate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- <delete id="delete">
+		delete from realty where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from realty where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete> -->
+
+</mapper>

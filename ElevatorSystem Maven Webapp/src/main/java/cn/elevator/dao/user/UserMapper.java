@@ -58,5 +58,8 @@ public interface UserMapper {
 	 
 	 //物业管理员和维保管理员查看管理员工list列表
 	 public List<User> getUser_pt(@Param("userRole")Integer userRole,@Param("id")Integer id)throws Exception;
+	 
+	 //用户注册
+	 public Integer saveUser(User user)throws Exception;
 	
 }

@@ -8,7 +8,13 @@ import org.springframework.stereotype.Service;
 
 
 
+import cn.elevator.dao.building.BuildingMapper;
+import cn.elevator.dao.maintenance.MaintenanceMapper;
+import cn.elevator.dao.realty.RealtyMapper;
 import cn.elevator.dao.user.UserMapper;
+import cn.elevator.entity.Building;
+import cn.elevator.entity.Maintenance;
+import cn.elevator.entity.Realty;
 import cn.elevator.entity.User;
 
 
@@ -16,7 +22,12 @@ import cn.elevator.entity.User;
 public class UserServiceImpl implements UserService{
 	@Resource
 	private UserMapper userMapper;
-	
+	@Resource
+	private RealtyMapper realtyMapper;
+	@Resource
+	private BuildingMapper buildingMapper;
+	@Resource
+	private MaintenanceMapper maintenanceMapper;
 	public User login(String userName) throws Exception {
 	
 		User user = null;
@@ -85,4 +96,69 @@ public class UserServiceImpl implements UserService{
 	}
 
 
+
+
+
+	@Override
+	public Boolean saveUser(User user) throws Exception {
+		Boolean bool=false;
+		if(userMapper.saveUser(user)>0){
+			bool=true;
+		}
+		return bool;
+	}
+
+	@Override
+	public Boolean buildingRegister(User user, Building building)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Boolean flag = false;
+		if (userMapper.saveUser(user) > 0
+				&& buildingMapper.saveBuilding(building) > 0) {
+			Integer buildingId=buildingMapper.getBuildingByName(
+					building.getCompanyName()).getId();
+			User newUser =userMapper.login(user.getUserName());
+			newUser.setCompanyId(buildingId);
+			if (userMapper.updateUser(newUser) > 0) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+
+	@Override
+	public Boolean realtyRegister(User user, Realty realty) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean flag = false;
+
+		if (userMapper.saveUser(user) > 0
+				&& realtyMapper.saveRealty(realty) > 0) {
+			User newUser =userMapper.login(user.getUserName());
+			newUser.setCompanyId(realtyMapper.getRealtyByName(
+					realty.getCompanyName()).getId());
+			if (userMapper.updateUser(newUser) > 0) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+
+	@Override
+	public Boolean maintenanceRegister(User user, Maintenance maintenance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Boolean flag = false;
+
+		if (userMapper.saveUser(user) > 0
+				&& maintenanceMapper.saveMaintenance(maintenance) > 0) {
+			User newUser =userMapper.login(user.getUserName());
+			newUser.setCompanyId(maintenanceMapper.getMaintenanceByName(
+					maintenance.getCompanyName()).getId());
+			if (userMapper.updateUser(newUser) > 0) {
+				flag = true;
+			}
+		}
+
+		return flag;
+	}
 }

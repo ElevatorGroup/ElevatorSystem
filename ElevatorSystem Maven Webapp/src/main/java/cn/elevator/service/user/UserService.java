@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import cn.elevator.entity.Building;
+import cn.elevator.entity.Maintenance;
+import cn.elevator.entity.Realty;
 import cn.elevator.entity.User;
 
 
@@ -48,6 +51,32 @@ public interface  UserService {
 		 
 		 //物业管理员和维保管理员查看管理员工list列表
 		 public List<User> getUser_pt(Integer userRole,Integer id)throws Exception;
-
+		 
+		 //用户注册
+		 public Boolean saveUser(User user)throws Exception;
+		 /**
+			 * 
+			 * @param user
+			 * @param building
+			 * @return
+			 * @throws Exception
+			 */
+			public Boolean buildingRegister(User user,Building building) throws Exception;
+			/**
+			 * 
+			 * @param user
+			 * @param building
+			 * @return
+			 * @throws Exception
+			 */
+			public Boolean realtyRegister(User user,Realty realty) throws Exception;
+			/**
+			 * 
+			 * @param user
+			 * @param building
+			 * @return
+			 * @throws Exception
+			 */
+			public Boolean maintenanceRegister(User user,Maintenance maintenance) throws Exception;
 	 
 }
